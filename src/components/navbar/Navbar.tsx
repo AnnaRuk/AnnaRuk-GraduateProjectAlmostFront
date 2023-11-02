@@ -3,6 +3,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { logout } from '../../features/auth/authSlice';
 import { selectUser } from '../../features/auth/selectors';
+import styles from './Navbar.module.css';
 
 function Navbar(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -20,12 +21,14 @@ function Navbar(): JSX.Element {
 		},
 		[dispatch, navigate]
 	);
+
 	return (
 		<nav>
 			{!user ? (
 				<>
-					<NavLink to="/auth/login">Войти</NavLink>
-					<NavLink to="/auth/register">Регистрация</NavLink>
+					<NavLink to="/allKindergartens">All Kindergartens</NavLink>
+					<NavLink to="/auth/login">Sign In</NavLink>
+					<NavLink to="/auth/register">Sign Up</NavLink>
 				</>
 			) : location.pathname === '/' ? (
 				user.role === 'ADMIN' ? (
@@ -35,12 +38,12 @@ function Navbar(): JSX.Element {
 				)
 			) : (
 				<NavLink to="/" onClick={handleLogout}>
-					На главную
+					Home
 				</NavLink>
 			)}
 			{user && (
 				<NavLink to="" onClick={handleLogout}>
-					Выйти
+					Sign Out
 				</NavLink>
 			)}
 		</nav>
