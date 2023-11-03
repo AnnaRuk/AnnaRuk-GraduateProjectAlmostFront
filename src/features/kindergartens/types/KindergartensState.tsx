@@ -1,6 +1,8 @@
 import Kindergarten from './Kindergarten';
 
 export default interface KindergartensState {
-	kindergartens: Kindergarten[];
+	kindergartenBaseDTOList: Kindergarten[];
+	cities: string[];
 	error?: string;
+	selectedCity?: string;
 }

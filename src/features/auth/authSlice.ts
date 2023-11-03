@@ -15,7 +15,7 @@ export const getUser = createAsyncThunk('api/users/profile', () => api.user());
 
 export const login = createAsyncThunk('login', async (credentials: Credentials) => {
 	if (!credentials.email.trim() || !credentials.password.trim()) {
-		throw new Error('Не все поля заполнены');
+		throw new Error('Not all fields are filled in');
 	}
 	return api.login(credentials);
 });
