@@ -1,10 +1,14 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { setSelectedCity } from './KinderdartensSlice';
+import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import KindergartensState from './types/KindergartensState';
 import * as api from './api';
+import KindergartensList from './KindergartensList';
 
 const initialState: KindergartensState = {
-	kindergartens: [],
+	kindergartenBaseDTOList: [],
+	cities: [],
 	error: '',
+	selectedCity: 'All cities',
 };
 
 export const loadKindergartens = createAsyncThunk('kindergartens/loadKindergartens', () =>
@@ -14,12 +18,21 @@ export const loadKindergartens = createAsyncThunk('kindergartens/loadKindergarte
 export const kindergartensSlice = createSlice({
 	name: 'kindergartens',
 	initialState,
-	reducers: {},
+	reducers: {
+		setSelectedCity: (state, action) => {
+			state.selectedCity = action.payload;
+		},
+	},
 	extraReducers: (builder) => {
-		builder.addCase(loadKindergartens.fulfilled, (state, action) => {
-			state.kindergartens = action.payload;
-		});
+		builder
+			.addCase(loadKindergartens.fulfilled, (state, action) => {
+				state.kindergartenBaseDTOList = action.payload.kindergartenBaseDTOList;
+				state.cities = action.payload.cities;
+			})
+			.addCase(loadKindergartens.rejected, (state, action) => {
+				state.error = action.error.message;
+			});
 	},
 });
-
+export const { setSelectedCity } = kindergartensSlice.actions;
 export default kindergartensSlice.reducer;
