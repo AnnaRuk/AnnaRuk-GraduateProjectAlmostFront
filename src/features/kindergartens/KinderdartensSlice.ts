@@ -5,7 +5,7 @@ import * as api from './api';
 import KindergartensList from './KindergartensList';
 
 const initialState: KindergartensState = {
-	kindergartenBaseDTOList: [],
+	kindergartenDTOList: [],
 	cities: [],
 	error: '',
 	selectedCity: 'All cities',
@@ -26,7 +26,7 @@ export const kindergartensSlice = createSlice({
 	extraReducers: (builder) => {
 		builder
 			.addCase(loadKindergartens.fulfilled, (state, action) => {
-				state.kindergartenBaseDTOList = action.payload.kindergartenBaseDTOList;
+				state.kindergartenDTOList = action.payload.kindergartenDTOList;
 				state.cities = action.payload.cities;
 			})
 			.addCase(loadKindergartens.rejected, (state, action) => {
