@@ -11,6 +11,12 @@ import AdminCabinet from './components/main/AdminCabinet';
 import Layout from './components/layouts/Layout';
 import Tasks from './features/tasks/Tasks';
 import KindergartensList from './features/kindergartens/KindergartensList';
+import FavoritesKindergartensList from './features/favorites/FavoritesKindergartensList';
+import KindergartenDetails from './features/kindergartens/KindergartenDetails';
+import Account from './components/myaccount/Account';
+import Home from './components/home/Home';
+import Sidepanel from './components/sidepanel/Sidepanel';
+import UserData from './features/userdata/UserData';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -32,13 +38,18 @@ function App(): JSX.Element {
 		<HashRouter>
 			<Routes>
 				<Route path="/" element={<Layout />}>
+					<Route path="/" element={<Home />} />
 					<Route path="/tasks" element={<Tasks />} />
 					<Route path="/auth/login" element={<Login />} />
 					<Route path="/auth/register" element={<Register />} />
 					<Route path="/admin/tasks" element={<AdminCabinet />} />
 					<Route path="/allKindergartens" element={<KindergartensList />} />
-					{/* <Route path="/manager/myAccount" element={<ManagerAccount/>} /> 
-					<Route path="/user/myAccount" element={<UserAccount/>} />  */}
+					<Route path="/allKindergartens/:id" element={<KindergartenDetails />} />
+					<Route path="/favorites" element={<FavoritesKindergartensList />} />
+					<Route path="/managerAccount" element={<Account />} />
+					<Route path="/userAccount" element={<Account />} />
+					<Route path="/sidepanel" element={<Sidepanel />} />
+					<Route path="/userData" element={<UserData />} />
 				</Route>
 			</Routes>
 		</HashRouter>

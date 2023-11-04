@@ -1,7 +1,7 @@
 import Kindergarten from './types/Kindergarten';
 
 export async function getAllKindergarten(): Promise<{
-	kindergartenBaseDTOList: Kindergarten[];
+	kindergartenDTOList: Kindergarten[];
 	cities: string[];
 }> {
 	const res = await fetch('/api/kindergartens');
@@ -11,4 +11,7 @@ export async function getAllKindergarten(): Promise<{
 	}
 	return res.json();
 }
+
+
+
 

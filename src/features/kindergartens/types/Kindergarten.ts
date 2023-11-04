@@ -8,6 +8,7 @@ export default interface Kindergarten {
 	freePlaces?: number;
 	description?: string;
 	linkImg?: string;
+	phone?: string;
 }
 
 

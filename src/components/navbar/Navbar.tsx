@@ -3,7 +3,6 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { logout } from '../../features/auth/authSlice';
 import { selectUser } from '../../features/auth/selectors';
-import styles from './Navbar.module.css';
 
 function Navbar(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -26,20 +25,36 @@ function Navbar(): JSX.Element {
 		<nav>
 			{!user ? (
 				<>
-					<NavLink to="/allKindergartens">All Kindergartens</NavLink>
-					<NavLink to="/auth/login">Sign In</NavLink>
-					<NavLink to="/auth/register">Sign Up</NavLink>
+					{/* ALL */}
+					<div>
+						<span>LOGO</span>
+						<NavLink to="/allKindergartens">All Kindergartens</NavLink>
+						<span>About VOUCHER</span>
+						<NavLink to="/auth/login">Sign In</NavLink>
+						<NavLink to="/auth/register">Sign Up</NavLink>
+					</div>
 				</>
 			) : location.pathname === '/' ? (
-				user.role === 'ADMIN' ? ( /// USER/MANAGER
-					<NavLink to="/admin/tasks">Задачи всех пользователей</NavLink>
-				) : (
-					<NavLink to="/tasks">Задачи текущего пользователя</NavLink>
-				)
+				//  HomePage auth
+				<>
+					<span>Hi, {user.firstName}</span>
+					<>
+						{user.role === 'USER' ? (
+							// USER
+							<>
+								<NavLink to="/userAccount">Your Account</NavLink>
+							</>
+						) : (
+							// MANAGER
+							<>
+								<NavLink to="/managerAccount">Your Account</NavLink>
+							</>
+						)}
+					</>
+				</>
 			) : (
-				<NavLink to="/" onClick={handleLogout}>
-					Home
-				</NavLink>
+				// auth other pages
+				<NavLink to="/">Home</NavLink>
 			)}
 			{user && (
 				<NavLink to="" onClick={handleLogout}>

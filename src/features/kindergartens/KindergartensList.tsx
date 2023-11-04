@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { loadKindergartens, setSelectedCity } from './KinderdartensSlice';
+import { Link } from 'react-router-dom';
+import Kindergarten from './types/Kindergarten';
+import GradeIcon from '@mui/icons-material/Grade';
 
 export default function KindergartensList(): JSX.Element {
-	const kindergartens = useAppSelector((state) => state.kindergartens.kindergartenBaseDTOList);
+	const kindergartens = useAppSelector((state) => state.kindergartens.kindergartenDTOList);
 	const cities = useAppSelector((state) => state.kindergartens.cities);
 	const selectedCity = useAppSelector((state) => state.kindergartens.selectedCity);
 	const dispatch = useAppDispatch();
@@ -53,7 +56,10 @@ export default function KindergartensList(): JSX.Element {
 				<tbody>
 					{filteredKindergartens.map((kindergarten) => (
 						<tr key={kindergarten.id}>
-							<td>{kindergarten.title}</td>
+							<td> 
+								<GradeIcon />
+								<Link to={`/allKindergartens/${kindergarten.id}`}>{kindergarten.title}</Link>
+							</td>
 							<td>{kindergarten.city}</td>
 							<td>{kindergarten.address}</td>
 							<td>{kindergarten.capacity}</td>
@@ -61,6 +67,7 @@ export default function KindergartensList(): JSX.Element {
 					))}
 				</tbody>
 			</table>
+			<div></div>
 		</div>
 	);
 }
