@@ -2,6 +2,9 @@ import Credentials from './types/Credentials';
 import RegisterData from './types/RegisterData';
 import User from './types/User';
 
+
+const URL = import.meta.env.VITE_APP_URL
+
 export async function user(): Promise<{
 	id: number;
 	email: string;
@@ -9,7 +12,7 @@ export async function user(): Promise<{
 	firstName: string;
 	lastName: string;
 }> {
-	const res = await fetch('/api/users/profile');
+	const res = await fetch(`${URL}/api/users/profile`);
 	if (res.status >= 400) {
 		const { message }: { message: string } = await res.json();
 		throw new Error(message);
@@ -41,7 +44,7 @@ export async function register(data: RegisterData): Promise<{
 	email: string;
 	role: string;
 }> {
-	const res = await fetch('/api/users/register', {
+	const res = await fetch(`${URL}/api/users/register`, {
 		method: 'POST',
 		body: JSON.stringify(data),
 		headers: {

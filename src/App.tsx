@@ -1,8 +1,7 @@
 import './App.css';
 import { useAppDispatch, useAppSelector } from './app/hooks';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { getUser } from './features/auth/authSlice';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import Login from './features/auth/Login';
 import Register from './features/auth/Register';
@@ -11,7 +10,7 @@ import AdminCabinet from './components/main/AdminCabinet';
 import Layout from './components/layouts/Layout';
 import Tasks from './features/tasks/Tasks';
 
-function App(): JSX.Element {
+function App(): React.ReactElement {
 	const dispatch = useAppDispatch();
 	const authChecked = useAppSelector(selectAuthChecked);
 

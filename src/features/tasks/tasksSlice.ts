@@ -22,6 +22,7 @@ export const createTask = createAsyncThunk(
 		return api.createTask(name, description);
 	}
 );
+
 // обращается к api для загрузки тасков пользователя
 export const loadTasks = createAsyncThunk('tasks/loadTasks', () => api.getTasks());
 // обращается к api для загрузки тасков всех пользователей
