@@ -3,6 +3,7 @@ import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import KindergartensState from './types/KindergartensState';
 import * as api from './api';
 import KindergartensList from './KindergartensList';
+import KindergartenDto from './types/KindergartenDto';
 
 const initialState: KindergartensState = {
 	kindergartenDTOList: [],
@@ -14,6 +15,11 @@ const initialState: KindergartensState = {
 export const loadKindergartens = createAsyncThunk('kindergartens/loadKindergartens', () =>
 	api.getAllKindergarten()
 ); // payload = return Kindergarten[] with open Promise;
+
+export const addKindergarten = createAsyncThunk(
+	'kindergartens/addKindergarten',
+	(kindergarten: KindergartenDto) => api.addKindergarten(kindergarten)
+);
 
 export const kindergartensSlice = createSlice({
 	name: 'kindergartens',
@@ -30,6 +36,12 @@ export const kindergartensSlice = createSlice({
 				state.cities = action.payload.cities;
 			})
 			.addCase(loadKindergartens.rejected, (state, action) => {
+				state.error = action.error.message;
+			})
+			.addCase(addKindergarten.fulfilled, (state, action) => {
+				state.kindergartenDTOList.push(action.payload);
+			})
+			.addCase(addKindergarten.rejected, (state, action) => {
 				state.error = action.error.message;
 			});
 	},

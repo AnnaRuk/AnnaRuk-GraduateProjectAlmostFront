@@ -4,7 +4,7 @@ import { deleteFavorites, loadFavorites } from './FavoritesSlice';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 
 export default function FavoritesKindergartensList(): JSX.Element {
-	const favorites = useAppSelector((state) => state.favorites.kindergartenDTOList);
+	const favorites = useAppSelector((state) => state.favorites.kindergartens);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {

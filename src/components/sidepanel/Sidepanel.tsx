@@ -6,14 +6,15 @@ function Sidepanel(): JSX.Element {
 	const user = useAppSelector(selectUser);
 	return (
 		<div>
+		{/* TODO ternar */}
 			{user && (
 				<div>
 					<h3>SIDE panel</h3>
-					<NavLink to="/userData">My data</NavLink>
+					<NavLink to="/userDataForm">My data</NavLink>
 					<NavLink to="/dialogues">My dialogues</NavLink>
 					{user.role === 'USER' && (
 						<>
-							<NavLink to="/children">My children</NavLink>
+							<NavLink to="/childrenForm">My children</NavLink>
 							<span>All Kindergartens</span>
 							<NavLink to="/allKindergartens">Find kindergartens</NavLink>
 							<NavLink to="/favorites">My favorites Kindergartens</NavLink>
@@ -22,9 +23,9 @@ function Sidepanel(): JSX.Element {
 					)}
 					{user.role === 'MANAGER' && (
 						<>
-							<NavLink to="/managerKindergarten">Controlled Kindergarten</NavLink>
+							<NavLink to="/kindergartenForm">Controlled Kindergarten</NavLink>
 							<span>Requests</span>
-							<NavLink to="/requests">Requests</NavLink>
+							<NavLink to="/requests/">Requests</NavLink>
 							<NavLink to="/processRequests">Processed requests</NavLink>
 							<NavLink to="/confirmedRequests">Confirmed requests</NavLink>
 						</>

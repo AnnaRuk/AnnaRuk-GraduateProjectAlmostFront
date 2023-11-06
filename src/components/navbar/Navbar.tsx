@@ -47,7 +47,7 @@ function Navbar(): JSX.Element {
 						) : (
 							// MANAGER
 							<>
-								<NavLink to="/managerAccount">Your Account</NavLink>
+								<NavLink to="/userAccount">Your Account</NavLink>
 							</>
 						)}
 					</>
