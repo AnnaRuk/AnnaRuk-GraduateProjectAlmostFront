@@ -3,6 +3,7 @@ import authSlice from '../features/auth/authSlice';
 import tasksSlice from '../features/tasks/tasksSlice';
 import kinderdartensSlice from '../features/kindergartens/KinderdartensSlice';
 import favoritesSlice from '../features/favorites/FavoritesSlice';
+import childrenSlice  from '../features/children/ChildrenSlice';
 
 export const store = configureStore({
 	reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
 		tasks: tasksSlice,
 		kindergartens: kinderdartensSlice,
 		favorites: favoritesSlice,
+		children: childrenSlice,
 
 	},
 });

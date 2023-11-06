@@ -17,6 +17,8 @@ import Account from './components/myaccount/Account';
 import Home from './components/home/Home';
 import Sidepanel from './components/sidepanel/Sidepanel';
 import UserData from './features/userdata/UserData';
+import ChildForm from './features/children/ChildForm';
+import KindergartenForm from './features/kindergartens/KindergartenForm';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -46,10 +48,11 @@ function App(): JSX.Element {
 					<Route path="/allKindergartens" element={<KindergartensList />} />
 					<Route path="/allKindergartens/:id" element={<KindergartenDetails />} />
 					<Route path="/favorites" element={<FavoritesKindergartensList />} />
-					<Route path="/managerAccount" element={<Account />} />
+					<Route path="/kindergartenForm" element={<KindergartenForm />} />
 					<Route path="/userAccount" element={<Account />} />
 					<Route path="/sidepanel" element={<Sidepanel />} />
-					<Route path="/userData" element={<UserData />} />
+					<Route path="/childrenForm" element={<ChildForm />} />
+					<Route path="/userDataForm" element={<UserData />} />
 				</Route>
 			</Routes>
 		</HashRouter>
