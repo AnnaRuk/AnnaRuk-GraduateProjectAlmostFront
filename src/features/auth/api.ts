@@ -8,6 +8,12 @@ export async function user(): Promise<{
 	role: string;
 	firstName: string;
 	lastName: string;
+	postCode?: string;
+	address?: string;
+	city?: string;
+	phone?: string;
+	dateOfBirth?: string;
+	gender?: string;
 }> {
 	const res = await fetch('/api/users/profile');
 	if (res.status >= 400) {

@@ -78,7 +78,7 @@ function Register(): JSX.Element {
 	);
 
 	const handleRoleChange = useCallback(
-		(event: React.ChangeEvent<HTMLInputElement>) => {
+		(event: React.ChangeEvent<HTMLSelectElement>) => {
 			setRole(event.target.value);
 			dispatch(resetRegisterFormError());
 		},
@@ -87,13 +87,13 @@ function Register(): JSX.Element {
 
 	return (
 		<form className="auth-form" onSubmit={handleSubmit}>
-			<h2>Регистрация</h2>
+			<h2>Sign up</h2>
 			{error && (
 				<div className="invalid-feedback mb-3" style={{ display: 'block' }}>
 					{error}
 				</div>
 			)}
-     <div className="mb-3">
+			<div className="mb-3">
 				<label htmlFor="name-input" className="form-label">
 					first name
 				</label>
@@ -104,6 +104,7 @@ function Register(): JSX.Element {
 					name="userFirstName"
 					value={firstName}
 					onChange={handleFirstNameChange}
+					required
 				/>
 			</div>
 			<div className="mb-3">
@@ -117,22 +118,26 @@ function Register(): JSX.Element {
 					name="lastFirstName"
 					value={lastName}
 					onChange={handleLastNameChange}
+					required
 				/>
 			</div>
 			<div className="mb-3">
-				<label htmlFor="name-input" className="form-label">
-					role
+				<label htmlFor="role-input" className="form-label">
+					Choose a role
 				</label>
-				<input
-					type="text"
-					className={`form-control ${error ? 'is-invalid' : ''}`}
+				<select
+					className={`form-select ${error ? 'is-invalid' : ''}`}
 					id="role-input"
 					name="userRole"
 					value={role}
 					onChange={handleRoleChange}
-				/>
+					required
+				>
+					<option value="">Select Role</option>
+					<option value="MANAGER">Kindergarten Manager</option>
+					<option value="USER">Just parent</option>
+				</select>
 			</div>
-
 			<div className="mb-3">
 				<label htmlFor="name-input" className="form-label">
 					Login(email)
@@ -144,11 +149,12 @@ function Register(): JSX.Element {
 					name="username"
 					value={email}
 					onChange={handleNameChange}
+					required
 				/>
 			</div>
 			<div className="mb-3">
 				<label htmlFor="password-input" className="form-label">
-					Пароль
+					password
 				</label>
 				<input
 					type="password"
@@ -157,11 +163,12 @@ function Register(): JSX.Element {
 					name="password"
 					value={password}
 					onChange={handlePasswordChange}
+					required
 				/>
 			</div>
 			<div className="mb-3">
 				<label htmlFor="password-repeat-input" className="form-label">
-					Повторите пароль
+					Confirm your password
 				</label>
 				<input
 					type="password"
@@ -170,10 +177,11 @@ function Register(): JSX.Element {
 					name="passwordRepeat"
 					value={passwordRepeat}
 					onChange={handlePasswordRepeatChange}
+					required
 				/>
 			</div>
 			<button type="submit" className="btn btn-primary">
-				Зарегистрироваться
+				Register
 			</button>
 		</form>
 	);

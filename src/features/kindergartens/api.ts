@@ -29,15 +29,6 @@ export async function addControlKindergarten(dto: KindergartenDto): Promise<Kind
 	return res.json();
 }
 
-// export async function getControlKindergarten(): Promise<Kindergarten> {
-// 	const res = await fetch('/api/users/profile/controlKindergarten');
-// 	// TODO Error
-// 	if (res.status >= 400) {
-// 		console.log('HELP');
-// 	}
-// 	return res.json();
-// }
-//PUT
 export async function updateControlKindergarten(dto: UpdateKindergartenDto): Promise<Kindergarten> {
 	const res = await fetch('/api/users/profile/controlKindergarten', {
 		method: 'PUT',

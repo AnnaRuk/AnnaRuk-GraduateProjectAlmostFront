@@ -1,5 +1,4 @@
-export default interface User {
-	id: number;
+export default interface UpdateUserDto {
 	email: string;
 	role: string;
 	firstName: string;
@@ -11,4 +10,3 @@ export default interface User {
 	dateOfBirth?: string;
 	gender?: string;
 }
-
