@@ -5,4 +5,5 @@ export default interface KindergartensState {
 	cities: string[];
 	error?: string;
 	selectedCity?: string;
+	controlKindergarten: Kindergarten | null;
 }

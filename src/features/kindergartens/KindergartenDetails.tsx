@@ -14,7 +14,6 @@ export default function KindergartenDetails(): JSX.Element {
 	const { id } = useParams();
 	let kindergarten: Kindergarten | null | undefined = null;
 
-
 	const kindergartens = useAppSelector((state) => state.kindergartens.kindergartenDTOList);
 	kindergarten = kindergartens.find((k) => String(k.id) === String(id));
 
@@ -26,33 +25,40 @@ export default function KindergartenDetails(): JSX.Element {
 		dispatch(addToFavorites(id));
 	};
 
-	console.log(kindergarten?.id)
+	console.log(kindergarten?.id);
 
 	if (kindergarten) {
 		return (
 			<div>
 				<div>
-						<h3>Kindergarten</h3>
-						<div>{kindergarten?.title}</div>
-						<div>
-							<BusinessIcon /> {kindergarten?.address}, {kindergarten?.city},
-							{kindergarten?.postcode}
-						</div>
-						<div>
-							<PhoneInTalkIcon />
-							{kindergarten?.phone}
-						</div>
-						<div>{kindergarten?.capacity}</div>
-						<div>
-							<img src={kindergarten?.linkImg} alt="KINDERGARTEN" />
-						</div>
-						<div>{kindergarten?.description}</div>
+					<h3>Kindergarten</h3>
+					<div>{kindergarten?.title}</div>
+					<div>
+						<BusinessIcon /> {kindergarten?.address}, {kindergarten?.city},{kindergarten?.postcode}
 					</div>
+					<div>
+						<PhoneInTalkIcon />
+						{kindergarten?.phone}
+					</div>
+					<div>{kindergarten?.capacity}</div>
+					<div>
+						<img src={kindergarten?.linkImg} alt="KINDERGARTEN" />
+					</div>
+					<div>{kindergarten?.description}</div>
+				</div>
 				{user ? (
 					<div>
 						<div>
-							<button type="button" onClick={() => handleAddToFavorite(kindergarten ? Number(kindergarten.id) : 0)}>favorite</button>
-							<BackspaceIcon type="button" onClick={() => handleDelete(kindergarten ? Number(kindergarten.id) : 0)} />
+							<button
+								type="button"
+								onClick={() => handleAddToFavorite(kindergarten ? Number(kindergarten.id) : 0)}
+							>
+								favorite
+							</button>
+							<BackspaceIcon
+								type="button"
+								onClick={() => handleDelete(kindergarten ? Number(kindergarten.id) : 0)}
+							/>
 						</div>
 						<div>
 							<button type="button">request</button>
@@ -61,9 +67,7 @@ export default function KindergartenDetails(): JSX.Element {
 							<button type="button">message</button>
 						</div>
 					</div>
-				) : (
-					null
-				)}
+				) : null}
 			</div>
 		);
 	} else {

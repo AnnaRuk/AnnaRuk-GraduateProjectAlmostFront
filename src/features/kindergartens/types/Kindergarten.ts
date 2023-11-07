@@ -10,6 +10,3 @@ export default interface Kindergarten {
 	linkImg?: string;
 	phone?: string;
 }
-
-
-	
