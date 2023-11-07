@@ -16,9 +16,9 @@ import KindergartenDetails from './features/kindergartens/KindergartenDetails';
 import Account from './components/myaccount/Account';
 import Home from './components/home/Home';
 import Sidepanel from './components/sidepanel/Sidepanel';
-import UserData from './features/userdata/UserData';
 import ChildForm from './features/children/ChildForm';
 import KindergartenForm from './features/kindergartens/KindergartenForm';
+import UserData from './features/account/UserData';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();

@@ -1,5 +1,6 @@
 import Kindergarten from './types/Kindergarten';
 import KindergartenDto from './types/KindergartenDto';
+import UpdateKindergartenDto from './types/UpdateKindergartenDto';
 
 export async function getAllKindergarten(): Promise<{
 	kindergartenDTOList: Kindergarten[];
@@ -12,7 +13,7 @@ export async function getAllKindergarten(): Promise<{
 	}
 	return res.json();
 }
-export async function addKindergarten(dto: KindergartenDto): Promise<Kindergarten> {
+export async function addControlKindergarten(dto: KindergartenDto): Promise<Kindergarten> {
 	const res = await fetch('/api/users/profile/controlKindergarten', {
 		method: 'POST',
 		headers: {
@@ -23,7 +24,31 @@ export async function addKindergarten(dto: KindergartenDto): Promise<Kindergarte
 
 	if (res.status >= 400) {
 		console.log('HELP');
-		
+	}
+
+	return res.json();
+}
+
+// export async function getControlKindergarten(): Promise<Kindergarten> {
+// 	const res = await fetch('/api/users/profile/controlKindergarten');
+// 	// TODO Error
+// 	if (res.status >= 400) {
+// 		console.log('HELP');
+// 	}
+// 	return res.json();
+// }
+//PUT
+export async function updateControlKindergarten(dto: UpdateKindergartenDto): Promise<Kindergarten> {
+	const res = await fetch('/api/users/profile/controlKindergarten', {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(dto),
+	});
+
+	if (res.status >= 400) {
+		console.log('HELP');
 	}
 
 	return res.json();

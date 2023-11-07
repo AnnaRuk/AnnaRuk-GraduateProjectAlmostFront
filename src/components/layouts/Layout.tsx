@@ -1,7 +1,5 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from '../navbar/Navbar';
-import Sidepanel from '../sidepanel/Sidepanel';
-import Kindergarten from '../../features/kindergartens/KindergartenDetails';
 
 function Main(): JSX.Element {
 	return (

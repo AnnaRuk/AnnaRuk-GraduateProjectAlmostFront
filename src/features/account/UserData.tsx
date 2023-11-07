@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import selectUser from '../../features/auth/selectors';
+import selectUser from '../auth/selectors';
 import { addChild } from '../children/ChildrenSlice';
 
 export default function UserData(): JSX.Element {

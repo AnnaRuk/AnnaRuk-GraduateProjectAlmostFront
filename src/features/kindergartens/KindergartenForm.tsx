@@ -1,62 +1,59 @@
-import React, { FormEvent, useState } from 'react';
-import { useAppDispatch } from '../../app/hooks';
-import { addKindergarten } from './KinderdartensSlice';
+import React, { FormEvent, useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import {
+	addControlKindergarten,
+	loadControlKindergarten,
+	updateControlKindergarten,
+} from './KinderdartensSlice';
+import './KindergartenForm.module.css';
 
 export default function KindergartenForm(): JSX.Element {
 	const dispatch = useAppDispatch();
-	const [title, setTitle] = useState<string>('');
-	const [address, setAddress] = useState<string>('');
-	const [postcode, setPostCode] = useState<string>('');
-	const [capacity, setCapacity] = useState<number>(0);
-	const [city, setCity] = useState<string>('');
-	const [description, setDescription] = useState<string>('');
-	const [linkImg, setLinkImg] = useState<string>('');
+	const controlKindergarten = useAppSelector((state) => state.account.controlKindergarten);
+
+	// useEffect(() => {
+	// 	dispatch(loadControlKindergarten());
+	// }, [dispatch]);
+
+	// const controlKindergarten = useAppSelector((state) => state.kindergartens.controlKindergarten);
 	const [error, setError] = useState<string>('');
 
-	function validateInputs(): boolean {
-		if (title.trim() === '') {
-			setError('Title is empty, please enter it');
-			return false;
-		}
-		if (address.trim() === '') {
-			setError('Address is empty, please enter it');
-			return false;
-		}
-		if (postcode.trim() === '') {
-			setError('Postcode is empty, please enter it');
-			return false;
-		}
-		if (city.trim() === '') {
-			setError('City is empty, please enter it');
-			return false;
-		}
-		if (description.trim() === '') {
-			setError('Description is empty, please enter it');
-			return false;
-		}
-		if (linkImg.trim() === '') {
-			setError('Peactures is empty, please enter it');
-			return false;
-		}
-		if (capacity <= 0) {
-			setError('Capasity is empty, please enter it');
-			return false;
-		}
-		return true;
-	}
+	const [title, setTitle] = useState(controlKindergarten?.title || '');
+	const [address, setAddress] = useState(controlKindergarten?.address || '');
+	const [postcode, setPostcode] = useState(controlKindergarten?.postcode || '');
+	const [city, setCity] = useState(controlKindergarten?.city || '');
+	const [description, setDescription] = useState(controlKindergarten?.description || '');
+	const [linkImg, setLinkImg] = useState(controlKindergarten?.linkImg || '');
+	const [capacity, setCapacity] = useState(controlKindergarten?.capacity || 0);
+
+	// TODO PHONE
+	//add validation
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>): void {
 		e.preventDefault();
-		if (validateInputs()) {
+		if (controlKindergarten) {
 			dispatch(
-				addKindergarten({
+				updateControlKindergarten({
+					id: controlKindergarten.id,
 					title,
 					address,
 					postcode,
-					capacity,
 					city,
 					description,
 					linkImg,
+					capacity,
+				})
+			);
+		} else {
+			dispatch(
+				addControlKindergarten({
+					title,
+					address,
+					postcode,
+					city,
+					description,
+					linkImg,
+					capacity,
 				})
 			);
 		}
@@ -67,68 +64,62 @@ export default function KindergartenForm(): JSX.Element {
 			<h3>My Kindergarden</h3>
 			<form onSubmit={handleSubmit}>
 				{error && <p>{error}</p>}
-				<label htmlFor="title-input" className="form-label">
-					Kindergarten's Title
-				</label>
+				{/* title+label */}
+				<label htmlFor="title-input">title</label>
 				<input
 					type="text"
-					id=""
-					placeholder="Kindergarten's Title"
+					placeholder="title"
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
 				/>
+
+				<label htmlFor="phone-input">phone</label>
+				<input type="text" placeholder="title" value={controlKindergarten?.phone} />
+
 				<input
 					type="text"
-					id=""
+					placeholder="postcode"
+					value={postcode}
+					onChange={(e) => setPostcode(e.target.value)}
+				/>
+
+				<input
+					type="text"
 					placeholder="address"
 					value={address}
 					onChange={(e) => setAddress(e.target.value)}
 				/>
+
 				<input
 					type="text"
-					id=""
 					placeholder="city"
 					value={city}
 					onChange={(e) => setCity(e.target.value)}
 				/>
+
 				<input
 					type="text"
-					id=""
-					placeholder="postcode"
-					value={postcode}
-					onChange={(e) => setPostCode(e.target.value)}
-				/>
-				<input
-					type="number"
-					id=""
-					placeholder="capacity"
-					value={capacity}
-					onChange={(e) => setCapacity(Number(e.target.value))}
-				/>
-				<input
-					type="text"
-					id=""
 					placeholder="description"
 					value={description}
 					onChange={(e) => setDescription(e.target.value)}
 				/>
+
 				<input
 					type="text"
-					id=""
-					placeholder="add photo link"
+					placeholder="img"
 					value={linkImg}
 					onChange={(e) => setLinkImg(e.target.value)}
 				/>
-				<button type="submit">Save</button>
+
+				<input
+					type="number"
+					placeholder="capacity"
+					value={capacity}
+					onChange={(e) => setCapacity(Number(e.target.value))}
+				/>
+ 
+				<button type="submit">Update/Save</button>
 			</form>
 		</>
 	);
 }
-
-// title: string;
-// address: string;
-// postcode: string;
-// city: string;
-// capacity: number;
-// description: string;
-// linkImg: string;

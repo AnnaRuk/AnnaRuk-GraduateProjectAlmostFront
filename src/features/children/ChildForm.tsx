@@ -1,58 +1,81 @@
 import React, { FormEvent, useState } from 'react';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { addChild } from './ChildrenSlice';
+import Child from './types/Child';
+import { updateChildren } from './api';
 
 export default function ChildForm(): JSX.Element {
 	const dispatch = useAppDispatch();
-	const [firstName, setFirstName] = useState<string>('');
-	const [lastName, setLastName] = useState<string>('');
-	const [gender, setGender] = useState<string>('');
-	const [dateOfBirth, setDateOfBirth] = useState<string>('');
 	const [error, setError] = useState<string>('');
+	const children = useAppSelector((state) => state.account.children);
+	const child: Child | undefined = children![0];
+	const [firstName, setFirstName] = useState(child?.firstName || '');
+	const [lastName, setLastName] = useState(child?.lastName || '');
+	const [gender, setGender] = useState(child?.gender || '');
+	const [dateOfBirth, setDateOfBirth] = useState(child?.dateOfBirth || '');
 
-	function validateInputs(): boolean {
-		if (firstName.trim() === '') {
-			setError('Name is empty, please enter it');
-			return false;
-		}
-		if (lastName.trim() === '') {
-			setError('Last name is empty, please enter it');
-			return false;
-		}
-		if (gender.trim() === '') {
-			setError('Gender is empty, please enter it');
-			return false;
-		}
-		if (dateOfBirth.trim() === '') {
-			setError('date of birth is empty, please select it');
-			return false;
-		}
+	//TODO validation
+	// function validateInputs(): boolean {
+	// 	if (firstName.trim() === '') {
+	// 		setError('Name is empty, please enter it');
+	// 		return false;
+	// 	}
+	// 	if (lastName.trim() === '') {
+	// 		setError('Last name is empty, please enter it');
+	// 		return false;
+	// 	}
+	// 	if (gender.trim() === '') {
+	// 		setError('Gender is empty, please enter it');
+	// 		return false;
+	// 	}
+	// 	if (dateOfBirth.trim() === '') {
+	// 		setError('date of birth is empty, please select it');
+	// 		return false;
+	// 	}
 
-		return true;
-	}
+	// 	return true;
+	// }
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>): void {
 		e.preventDefault();
-		if (validateInputs()) {
-			dispatch(addChild({ firstName, lastName, gender, dateOfBirth }));
+		if (child) {
+			dispatch(
+				updateChild({
+					id: child.id,
+					firstName,
+					lastName,
+					gender,
+					dateOfBirth,
+				})
+			);
+		} else {
+			dispatch(
+				addChild({
+					firstName,
+					lastName,
+					gender,
+					dateOfBirth,
+				})
+			);
 		}
 	}
 
 	return (
 		<>
 			<h5>My children</h5>
+			{error && <p>{error}</p>}
 			<form id="addChildForm" onSubmit={handleSubmit}>
 				{error && <p>{error}</p>}
 				<input
 					type="text"
-					id="childFirstName"
 					placeholder="first name"
 					value={firstName}
 					onChange={(e) => setFirstName(e.target.value)}
 				/>
+
+
 				<input
 					type="text"
-					id="childLastName"
 					placeholder="last name"
 					value={lastName}
 					onChange={(e) => setLastName(e.target.value)}
@@ -99,20 +122,14 @@ export default function ChildForm(): JSX.Element {
 				</div>
 				<input
 					type="date"
-					id="childDateOfBirth"
 					placeholder="date of birth"
 					value={dateOfBirth}
 					onChange={(e) => setDateOfBirth(e.target.value)}
 				/>
-				<button id="saveChildButton" type="submit">
+				<button type="submit">
 					Save
 				</button>
 			</form>
 		</>
 	);
 }
-
-// firstName: string;
-// lastName: string;
-// gender: string;
-// dateOfBirth: string;

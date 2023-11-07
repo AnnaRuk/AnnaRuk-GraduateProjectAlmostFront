@@ -17,15 +17,15 @@ export async function addChild(dto: ChildDto): Promise<Child[]> {
 	return res.json();
 }
 
-//GET
-export async function loadChildren(): Promise<Child[]> {
-	const res = await fetch('/api/users/profile/children');
-	if (res.status >= 400) {
-		console.log('HELP');
-	}
+// //GET
+// export async function loadChildren(): Promise<Child[]> {
+// 	const res = await fetch('/api/users/profile/children');
+// 	if (res.status >= 400) {
+// 		console.log('HELP');
+// 	}
 
-	return res.json();
-}
+// 	return res.json();
+// }
 
 // PUT
 export async function updateChildren(child: Child): Promise<Child> {
