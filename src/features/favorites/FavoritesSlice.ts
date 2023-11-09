@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as api from './api';
 import FavoritesState from './types/FavoritesState';
 import FavoriteAddDto from './types/FavoriteAddDto';
+import DeleteFromFavorites from './types/DeleteFavoriteDto';
 
 const initialState: FavoritesState = {
 	kindergartens: [],
@@ -9,8 +10,9 @@ const initialState: FavoritesState = {
 };
 
 export const loadFavorites = createAsyncThunk('favorites/loadFavorites', () => api.getFavorites()); // payload = return Kindergarten[] with open Promise;
-export const deleteFavorites = createAsyncThunk('favorites/deleteFavorites', (id: number) =>
-	api.deleteFromFavorites(id)
+export const deleteFavorites = createAsyncThunk(
+	'favorites/deleteFavorites',
+	(id: DeleteFromFavorites) => api.deleteFromFavorites(id)
 );
 export const addToFavorites = createAsyncThunk(
 	'favorites/addToFavorites',

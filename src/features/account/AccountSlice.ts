@@ -4,8 +4,6 @@ import * as api from './api';
 import UpdateUserDto from './types/UpdateUserDto';
 
 const initialState: AccountState = {
-	// children: [],
-	// controlKindergarten: undefined,
 	error: '',
 	user: undefined,
 };
@@ -26,7 +24,6 @@ export const accountSlice = createSlice({
 					...state.user,
 					id: action.payload.id,
 					email: action.payload.email,
-					role: action.payload.role,
 					firstName: action.payload.firstName,
 					lastName: action.payload.lastName,
 					postcode: action.payload.postcode,
@@ -40,18 +37,6 @@ export const accountSlice = createSlice({
 			.addCase(updateUsersProfile.rejected, (state, action) => {
 				state.error = action.error.message;
 			});
-		// .addCase(loadControlKindergarten.fulfilled, (state, action) => {
-		// 	state.controlKindergarten = action.payload;
-		// })
-		// .addCase(loadControlKindergarten.rejected, (state, action) => {
-		// 	state.error = action.error.message;
-		// })
-		// .addCase(loadChildren.fulfilled, (state, action) => {
-		// 	state.children = action.payload.children;
-		// })
-		// .addCase(loadChildren.rejected, (state, action) => {
-		// 	state.error = action.error.message;
-		// });
 	},
 });
 export default accountSlice.reducer;

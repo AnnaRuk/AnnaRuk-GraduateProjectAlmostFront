@@ -16,6 +16,11 @@ export const loadKindergartens = createAsyncThunk('kindergartens/loadKindergarte
 	api.getAllKindergarten()
 ); // payload = return Kindergarten[] with open Promise;
 
+export const loadKindergartenById = createAsyncThunk(
+	'kindergartens/loadKindergarten',
+	(id: number) => api.getKindergartenById(id)
+);
+
 export const addControlKindergarten = createAsyncThunk(
 	'kindergartens/addControlKindergarten',
 	(kindergarten: KindergartenDto) => api.addControlKindergarten(kindergarten)
@@ -67,12 +72,18 @@ export const kindergartensSlice = createSlice({
 			.addCase(loadKindergartens.rejected, (state, action) => {
 				state.error = action.error.message;
 			})
-			// .addCase(loadControlKindergarten.fulfilled, (state, action) => {
-			// 	state.controlKindergarten = action.payload;
-			// })
-			// .addCase(loadControlKindergarten.rejected, (state, action) => {
-			// 	state.error = action.error.message;
-			// })
+			.addCase(loadKindergartenById.fulfilled, (state, action) => {
+				state.kindergartenDTOList.find((k) => k.id === action.payload.id);
+			})
+			.addCase(loadKindergartenById.rejected, (state, action) => {
+				state.error = action.error.message;
+			})
+			.addCase(loadControlKindergarten.fulfilled, (state, action) => {
+				state.controlKindergarten = action.payload;
+			})
+			.addCase(loadControlKindergarten.rejected, (state, action) => {
+				state.error = action.error.message;
+			})
 			.addCase(addControlKindergarten.fulfilled, (state, action) => {
 				state.kindergartenDTOList.push(action.payload);
 			})

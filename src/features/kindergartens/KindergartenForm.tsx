@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { addControlKindergarten, updateControlKindergarten } from './KinderdartensSlice';
 import './KindergartenForm.module.css';

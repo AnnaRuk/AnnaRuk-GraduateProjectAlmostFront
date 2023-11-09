@@ -18,16 +18,16 @@ function Sidepanel(): JSX.Element {
 							<span>All Kindergartens</span>
 							<NavLink to="/allKindergartens">Find kindergartens</NavLink>
 							<NavLink to="/favorites">My favorites Kindergartens</NavLink>
-							<NavLink to="/requests">My requests</NavLink>
+							<NavLink to="/userRequests">My requests</NavLink>
 						</>
 					)}
 					{user.role === 'MANAGER' && (
 						<>
 							<NavLink to="/kindergartenForm">Controlled Kindergarten</NavLink>
 							<span>Requests</span>
-							<NavLink to="/requests/">Requests</NavLink>
-							<NavLink to="/processRequests">Processed requests</NavLink>
-							<NavLink to="/confirmedRequests">Confirmed requests</NavLink>
+							<NavLink to="/managerRequests">Confirmed Requests</NavLink>
+							<NavLink to="/managerNotConfirmedRequests">NOT Confirmed Requests</NavLink>
+						
 						</>
 					)}
 				</div>
