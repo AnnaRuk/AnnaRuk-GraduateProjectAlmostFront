@@ -1,18 +1,13 @@
 import React, { useEffect } from 'react';
 import Sidepanel from '../sidepanel/Sidepanel';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { loadChildren, loadControlKindergarten } from '../../features/account/AccountSlice';
 
 export default function Account(): JSX.Element {
 	const dispatch = useAppDispatch();
 
-	useEffect(() => {
-		dispatch(loadControlKindergarten());
-	}, [dispatch]);
+	const user = useAppSelector((state) => state.auth.user);
 
-	useEffect(() => {
-		dispatch(loadChildren());
-	}, [dispatch]);
 
 	return (
 		<div>

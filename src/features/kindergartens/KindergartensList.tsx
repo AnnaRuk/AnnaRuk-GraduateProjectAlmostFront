@@ -56,7 +56,7 @@ export default function KindergartensList(): JSX.Element {
 				<tbody>
 					{filteredKindergartens.map((kindergarten) => (
 						<tr key={kindergarten.id}>
-							<td> 
+							<td>
 								<GradeIcon />
 								<Link to={`/allKindergartens/${kindergarten.id}`}>{kindergarten.title}</Link>
 							</td>

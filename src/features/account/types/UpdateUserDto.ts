@@ -1,6 +1,5 @@
 export default interface UpdateUserDto {
 	email: string;
-	role: string;
 	firstName: string;
 	lastName: string;
 	postcode?: string;

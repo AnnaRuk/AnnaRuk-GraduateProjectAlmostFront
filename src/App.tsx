@@ -16,9 +16,12 @@ import KindergartenDetails from './features/kindergartens/KindergartenDetails';
 import Account from './components/myaccount/Account';
 import Home from './components/home/Home';
 import Sidepanel from './components/sidepanel/Sidepanel';
-import ChildForm from './features/children/ChildForm';
+import ChildForm from './features/children/ChildrenForm';
 import KindergartenForm from './features/kindergartens/KindergartenForm';
 import UserData from './features/account/UserData';
+import ChildrenForm from './features/children/ChildrenForm';
+import AddChildrenForm from './features/children/AddChildrenForm';
+import UserRequestsList from './features/requests/UserRequestsList';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -51,8 +54,10 @@ function App(): JSX.Element {
 					<Route path="/kindergartenForm" element={<KindergartenForm />} />
 					<Route path="/userAccount" element={<Account />} />
 					<Route path="/sidepanel" element={<Sidepanel />} />
-					<Route path="/childrenForm" element={<ChildForm />} />
+					<Route path="/childrenForm" element={<ChildrenForm />} />
+					<Route path="/childrenForm/addChildrenForm" element={<AddChildrenForm />} />
 					<Route path="/userDataForm" element={<UserData />} />
+					<Route path="/requests" element={<UserRequestsList />} />
 				</Route>
 			</Routes>
 		</HashRouter>
