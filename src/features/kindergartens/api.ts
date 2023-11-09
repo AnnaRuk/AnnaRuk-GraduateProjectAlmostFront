@@ -44,3 +44,13 @@ export async function updateControlKindergarten(dto: UpdateKindergartenDto): Pro
 
 	return res.json();
 }
+
+//GET
+export async function loadControlKindergarten(): Promise<Kindergarten> {
+	const res = await fetch('/api/users/profile/controlKindergarten');
+	// TODO Error
+	if (res.status >= 400) {
+		console.log('HELP LOAD KINDERGARTEN');
+	}
+	return res.json();
+}

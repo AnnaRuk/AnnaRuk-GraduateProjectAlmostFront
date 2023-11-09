@@ -1,7 +1,6 @@
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import KindergartensState from './types/KindergartensState';
 import * as api from './api';
-import KindergartensList from './KindergartensList';
 import KindergartenDto from './types/KindergartenDto';
 import UpdateKindergartenDto from './types/UpdateKindergartenDto';
 
@@ -22,10 +21,10 @@ export const addControlKindergarten = createAsyncThunk(
 	(kindergarten: KindergartenDto) => api.addControlKindergarten(kindergarten)
 );
 
-// export const loadControlKindergarten = createAsyncThunk(
-// 	'kindergartens/loadControlKindergarten',
-// 	() => api.getControlKindergarten()
-// );
+export const loadControlKindergarten = createAsyncThunk(
+	'kindergartens/loadControlKindergarten',
+	() => api.loadControlKindergarten()
+);
 
 export const updateControlKindergarten = createAsyncThunk(
 	'kindergartens/updateControlKindergarten',

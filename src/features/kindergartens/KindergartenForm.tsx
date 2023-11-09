@@ -5,7 +5,7 @@ import './KindergartenForm.module.css';
 
 export default function KindergartenForm(): JSX.Element {
 	const dispatch = useAppDispatch();
-	const controlKindergarten = useAppSelector((state) => state.account.controlKindergarten);
+	const controlKindergarten = useAppSelector((state) => state.kindergartens.controlKindergarten);
 
 	const [error, setError] = useState<string>('');
 	const [editable, setEditable] = useState(false);
@@ -24,27 +24,27 @@ export default function KindergartenForm(): JSX.Element {
 			return false;
 		}
 		if (address.trim() === '') {
-			setError('Address is empty, please enter it');
+			setError('Address is empty, please enter it. Empty data will not be saved!');
 			return false;
 		}
 		if (postcode.trim() === '') {
-			setError('Postcode is empty, please enter it');
+			setError('Postcode is empty, please enter it. Empty data will not be saved!');
 			return false;
 		}
 		if (city.trim() === '') {
-			setError('City is empty, please enter it');
+			setError('City is empty, please enter it. Empty data will not be saved!');
 			return false;
 		}
 		if (description.trim() === '') {
-			setError('Description is empty, please enter it');
+			setError('Description is empty, please enter it. Empty data will not be saved!');
 			return false;
 		}
 		if (linkImg.trim() === '') {
-			setError('Peactures is empty, please enter it');
+			setError('Peactures is empty, please enter it. Empty data will not be saved!');
 			return false;
 		}
 		if (capacity <= 0) {
-			setError('Capacity is empty, please enter it');
+			setError('Capacity is empty, please enter it. Empty data will not be saved!');
 			return false;
 		}
 		return true;
@@ -55,6 +55,7 @@ export default function KindergartenForm(): JSX.Element {
 	};
 
 	function handleSaveSubmit(e: FormEvent<HTMLFormElement>): void {
+		e.preventDefault();
 		if (validateInputs()) {
 			setEditable(false);
 			if (controlKindergarten) {

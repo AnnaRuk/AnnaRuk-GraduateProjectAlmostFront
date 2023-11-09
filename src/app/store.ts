@@ -5,6 +5,7 @@ import kinderdartensSlice from '../features/kindergartens/KinderdartensSlice';
 import favoritesSlice from '../features/favorites/FavoritesSlice';
 import childrenSlice from '../features/children/ChildrenSlice';
 import accountSlice from '../features/account/AccountSlice';
+import requestsSlice from '../features/requests/RequestsSlice';
 
 export const store = configureStore({
 	reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
 		favorites: favoritesSlice,
 		children: childrenSlice,
 		account: accountSlice,
+		requests: requestsSlice,
 	},
 });
 

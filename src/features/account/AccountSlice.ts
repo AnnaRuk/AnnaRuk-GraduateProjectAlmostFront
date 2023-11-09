@@ -4,8 +4,8 @@ import * as api from './api';
 import UpdateUserDto from './types/UpdateUserDto';
 
 const initialState: AccountState = {
-	children: [],
-	controlKindergarten: undefined,
+	// children: [],
+	// controlKindergarten: undefined,
 	error: '',
 	user: undefined,
 };
@@ -14,12 +14,6 @@ export const updateUsersProfile = createAsyncThunk(
 	'account/updateUserProfile',
 	(user: UpdateUserDto) => api.updateUsersProfile(user)
 );
-
-export const loadControlKindergarten = createAsyncThunk('account/loadControlKindergarten', () =>
-	api.loadControlKindergarten()
-);
-
-export const loadChildren = createAsyncThunk('account/loadChildren', () => api.loadChildren());
 
 export const accountSlice = createSlice({
 	name: 'account',
@@ -45,19 +39,19 @@ export const accountSlice = createSlice({
 			})
 			.addCase(updateUsersProfile.rejected, (state, action) => {
 				state.error = action.error.message;
-			})
-			.addCase(loadControlKindergarten.fulfilled, (state, action) => {
-				state.controlKindergarten = action.payload;
-			})
-			.addCase(loadControlKindergarten.rejected, (state, action) => {
-				state.error = action.error.message;
-			})
-			.addCase(loadChildren.fulfilled, (state, action) => {
-				state.children = action.payload;
-			})
-			.addCase(loadChildren.rejected, (state, action) => {
-				state.error = action.error.message;
 			});
+		// .addCase(loadControlKindergarten.fulfilled, (state, action) => {
+		// 	state.controlKindergarten = action.payload;
+		// })
+		// .addCase(loadControlKindergarten.rejected, (state, action) => {
+		// 	state.error = action.error.message;
+		// })
+		// .addCase(loadChildren.fulfilled, (state, action) => {
+		// 	state.children = action.payload.children;
+		// })
+		// .addCase(loadChildren.rejected, (state, action) => {
+		// 	state.error = action.error.message;
+		// });
 	},
 });
 export default accountSlice.reducer;
