@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { deleteFavorites, loadFavorites } from './FavoritesSlice';
 import BackspaceIcon from '@mui/icons-material/Backspace';
+import { Link } from 'react-router-dom';
 
 export default function FavoritesKindergartensList(): JSX.Element {
 	const favorites = useAppSelector((state) => state.favorites.kindergartens);
@@ -34,7 +35,9 @@ export default function FavoritesKindergartensList(): JSX.Element {
 				<tbody>
 					{favorites.map((kindergarten) => (
 						<tr key={kindergarten.id}>
-							<td>{kindergarten.title}</td>
+							<td>
+								<Link to={`/allKindergartens/${kindergarten.id}`}>{kindergarten.title}</Link>
+							</td>
 							<td>{kindergarten.postcode}</td>
 							<td>{kindergarten.city}</td>
 							<td>{kindergarten.address}</td>

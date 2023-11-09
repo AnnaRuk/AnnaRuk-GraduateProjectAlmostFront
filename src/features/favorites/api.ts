@@ -1,4 +1,5 @@
 import Kindergarten from '../../features/kindergartens/types/Kindergarten';
+import DeleteFromFavorites from './types/DeleteFavoriteDto';
 import FavoriteAddDto from './types/FavoriteAddDto';
 
 //GET
@@ -14,14 +15,13 @@ export async function getFavorites(): Promise<{
 }
 
 //DELETE
-export async function deleteFromFavorites(id: number): Promise<Kindergarten> {
-	const data = { id };
+export async function deleteFromFavorites(id: DeleteFromFavorites): Promise<Kindergarten> {
 	const res = await fetch('/api/users/profile/favorites', {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify(data),
+		body: JSON.stringify(id),
 	});
 	if (res.status >= 400) {
 		console.log('HELP');

@@ -16,10 +16,6 @@ function Main(): JSX.Element {
 		dispatch(loadControlKindergarten());
 	}, [dispatch]);
 
-	// useEffect(() => {
-	// 	dispatch(loadRequests());
-	// }, [dispatch]);
-
 	return (
 		<>
 			<Navbar />
