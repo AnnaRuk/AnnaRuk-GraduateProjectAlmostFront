@@ -1,0 +1,27 @@
+.blue {
+	color: #25aece;
+}
+.bg_blue {
+	background-color: #25aece;
+}
+.white {
+	color: white;
+}
+.bg_green {
+	background-color: #afffaf;
+}
+.bg_pink {
+	background-color: #ffc0cb;
+}
+.blind {
+	opacity: 0.8;
+}
+.font_itim {
+	font-family: 'Itim', cursive;
+}
+.font_jolly_lodger {
+	font-family: 'Jolly Lodger';
+}
+.font_kavoon {
+	font-family: 'Kavoon', serif;
+}

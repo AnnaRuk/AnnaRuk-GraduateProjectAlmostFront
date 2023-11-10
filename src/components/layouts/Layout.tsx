@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { loadControlKindergarten } from '../../features/kindergartens/KinderdartensSlice';
 import { loadChildren } from '../../features/children/ChildrenSlice';
 import { loadRequests } from '../../features/requests/RequestsSlice';
+import Footer from './../Footer/Footer';
 
 function Main(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -20,7 +21,7 @@ function Main(): JSX.Element {
 		<>
 			<Navbar />
 			<Outlet />
-			<footer>Здесь будет футер from Aleksandr</footer>
+			<Footer />
 		</>
 	);
 }
