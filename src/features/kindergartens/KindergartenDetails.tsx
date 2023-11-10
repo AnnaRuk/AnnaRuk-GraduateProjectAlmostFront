@@ -72,6 +72,7 @@ export default function KindergartenDetails(): JSX.Element {
 						<PhoneInTalkIcon />
 						{kindergarten?.phone}
 					</div>
+					<div>{`Contact person: ${kindergarten.manager?.firstName} ${kindergarten.manager?.lastName}`}</div>
 					<div>{kindergarten?.capacity}</div>
 					<div>
 						<img src={kindergarten?.linkImg} alt="KINDERGARTEN" />

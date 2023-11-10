@@ -114,15 +114,13 @@ export default function KindergartenForm(): JSX.Element {
 							value={capacity}
 							onChange={(e) => setCapacity(Number(e.target.value))}
 						/>
-						<label htmlFor="phone-input">phone</label>
-						<input type="text" value={controlKindergarten?.phone} />
 						<button type="submit">Save</button>
 					</form>
 				</div>
 			) : (
 				<div>
 					<h3>My Kindergarden</h3>
-					<p> {title}</p>
+					<div> {title}</div>
 					<p> {city}</p>
 					<p> {address}</p>
 					<p> {postcode}</p>
@@ -135,68 +133,4 @@ export default function KindergartenForm(): JSX.Element {
 			)}
 		</div>
 	);
-
-	// return (
-	// 	<>
-	// 		<h3>My Kindergarden</h3>
-	// 		<form onSubmit={handleSubmit}>
-	// 			{error && <p>{error}</p>}
-	// 			{/* title+label */}
-	// 			<label htmlFor="title-input">title</label>
-	// 			<input
-	// 				type="text"
-	// 				placeholder="title"
-	// 				value={title}
-	// 				onChange={(e) => setTitle(e.target.value)}
-	// 			/>
-
-	// 			<label htmlFor="phone-input">phone</label>
-	// 			<input type="text" placeholder="title" value={controlKindergarten?.phone} />
-
-	// 			<input
-	// 				type="text"
-	// 				placeholder="postcode"
-	// 				value={postcode}
-	// 				onChange={(e) => setPostcode(e.target.value)}
-	// 			/>
-
-	// 			<input
-	// 				type="text"
-	// 				placeholder="address"
-	// 				value={address}
-	// 				onChange={(e) => setAddress(e.target.value)}
-	// 			/>
-
-	// 			<input
-	// 				type="text"
-	// 				placeholder="city"
-	// 				value={city}
-	// 				onChange={(e) => setCity(e.target.value)}
-	// 			/>
-
-	// 			<input
-	// 				type="text"
-	// 				placeholder="description"
-	// 				value={description}
-	// 				onChange={(e) => setDescription(e.target.value)}
-	// 			/>
-
-	// 			<input
-	// 				type="text"
-	// 				placeholder="img"
-	// 				value={linkImg}
-	// 				onChange={(e) => setLinkImg(e.target.value)}
-	// 			/>
-
-	// 			<input
-	// 				type="number"
-	// 				placeholder="capacity"
-	// 				value={capacity}
-	// 				onChange={(e) => setCapacity(Number(e.target.value))}
-	// 			/>
-
-	// 			<button type="submit">Update/Save</button>
-	// 		</form>
-	// 	</>
-	// );
 }
