@@ -54,7 +54,8 @@ export default function ChildrenForm(): JSX.Element {
 				<ul>
 					{children.map((ch) => (
 						<li key={ch.id}>
-							{ch.firstName} {ch.lastName} {ch.dateOfBirth} {ch.gender}
+							{ch.firstName} {ch.lastName} {new Date(ch.dateOfBirth).toLocaleDateString()}{' '}
+							{ch.gender}
 							<button type="button" onClick={() => handleEditClick(ch.id)}>
 								Edit
 							</button>

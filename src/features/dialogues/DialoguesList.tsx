@@ -24,6 +24,7 @@ export default function DialoguesList(): JSX.Element {
 	//     }
 	//   ]
 	// }
+
 	function handleSendMessage(recipientId: number, messageText: string): void {
 		dispatch(
 			createDialogue({
@@ -39,7 +40,6 @@ export default function DialoguesList(): JSX.Element {
 			{dialogues.map((dialogue) => (
 				<div key={dialogue.id}>
 					<h2>
-						{' '}
 						Dialogue with {dialogue.recipient.firstName} {dialogue.recipient.lastName}
 					</h2>
 					<ul>
@@ -47,11 +47,25 @@ export default function DialoguesList(): JSX.Element {
 							if (message.senderId === dialogue.recipient.id) {
 								return (
 									<li key={message.id}>
-										{`${dialogue.recipient.firstName}: ${message.messageText}`}
+										{`${new Date(message.messageDateTime).toLocaleDateString('en-GB', {
+											day: 'numeric',
+											month: 'numeric',
+										})} ${new Date(message.messageDateTime).toLocaleTimeString([], {
+											hour: '2-digit',
+											minute: '2-digit',
+										})}, ${dialogue.recipient.firstName}: ${message.messageText}`}
 									</li>
 								);
 							} else {
-								return <li key={message.id}>{`${user?.firstName}: ${message.messageText}`}</li>;
+								return (
+									<li key={message.id}>{`${new Date(message.messageDateTime).toLocaleDateString(
+										'en-GB',
+										{ day: 'numeric', month: 'numeric' }
+									)} ${new Date(message.messageDateTime).toLocaleTimeString([], {
+										hour: '2-digit',
+										minute: '2-digit',
+									})}}, ${user?.firstName}: ${message.messageText}`}</li>
+								);
 							}
 						})}
 					</ul>
