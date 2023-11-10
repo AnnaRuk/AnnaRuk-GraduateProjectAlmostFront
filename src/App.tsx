@@ -64,9 +64,6 @@ function App(): JSX.Element {
 					<Route path="/managerRequests" element={<ManagerRequestsList />} />
 					<Route path="/managerNotConfirmedRequests" element={<ManagerNOTConfirmRequestList />} />
 					<Route path="/dialogues" element={<DialoguesList />} />
-
-					
-					
 				</Route>
 			</Routes>
 		</HashRouter>
