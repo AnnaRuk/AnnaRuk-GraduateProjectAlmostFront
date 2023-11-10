@@ -140,7 +140,7 @@ export default function UserData(): JSX.Element {
 					</p>
 					<p> {phone}</p>
 					<p> {gender}</p>
-					<p> {dateOfBirth}</p>
+					<p> {new Date(dateOfBirth).toLocaleDateString()}</p>
 					<p> {email}</p>
 
 					<button onClick={handleEditClick}>Edit</button>
