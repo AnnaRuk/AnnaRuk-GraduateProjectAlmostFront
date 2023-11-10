@@ -24,6 +24,7 @@ import AddChildrenForm from './features/children/AddChildrenForm';
 import UserRequestsList from './features/requests/UserRequestsList';
 import ManagerRequestsList from './features/requests/ManagerRequestsList';
 import ManagerNOTConfirmRequestList from './features/requests/ManagerNOTConfirmedRequestList';
+import DialoguesList from './features/dialogues/DialoguesList';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -62,6 +63,9 @@ function App(): JSX.Element {
 					<Route path="/userRequests" element={<UserRequestsList />} />
 					<Route path="/managerRequests" element={<ManagerRequestsList />} />
 					<Route path="/managerNotConfirmedRequests" element={<ManagerNOTConfirmRequestList />} />
+					<Route path="/dialogues" element={<DialoguesList />} />
+
+					
 					
 				</Route>
 			</Routes>
