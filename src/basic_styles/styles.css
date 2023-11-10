@@ -2,19 +2,25 @@
 	color: #25aece;
 }
 .bg_blue {
-	background-color: #25aece;
+	background-color: rgba(37, 174, 206, 0.8);
 }
 .white {
 	color: white;
 }
-.bg_green {
-	background-color: #afffaf;
+.bg_White {
+	background-color: rgba(255, 255, 255, 0.8);
 }
-.bg_pink {
+.green {
+	background-color: rgb(175, 255, 175);
+}
+.bg_green {
+	background-color: rgba(175, 255, 175, 0.8);
+}
+.pink {
 	background-color: #ffc0cb;
 }
-.blind {
-	opacity: 0.8;
+.bg_pink {
+	background-color: rgba(255, 192, 203, 0.8);
 }
 .font_itim {
 	font-family: 'Itim', cursive;
@@ -24,4 +30,7 @@
 }
 .font_kavoon {
 	font-family: 'Kavoon', serif;
+}
+.dark {
+	color: #122243;
 }

@@ -6,6 +6,7 @@ import { loadControlKindergarten } from '../../features/kindergartens/Kinderdart
 import { loadChildren } from '../../features/children/ChildrenSlice';
 import { loadRequests } from '../../features/requests/RequestsSlice';
 import Footer from './../Footer/Footer';
+import Header from '../Header/Header';
 
 function Main(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -19,6 +20,7 @@ function Main(): JSX.Element {
 
 	return (
 		<>
+			<Header />
 			<Navbar />
 			<Outlet />
 			<Footer />
