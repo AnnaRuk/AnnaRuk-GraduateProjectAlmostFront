@@ -4,6 +4,7 @@ import { loadKindergartens, setSelectedCity } from './KinderdartensSlice';
 import { Link } from 'react-router-dom';
 import Kindergarten from './types/Kindergarten';
 import GradeIcon from '@mui/icons-material/Grade';
+import { loadFavorites } from '../favorites/FavoritesSlice';
 
 export default function KindergartensList(): JSX.Element {
 	const kindergartens = useAppSelector((state) => state.kindergartens.kindergartenDTOList);
@@ -11,8 +12,13 @@ export default function KindergartensList(): JSX.Element {
 	const selectedCity = useAppSelector((state) => state.kindergartens.selectedCity);
 	const dispatch = useAppDispatch();
 
+
 	useEffect(() => {
 		dispatch(loadKindergartens());
+	}, [dispatch]);
+
+	useEffect(() => {
+		dispatch(loadFavorites());
 	}, [dispatch]);
 
 	const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

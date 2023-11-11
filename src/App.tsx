@@ -25,6 +25,7 @@ import UserRequestsList from './features/requests/UserRequestsList';
 import ManagerRequestsList from './features/requests/ManagerRequestsList';
 import ManagerNOTConfirmRequestList from './features/requests/ManagerNOTConfirmedRequestList';
 import DialoguesList from './features/dialogues/DialoguesList';
+import Dialogue from './features/dialogues/Dialogue';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -64,6 +65,7 @@ function App(): JSX.Element {
 					<Route path="/managerRequests" element={<ManagerRequestsList />} />
 					<Route path="/managerNotConfirmedRequests" element={<ManagerNOTConfirmRequestList />} />
 					<Route path="/dialogues" element={<DialoguesList />} />
+					<Route path="/dialogues/:dialogueId" element={<Dialogue />} />
 
 					
 					
