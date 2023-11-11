@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { addControlKindergarten, updateControlKindergarten } from './KinderdartensSlice';
+import { addControlKindergarten, updateControlKindergarten } from './KindergartensSlice';
 import './KindergartenForm.module.css';
 
 export default function KindergartenForm(): JSX.Element {

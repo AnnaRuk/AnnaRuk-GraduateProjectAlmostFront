@@ -32,7 +32,7 @@ export default function Header(): JSX.Element {
 							</NavLink>
 						</div>
 						<div id="kAVContainer">
-							<NavLink to="/allKindergartens">
+							<NavLink to="/kindergartens">
 								<button id="allKitasBtn" className="bg_green dark font_itim btn_green leftBtn">
 									All kindergartens
 								</button>

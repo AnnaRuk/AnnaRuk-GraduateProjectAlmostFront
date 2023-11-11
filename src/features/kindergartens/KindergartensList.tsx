@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { loadKindergartens, setSelectedCity } from './KinderdartensSlice';
+import { loadKindergartens, setSelectedCity } from './KindergartensSlice';
 import { Link } from 'react-router-dom';
 import Kindergarten from './types/Kindergarten';
 import GradeIcon from '@mui/icons-material/Grade';
+import '../../basic_styles/styles.css';
 
 export default function KindergartensList(): JSX.Element {
 	const kindergartens = useAppSelector((state) => state.kindergartens.kindergartenDTOList);
@@ -19,7 +20,7 @@ export default function KindergartensList(): JSX.Element {
 		dispatch(setSelectedCity(e.target.value));
 	};
 
-	function filtered(kitas: Kindergarten[], city: string) {
+	function filtered(kitas: Kindergarten[], city: string): void {
 		if (city) {
 			if (city === 'All cities') {
 				return kitas;
@@ -31,8 +32,10 @@ export default function KindergartensList(): JSX.Element {
 	const filteredKindergartens = filtered(kindergartens, selectedCity);
 
 	return (
-		<div>
-			<h1>Kindergartens list</h1>
+		<div className="content dark">
+			<div id="kListTitle" className="dark font_itim">
+				Kindergartens
+			</div>
 			<div>
 				<label>Choose the city: </label>
 				<select value={selectedCity} onChange={handleCityChange}>
@@ -58,7 +61,7 @@ export default function KindergartensList(): JSX.Element {
 						<tr key={kindergarten.id}>
 							<td>
 								<GradeIcon />
-								<Link to={`/allKindergartens/${kindergarten.id}`}>{kindergarten.title}</Link>
+								<Link to={`/kindergartens/${kindergarten.id}`}>{kindergarten.title}</Link>
 							</td>
 							<td>{kindergarten.city}</td>
 							<td>{kindergarten.address}</td>

@@ -25,6 +25,7 @@ import UserRequestsList from './features/requests/UserRequestsList';
 import ManagerRequestsList from './features/requests/ManagerRequestsList';
 import ManagerNOTConfirmRequestList from './features/requests/ManagerNOTConfirmedRequestList';
 import DialoguesList from './features/dialogues/DialoguesList';
+import Kindergartens from './components/Kindergarten/Kindergartens';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -49,8 +50,11 @@ function App(): JSX.Element {
 					<Route path="/" element={<Home />} />
 					<Route path="/auth/login" element={<Login />} />
 					<Route path="/auth/register" element={<Register />} />
-					<Route path="/allKindergartens" element={<KindergartensList />} />
-					<Route path="/allKindergartens/:id" element={<KindergartenDetails />} />
+					<Route path="/kindergartens" element={<Kindergartens />}>
+						<Route path="" element={<KindergartensList />} />
+						<Route path=":id" element={<KindergartenDetails />} />
+					</Route>
+
 					<Route path="/favorites" element={<FavoritesKindergartensList />} />
 					<Route path="/kindergartenForm" element={<KindergartenForm />} />
 					<Route path="/userAccount" element={<Account />} />
@@ -61,7 +65,7 @@ function App(): JSX.Element {
 					<Route path="/userRequests" element={<UserRequestsList />} />
 					<Route path="/managerRequests" element={<ManagerRequestsList />} />
 					<Route path="/managerNotConfirmedRequests" element={<ManagerNOTConfirmRequestList />} />
-					<Route path="/dialogues" element={<DialoguesList />} />
+					<Route path="/dialogues/" element={<DialoguesList />} />
 				</Route>
 			</Routes>
 		</HashRouter>

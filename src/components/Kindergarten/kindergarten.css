@@ -1,0 +1,15 @@
+#substrate {
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	justify-content: center;
+}
+#kindergartenBack {
+	display: flex;
+	width: 60vw;
+	height: 100vh;
+	justify-content: center;
+}
+#kListTitle {
+	font-size: 3vw;
+}

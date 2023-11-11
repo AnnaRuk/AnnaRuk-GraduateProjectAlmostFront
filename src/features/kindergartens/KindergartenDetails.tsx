@@ -30,7 +30,7 @@ export default function KindergartenDetails(): JSX.Element {
 		);
 	};
 
-	const handleCreateRequest = (kindergartenId: number): void => {
+	const handleCreateRequest = (): void => {
 		if (selectedChildId !== null) {
 			dispatch(
 				createRequest({

@@ -16,7 +16,7 @@ function Sidepanel(): JSX.Element {
 						<>
 							<NavLink to="/childrenForm">My children</NavLink>
 							<span>All Kindergartens</span>
-							<NavLink to="/allKindergartens">Find kindergartens</NavLink>
+							<NavLink to="/kindergartens">Find kindergartens</NavLink>
 							<NavLink to="/favorites">My favorites Kindergartens</NavLink>
 							<NavLink to="/userRequests">My requests</NavLink>
 						</>
