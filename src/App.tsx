@@ -47,10 +47,8 @@ function App(): JSX.Element {
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route path="/" element={<Home />} />
-					<Route path="/tasks" element={<Tasks />} />
 					<Route path="/auth/login" element={<Login />} />
 					<Route path="/auth/register" element={<Register />} />
-					<Route path="/admin/tasks" element={<AdminCabinet />} />
 					<Route path="/allKindergartens" element={<KindergartensList />} />
 					<Route path="/allKindergartens/:id" element={<KindergartenDetails />} />
 					<Route path="/favorites" element={<FavoritesKindergartensList />} />

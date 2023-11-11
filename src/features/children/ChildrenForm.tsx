@@ -32,8 +32,8 @@ export default function ChildrenForm(): JSX.Element {
 	};
 
 	const handleSaveChanges = (): void => {
-		setEditable(false);
 		if (editChild) {
+			setEditable(false);
 			dispatch(
 				updateChildren({
 					id: editChild.id,

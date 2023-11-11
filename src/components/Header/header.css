@@ -1,12 +1,54 @@
 #headerContainer {
 	display: flex;
 }
-header {
+#header {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	height: 4vw;
+	z-index: 100;
+}
+
+#logo {
+	height: 3.5vw;
+	width: 3.5vw;
+}
+#logoContainer {
+	width: auto;
+	padding-top: 5px;
+	padding-left: 10px;
+}
+
+#kAVContainer {
+	width: 70%;
+	flex-wrap: nowrap;
+	display: flex;
+	align-items: center;
+}
+#accountNoNameContainer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+#accountContainer {
+	display: flex;
+	justify-content: flex-end;
+	width: 25%;
+	padding-right: 10px;
+}
+
+#accountNameContainer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+#accountBtnContainer {
 	display: flex;
 }
-#logo {
-	opacity: 1;
-}
-#allKitasBtn {
-	border-radius: 30px 0px 0px 30px;
+.userName {
+	font-size: 1.6vw;
+	white-space: nowrap;
 }

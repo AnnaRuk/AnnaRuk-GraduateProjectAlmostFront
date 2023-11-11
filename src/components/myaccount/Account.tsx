@@ -8,9 +8,8 @@ export default function Account(): JSX.Element {
 
 	const user = useAppSelector((state) => state.auth.user);
 
-
 	return (
-		<div>
+		<div className="content">
 			Account area user/manager
 			{/* 
 			<UserData />

@@ -21,7 +21,6 @@ function Main(): JSX.Element {
 	return (
 		<>
 			<Header />
-			<Navbar />
 			<Outlet />
 			<Footer />
 		</>
