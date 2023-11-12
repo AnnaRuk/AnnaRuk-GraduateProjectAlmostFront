@@ -14,10 +14,10 @@ export default function KindergartenDetails(): JSX.Element {
 	const user = useAppSelector(selectUser);
 	const children = useAppSelector((state) => state.children.children);
 	const { id } = useParams();
+	const kindergartens = useAppSelector((state) => state.kindergartens.kindergartenDTOList);
 	const favorites = useAppSelector((state) => state.favorites.kindergartens);
 	let kindergarten: Kindergarten | null | undefined = null;
 
-	const kindergartens = useAppSelector((state) => state.kindergartens.kindergartenDTOList);
 	kindergarten = kindergartens.find((k) => String(k.id) === String(id));
 
 	const [selectedChildId, setSelectedChildId] = useState<number | null>(null);
