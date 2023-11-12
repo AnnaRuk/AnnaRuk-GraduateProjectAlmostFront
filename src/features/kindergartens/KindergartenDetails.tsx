@@ -5,10 +5,8 @@ import { selectUser } from '../auth/selectors';
 import Kindergarten from './types/Kindergarten';
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import BusinessIcon from '@mui/icons-material/Business';
-import { loadKindergartens } from './KindergartensSlice';
 import { addToFavorites, deleteFavorites, loadFavorites } from '../favorites/FavoritesSlice';
 import { createRequest } from '../requests/RequestsSlice';
-import Child from '../children/types/Child';
 
 export default function KindergartenDetails(): JSX.Element {
 	const dispatch = useAppDispatch();

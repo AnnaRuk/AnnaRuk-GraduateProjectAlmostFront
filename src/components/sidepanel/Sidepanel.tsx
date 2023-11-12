@@ -6,9 +6,9 @@ function Sidepanel(): JSX.Element {
 	const user = useAppSelector(selectUser);
 	return (
 		<div>
-		{/* TODO ternar */}
+			{/* TODO ternar */}
 			{user && (
-				<div>
+				<div className="dark">
 					<h3>SIDE panel</h3>
 					<NavLink to="/userDataForm">My data</NavLink>
 					<NavLink to="/dialogues">My dialogues</NavLink>
@@ -28,7 +28,6 @@ function Sidepanel(): JSX.Element {
 							<span>Requests</span>
 							<NavLink to="/managerRequests">Confirmed Requests</NavLink>
 							<NavLink to="/managerNotConfirmedRequests">NOT Confirmed Requests</NavLink>
-						
 						</>
 					)}
 				</div>

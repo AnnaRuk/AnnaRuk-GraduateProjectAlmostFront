@@ -30,7 +30,7 @@ export default function KindergartensList(): JSX.Element {
 			if (city === 'All cities') {
 				return kitas;
 			} else {
-				return kitas.filter((k) => k.city === city);
+				return kitas?.filter((k) => k.city === city);
 			}
 		}
 	}
