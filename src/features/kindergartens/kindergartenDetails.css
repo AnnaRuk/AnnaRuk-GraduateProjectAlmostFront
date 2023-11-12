@@ -1,0 +1,121 @@
+#kTitle {
+	margin-left: 2vw;
+	font-size: 2vw;
+}
+#kTitleContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-bottom: 2vw;
+}
+#kindergartenDataContainer {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding: 2vw 2vw 2vw 2vw;
+}
+#kDescriptionContainer {
+	margin-top: 1vw;
+	max-width: 33vw;
+	height: max-content;
+	border-radius: 1vw 1vw 1vw 1vw;
+	padding: 1vw 1vw 1vw 1vw;
+}
+#kImage {
+	max-width: 15vw;
+	max-height: 15vw;
+	border-radius: 1vw 1vw 1vw 1vw;
+}
+#kDataContainer {
+	margin-left: 1vw;
+	padding: 1vw 1vw 1vw 1vw;
+	border-radius: 1vw 1vw 1vw 1vw;
+	max-width: 20vw;
+	width: max-content;
+	font-size: 1.2vw;
+}
+#imgAndDataContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.kBtn_green {
+	display: inline-flex;
+	justify-content: center;
+	--padding-x: 1.2em;
+	background-color: rgb(175, 255, 175);
+	border-color: transparent;
+	align-items: center;
+	height: 2vw;
+	border-radius: 1vw 1vw 1vw 1vw;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+	font-size: 1.2vw;
+}
+.kBtn_green:hover {
+	text-decoration: none !important;
+	background-color: rgba(175, 255, 175, 0.9);
+	border-color: transparent;
+}
+.kBtn_blue {
+	display: inline-flex;
+	justify-content: center;
+	--padding-x: 1.2em;
+	background-color: rgba(37, 174, 206, 1);
+	border-color: transparent;
+	align-items: center;
+	height: 2vw;
+	border-radius: 1vw 1vw 1vw 1vw;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+	font-size: 1.2vw;
+}
+.kBtn_blue:hover {
+	text-decoration: none !important;
+	background-color: rgba(37, 174, 206, 0.8);
+	border-color: transparent;
+}
+.kBtn_pink {
+	display: inline-flex;
+	justify-content: center;
+	--padding-x: 1.2em;
+	background-color: rgba(255, 192, 203, 1);
+	border-color: transparent;
+	align-items: center;
+	height: 2vw;
+	border-radius: 1vw 1vw 1vw 1vw;
+	margin-top: 1vw;
+  margin-bottom: 1vw;
+	font-size: 1.2vw;
+}
+.kBtn_pink:hover {
+	text-decoration: none !important;
+	background-color: rgba(255, 192, 203, 0.8);
+	border-color: transparent;
+}
+#kAdditionalContainer {
+	height: max-content;
+	display: flex;
+	width: max-content;
+	display: flex;
+	flex-direction: column;
+}
+#kRequestContainer {
+	display: flex;
+	flex-direction: column;
+}
+#kChoseLbl {
+	margin-right: 1vw;
+	font-size: 1.2vw;
+}
+select {
+  width: auto;
+	height: 2vw;
+	border-radius: 5px;
+	padding-left: 1vw;
+	padding-right: 1vw;
+	background-color: rgba(175, 255, 175, 0.8);
+	margin-bottom: 1vw;
+	font-size: 1.3vw;
+}

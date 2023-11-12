@@ -1,13 +1,15 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { loadKindergartens, setSelectedCity } from './KindergartensSlice';
-import { Link } from 'react-router-dom';
 import Kindergarten from './types/Kindergarten';
 import GradeIcon from '@mui/icons-material/Grade';
+import { NavLink, useNavigate } from 'react-router-dom';
+
 import '../../basic_styles/styles.css';
 import { loadFavorites } from '../favorites/FavoritesSlice';
 
 export default function KindergartensList(): JSX.Element {
+	const favorites = useAppSelector((state) => state.favorites.kindergartens);
 	const kindergartens = useAppSelector((state) => state.kindergartens.kindergartenDTOList);
 	const cities = useAppSelector((state) => state.kindergartens.cities);
 	const selectedCity = useAppSelector((state) => state.kindergartens.selectedCity);
@@ -15,9 +17,6 @@ export default function KindergartensList(): JSX.Element {
 
 	useEffect(() => {
 		dispatch(loadKindergartens());
-	}, [dispatch]);
-
-	useEffect(() => {
 		dispatch(loadFavorites());
 	}, [dispatch]);
 
@@ -33,6 +32,9 @@ export default function KindergartensList(): JSX.Element {
 				return kitas?.filter((k) => k.city === city);
 			}
 		}
+	}
+	function isInFavorites(kId: number): boolean {
+		return favorites?.find((k) => k.id === kId) ? true : false;
 	}
 	const filteredKindergartens = filtered(kindergartens, selectedCity);
 
@@ -71,10 +73,23 @@ export default function KindergartensList(): JSX.Element {
 					</tr>
 				</thead>
 				<tbody>
-					{filteredKindergartens.map((kindergarten) => (
+					{filteredKindergartens?.map((kindergarten) => (
 						<tr key={kindergarten.id}>
 							<td>
-								<Link to={`/kindergartens/${kindergarten.id}`}>{kindergarten.title}</Link>
+								<nav className={isInFavorites(kindergarten.id) ? 'posLeft' : ''}>
+									<NavLink to={`/kindergartens/${kindergarten.id}`}>
+										<div id="iconTitle">
+											{isInFavorites(kindergarten.id) ? (
+												<div id="icon">
+													<GradeIcon />
+												</div>
+											) : (
+												<></>
+											)}
+											{kindergarten.title}
+										</div>
+									</NavLink>
+								</nav>
 							</td>
 							<td>{kindergarten.city}</td>
 							<td>{kindergarten.address}</td>

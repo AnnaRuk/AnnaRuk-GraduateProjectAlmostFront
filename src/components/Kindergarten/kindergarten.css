@@ -5,9 +5,10 @@
 	justify-content: center;
 }
 #kindergartenBack {
+	border-radius: 1.5vw;
 	display: flex;
-	width: 50vw;
-	height: 100vh;
+	width: max-content;
+	height: max-content;
 	justify-content: center;
 }
 #kTableContainer {
@@ -26,13 +27,17 @@
 #citySelector {
 	width: auto;
 	height: 2vw;
+	border-radius: 5px;
 	padding-left: 1vw;
 	padding-right: 1vw;
-	background-color: rgba(175, 255, 175, 0.9);
+	background-color: rgba(175, 255, 175, 0.8);
 	margin-bottom: 1vw;
 	font-size: 1.3vw;
 }
 table {
+	margin-left: 1.5vw;
+	margin-right: 1.5vw;
+	margin-bottom: 5vw;
 	font-size: 1vw;
 	border-radius: 2vw;
 	border-spacing: 0;
@@ -40,7 +45,7 @@ table {
 }
 th {
 	background-color: #ffc0cb;
-	padding: 10px 20px;
+	padding: 15px 20px;
 }
 th,
 td {
@@ -50,6 +55,7 @@ td {
 }
 th:first-child,
 td:first-child {
+	padding: 10px 30px 10px 30px;
 	text-align: left;
 }
 th:first-child {
@@ -60,8 +66,8 @@ th:last-child {
 	border-right: none;
 }
 td {
-	padding: 10px 20px;
-	background-color: rgb(175, 255, 175);
+	padding: 10px 30px 10px 30px;
+	background-color: rgba(175, 255, 175, 0.8);
 }
 tr:last-child td:first-child {
 	border-radius: 0 0 0 10px;
@@ -72,7 +78,10 @@ tr:last-child td:last-child {
 tr td:last-child {
 	border-right: none;
 }
-.kImage {
-	width: 300px;
-	height: 300px;
+#iconTitle {
+	display: flex;
+}
+.posLeft {
+	position: relative;
+	left: -25px;
 }

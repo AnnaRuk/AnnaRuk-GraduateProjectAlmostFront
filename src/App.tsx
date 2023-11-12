@@ -6,16 +6,13 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 import Login from './features/auth/Login';
 import Register from './features/auth/Register';
 import { selectAuthChecked } from './features/auth/selectors';
-import AdminCabinet from './components/main/AdminCabinet';
 import Layout from './components/layouts/Layout';
-import Tasks from './features/tasks/Tasks';
 import KindergartensList from './features/kindergartens/KindergartensList';
 import FavoritesKindergartensList from './features/favorites/FavoritesKindergartensList';
 import KindergartenDetails from './features/kindergartens/KindergartenDetails';
 import Account from './components/myaccount/Account';
 import Home from './components/home/Home';
 import Sidepanel from './components/sidepanel/Sidepanel';
-import ChildForm from './features/children/ChildrenForm';
 import KindergartenForm from './features/kindergartens/KindergartenForm';
 import UserData from './features/account/UserData';
 import ChildrenForm from './features/children/ChildrenForm';
@@ -26,6 +23,11 @@ import ManagerNOTConfirmRequestList from './features/requests/ManagerNOTConfirme
 import DialoguesList from './features/dialogues/DialoguesList';
 import Kindergartens from './components/Kindergarten/Kindergartens';
 import Dialogue from './features/dialogues/Dialogue';
+import { loadRequests } from './features/requests/RequestsSlice';
+import { loadDialogues } from './features/dialogues/DialoguesSlice';
+import { loadControlKindergarten } from './features/kindergartens/KindergartensSlice';
+import { loadFavorites } from './features/favorites/FavoritesSlice';
+import { loadChildren } from './features/children/ChildrenSlice';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();

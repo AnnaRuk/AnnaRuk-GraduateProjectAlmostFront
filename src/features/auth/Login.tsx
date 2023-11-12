@@ -24,7 +24,7 @@ function Login(): JSX.Element {
 			// проверяем, что санк login зарезолвился успешно
 			if (login.fulfilled.match(dispatchResult)) {
 				dispatch(getUser()); // подгрузит юзера
-				navigate('/'); // переведет на стартовую страницу
+				navigate('/userAccount'); // переведет на стартовую страницу
 			}
 
 			// выводим в консоль ошибку если санк login зареджектился
