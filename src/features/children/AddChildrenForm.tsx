@@ -39,7 +39,7 @@ export default function EditChildrenForm(): JSX.Element {
 		<div>
 			<div>
 				<nav>
-					<NavLink to="/profile/children">Back</NavLink>
+					<NavLink to="/profile/children">Go Back</NavLink>
 				</nav>
 				<form onSubmit={handleAddNewChildSaveSubmit}>
 					<input

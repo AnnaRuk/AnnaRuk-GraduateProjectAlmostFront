@@ -55,43 +55,45 @@ function Login(): JSX.Element {
 	);
 
 	return (
-		<form className="auth-form" onSubmit={handleSubmit}>
-			<h2>Sign In</h2>
-			{error && (
-				<div className="invalid-feedback mb-3" style={{ display: 'block' }}>
-					{error}
+		<div className="content">
+			<form className="auth-form bg_pink dark" onSubmit={handleSubmit}>
+				<h2>Sign In</h2>
+				{error && (
+					<div className="invalid-feedback mb-3" style={{ display: 'block' }}>
+						{error}
+					</div>
+				)}
+				<div className="mb-3">
+					<label htmlFor="name-input" className="form-label">
+						user name (email)
+					</label>
+					<input
+						type="text"
+						className={`form-control ${error ? 'is-invalid' : ''}`}
+						id="name-input"
+						name="username"
+						value={email}
+						onChange={handleNameChange}
+					/>
 				</div>
-			)}
-			<div className="mb-3">
-				<label htmlFor="name-input" className="form-label">
-					user name (email)
-				</label>
-				<input
-					type="text"
-					className={`form-control ${error ? 'is-invalid' : ''}`}
-					id="name-input"
-					name="username"
-					value={email}
-					onChange={handleNameChange}
-				/>
-			</div>
-			<div className="mb-3">
-				<label htmlFor="password-input" className="form-label">
-					password
-				</label>
-				<input
-					type="password"
-					className={`form-control ${error ? 'is-invalid' : ''}`}
-					id="password-input"
-					name="password"
-					value={password}
-					onChange={handlePasswordChange}
-				/>
-			</div>
-			<button type="submit" className="btn btn-primary">
-				sigh In
-			</button>
-		</form>
+				<div className="mb-3">
+					<label htmlFor="password-input" className="form-label">
+						password
+					</label>
+					<input
+						type="password"
+						className={`form-control ${error ? 'is-invalid' : ''}`}
+						id="password-input"
+						name="password"
+						value={password}
+						onChange={handlePasswordChange}
+					/>
+				</div>
+				<button type="submit" className="btn btn-primary">
+					sigh In
+				</button>
+			</form>
+		</div>
 	);
 }
 
