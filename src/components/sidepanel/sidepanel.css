@@ -1,0 +1,6 @@
+#sidePanelContainer {
+	display: flex;
+
+	border-radius: 1vw;
+	padding: 1vw 1vw 1vw 1vw;
+}

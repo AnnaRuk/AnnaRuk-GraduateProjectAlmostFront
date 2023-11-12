@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Child from './types/Child';
 import { addChildren, updateChildren } from './ChildrenSlice';
+import { NavLink } from 'react-router-dom';
 
 export default function EditChildrenForm(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -37,7 +38,9 @@ export default function EditChildrenForm(): JSX.Element {
 	return (
 		<div>
 			<div>
-				<button type="button">Add Child</button>
+				<nav>
+					<NavLink to="/profile/childrenForm">Back</NavLink>
+				</nav>
 				<form onSubmit={handleAddNewChildSaveSubmit}>
 					<input
 						type="text"

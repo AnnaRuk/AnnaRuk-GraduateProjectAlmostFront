@@ -108,7 +108,7 @@ export default function ChildrenForm(): JSX.Element {
 				</div>
 			)}
 
-			<NavLink to="/childrenForm/addChildrenForm">My children</NavLink>
+			<NavLink to="/profile/addChildrenForm">Add a child</NavLink>
 		</div>
 	);
 }

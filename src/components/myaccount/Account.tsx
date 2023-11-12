@@ -6,6 +6,8 @@ import { loadControlKindergarten } from '../../features/kindergartens/Kindergart
 import { loadDialogues } from '../../features/dialogues/DialoguesSlice';
 import { loadFavorites } from '../../features/favorites/FavoritesSlice';
 import { loadRequests } from '../../features/requests/RequestsSlice';
+import { Outlet } from 'react-router-dom';
+import './account.css';
 
 export default function Account(): JSX.Element {
 	const user = useAppSelector((state) => state.auth.user);
@@ -25,9 +27,13 @@ export default function Account(): JSX.Element {
 	}, [dispatch]);
 
 	return (
-		<div className="content">
-			Account area user/manager
-			<Sidepanel />
+		<div id="profileSubstrate">
+			<div id="profileContainer" className="content bg_white dark">
+				<Sidepanel />
+				<div id="profileContentContainer" className="bg_pink dark">
+					<Outlet />
+				</div>
+			</div>
 		</div>
 	);
 }

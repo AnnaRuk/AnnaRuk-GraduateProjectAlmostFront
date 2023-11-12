@@ -63,7 +63,7 @@ export default function Header(): JSX.Element {
 										Hi, {user.firstName} {user.lastName} !
 									</div>
 									<div id="accountBtnContainer">
-										<NavLink to="/userAccount">
+										<NavLink to="/profile">
 											<button
 												id="myAccountBtn"
 												className="bg_green dark font_itim btn_green leftBtn"

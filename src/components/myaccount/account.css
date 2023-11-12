@@ -1,0 +1,22 @@
+#profileContainer {
+	border-radius: 1.5vw;
+	display: flex;
+	width: max-content;
+	height: max-content;
+	justify-content: center;
+	padding: 1vw 1vw 1vw 1vw;
+}
+
+#profileSubstrate {
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	justify-content: center;
+}
+
+#profileContentContainer {
+	margin-left: 1vw;
+	margin-right: 1vw;
+	padding: 1vw 1vw 1vw 1vw;
+	border-radius: 1vw;
+}
