@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectUser } from '../auth/selectors';
 import Kindergarten from './types/Kindergarten';
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import BusinessIcon from '@mui/icons-material/Business';
-import BackspaceIcon from '@mui/icons-material/Backspace';
-import { addToFavorites, deleteFavorites } from '../favorites/FavoritesSlice';
+import { addToFavorites, deleteFavorites, loadFavorites } from '../favorites/FavoritesSlice';
 import { createRequest } from '../requests/RequestsSlice';
 import Child from '../children/types/Child';
 
@@ -15,6 +14,7 @@ export default function KindergartenDetails(): JSX.Element {
 	const user = useAppSelector(selectUser);
 	const children = useAppSelector((state) => state.children.children);
 	const { id } = useParams();
+	const favorites = useAppSelector((state) => state.favorites.kindergartens);
 	let kindergarten: Kindergarten | null | undefined = null;
 
 	const kindergartens = useAppSelector((state) => state.kindergartens.kindergartenDTOList);
@@ -22,12 +22,15 @@ export default function KindergartenDetails(): JSX.Element {
 
 	const [selectedChildId, setSelectedChildId] = useState<number | null>(null);
 
+	const isKindergartenInFavorites = (kindergartenId: number): boolean => {
+		return favorites.find((k) => k.id === kindergartenId) ? true : false;
+	};
+
+	const [isInFavorites, setIsInFavorites] = useState(isKindergartenInFavorites(kindergarten?.id));
+
 	const handleDelete = (kindergartenId: number): void => {
-		dispatch(
-			deleteFavorites({
-				kindergartenId,
-			})
-		);
+		setIsInFavorites(false);
+		dispatch(deleteFavorites({ kindergartenId }));
 	};
 
 	const handleCreateRequest = (): void => {
@@ -42,6 +45,7 @@ export default function KindergartenDetails(): JSX.Element {
 	};
 
 	const handleAddToFavorite = (id: number): void => {
+		setIsInFavorites(true);
 		dispatch(addToFavorites(id));
 	};
 
@@ -82,16 +86,18 @@ export default function KindergartenDetails(): JSX.Element {
 				{user?.role === 'USER' ? (
 					<div>
 						<div>
-							<button
-								type="button"
-								onClick={() => handleAddToFavorite(kindergarten ? Number(kindergarten.id) : 0)}
-							>
-								favorite
-							</button>
-							<BackspaceIcon
-								type="button"
-								onClick={() => handleDelete(kindergarten ? Number(kindergarten.id) : 0)}
-							/>
+							{!isInFavorites ? (
+								<button
+									type="button"
+									onClick={() => handleAddToFavorite(kindergarten ? Number(kindergarten.id) : 0)}
+								>
+									Add to Favorites
+								</button>
+							) : (
+								<button type="button" onClick={() => handleDelete(Number(kindergarten.id))}>
+									Remove from Favorites
+								</button>
+							)}
 						</div>
 
 						<div>

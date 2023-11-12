@@ -2,7 +2,6 @@ import './App.css';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { useEffect } from 'react';
 import { getUser } from './features/auth/authSlice';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import Login from './features/auth/Login';
 import Register from './features/auth/Register';
@@ -26,6 +25,7 @@ import ManagerRequestsList from './features/requests/ManagerRequestsList';
 import ManagerNOTConfirmRequestList from './features/requests/ManagerNOTConfirmedRequestList';
 import DialoguesList from './features/dialogues/DialoguesList';
 import Kindergartens from './components/Kindergarten/Kindergartens';
+import Dialogue from './features/dialogues/Dialogue';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -65,7 +65,10 @@ function App(): JSX.Element {
 					<Route path="/userRequests" element={<UserRequestsList />} />
 					<Route path="/managerRequests" element={<ManagerRequestsList />} />
 					<Route path="/managerNotConfirmedRequests" element={<ManagerNOTConfirmRequestList />} />
-					<Route path="/dialogues/" element={<DialoguesList />} />
+					<Route path="/dialogues" element={<DialoguesList />} />
+					<Route path="/dialogues/:dialogueId" element={<Dialogue />} />
+
+				
 				</Route>
 			</Routes>
 		</HashRouter>

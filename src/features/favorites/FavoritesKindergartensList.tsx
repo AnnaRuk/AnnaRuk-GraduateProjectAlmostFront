@@ -12,8 +12,12 @@ export default function FavoritesKindergartensList(): JSX.Element {
 		dispatch(loadFavorites());
 	}, [dispatch]);
 
-	const handleDelete = (id: number): void => {
-		dispatch(deleteFavorites(id));
+	const handleDelete = (kindergartenId: number): void => {
+		dispatch(
+			deleteFavorites({
+				kindergartenId,
+			})
+		);
 	};
 
 	return (
