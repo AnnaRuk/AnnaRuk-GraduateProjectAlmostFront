@@ -5,6 +5,7 @@ import { selectUser } from '../auth/selectors';
 import Kindergarten from './types/Kindergarten';
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import BusinessIcon from '@mui/icons-material/Business';
+import { loadKindergartens } from './KindergartensSlice';
 import { addToFavorites, deleteFavorites, loadFavorites } from '../favorites/FavoritesSlice';
 import { createRequest } from '../requests/RequestsSlice';
 import Child from '../children/types/Child';
@@ -15,16 +16,17 @@ export default function KindergartenDetails(): JSX.Element {
 	const children = useAppSelector((state) => state.children.children);
 	const { id } = useParams();
 	const kindergartens = useAppSelector((state) => state.kindergartens.kindergartenDTOList);
+
 	const favorites = useAppSelector((state) => state.favorites.kindergartens);
 
 	let kindergarten: Kindergarten | null | undefined = null;
 
-	kindergarten = kindergartens.find((k) => String(k.id) === String(id));
+	kindergarten = kindergartens?.find((k) => String(k.id) === String(id));
 
 	const [selectedChildId, setSelectedChildId] = useState<number | null>(null);
 
 	const isKindergartenInFavorites = (kindergartenId: number): boolean => {
-		return favorites.find((k) => k.id === kindergartenId) ? true : false;
+		return favorites?.find((k) => k.id === kindergartenId) ? true : false;
 	};
 
 	const [isInFavorites, setIsInFavorites] = useState(isKindergartenInFavorites(kindergarten?.id));
