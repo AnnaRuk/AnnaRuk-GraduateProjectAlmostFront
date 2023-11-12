@@ -10,43 +10,43 @@ function Sidepanel(): JSX.Element {
 			{user && (
 				<div className="dark">
 					<div>
-						<NavLink to="/profile/userDataForm">My data</NavLink>
+						<NavLink to="/profile/my_data">My data</NavLink>
 					</div>
 
 					{user.role === 'USER' && (
 						<>
 							<div>
-								<NavLink to="/profile/childrenForm">My children</NavLink>
+								<NavLink to="/profile/children">My children</NavLink>
 							</div>
 							<div>
 								<NavLink to="/profile/kindergartens">Find kindergartens</NavLink>
 							</div>
 							<div>
-								<NavLink to="/profile/favorites">My favorites Kindergartens</NavLink>
+								<NavLink to="/profile/favorites">My favorites</NavLink>
 							</div>
 							<div>
-								<NavLink to="/profile/userRequests">My requests</NavLink>
+								<NavLink to="/profile/u_requests">My requests</NavLink>
 							</div>
 						</>
 					)}
 					{user.role === 'MANAGER' && (
 						<>
 							<div>
-								<NavLink to="/profile/kindergarten">Controlled Kindergarten</NavLink>
+								<NavLink to="/profile/kindergarten">My Kindergarten</NavLink>
 							</div>
 							<div>
 								<span>Requests</span>
 							</div>
 							<div>
-								<NavLink to="/profile/managerRequests">Confirmed Requests</NavLink>
+								<NavLink to="/profile/m_requests/confirmed">Confirmed</NavLink>
 							</div>
 							<div>
-								<NavLink to="/profile/managerNotConfirmedRequests">NOT Confirmed Requests</NavLink>
+								<NavLink to="/profile/m_requests/in_process">In Process</NavLink>
 							</div>
 						</>
 					)}
 					<div>
-						<NavLink to="/profile/dialogues/1">dialogue</NavLink>
+						<NavLink to="/profile/dialogues/1">Dialogues</NavLink>
 					</div>
 				</div>
 			)}

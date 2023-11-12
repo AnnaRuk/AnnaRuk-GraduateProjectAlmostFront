@@ -1,6 +1,6 @@
 #sidePanelContainer {
 	display: flex;
-
+	width: max-content;
 	border-radius: 1vw;
 	padding: 1vw 1vw 1vw 1vw;
 }

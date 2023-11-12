@@ -57,16 +57,16 @@ function App(): JSX.Element {
 						<Route path=":id" element={<KindergartenDetails />} />
 					</Route>
 					<Route path="/profile" element={<Account />}>
+						<Route path="my_data" element={<UserData />} />
 						<Route path="favorites" element={<FavoritesKindergartensList />} />
 						<Route path="kindergarten" element={<KindergartenForm />} />
 						<Route path="kindergartens" element={<KindergartensList />} />
-						<Route path="childrenForm" element={<ChildrenForm />} />
-						<Route path="addChildrenForm" element={<AddChildrenForm />} />
+						<Route path="children" element={<ChildrenForm />} />
+						<Route path="children/addChild" element={<AddChildrenForm />} />
+						<Route path="u_requests" element={<UserRequestsList />} />
+						<Route path="m_requests/confirmed" element={<ManagerRequestsList />} />
+						<Route path="m_requests/in_process" element={<ManagerNOTConfirmRequestList />} />
 						<Route path="dialogues/:dialogueId" element={<Dialogue />} />
-						<Route path="userDataForm" element={<UserData />} />
-						<Route path="userRequests" element={<UserRequestsList />} />
-						<Route path="managerRequests" element={<ManagerRequestsList />} />
-						<Route path="managerNotConfirmedRequests" element={<ManagerNOTConfirmRequestList />} />
 					</Route>
 				</Route>
 			</Routes>
