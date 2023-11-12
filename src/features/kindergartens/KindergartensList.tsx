@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { loadKindergartens, setSelectedCity } from './KindergartensSlice';
 import { Link } from 'react-router-dom';
@@ -13,7 +13,6 @@ export default function KindergartensList(): JSX.Element {
 	const selectedCity = useAppSelector((state) => state.kindergartens.selectedCity);
 	const dispatch = useAppDispatch();
 
-
 	useEffect(() => {
 		dispatch(loadKindergartens());
 	}, [dispatch]);
@@ -26,7 +25,7 @@ export default function KindergartensList(): JSX.Element {
 		dispatch(setSelectedCity(e.target.value));
 	};
 
-	function filtered(kitas: Kindergarten[], city: string): void {
+	function filtered(kitas: Kindergarten[], city: string): Kindergarten[] | undefined {
 		if (city) {
 			if (city === 'All cities') {
 				return kitas;
@@ -38,13 +37,21 @@ export default function KindergartensList(): JSX.Element {
 	const filteredKindergartens = filtered(kindergartens, selectedCity);
 
 	return (
-		<div className="content dark">
+		<div id="kTableContainer" className="content dark">
 			<div id="kListTitle" className="dark font_itim">
 				Kindergartens
 			</div>
+
 			<div>
-				<label>Choose the city: </label>
-				<select value={selectedCity} onChange={handleCityChange}>
+				<label id="cityChooserLbl" className="dark font_itim">
+					Choose the city:
+				</label>
+				<select
+					id="citySelector"
+					value={selectedCity}
+					onChange={handleCityChange}
+					className="dark font_itim"
+				>
 					<option value="All cities">All cities</option>
 					{cities.map((city) => (
 						<option key={city} value={city}>
@@ -53,20 +60,20 @@ export default function KindergartensList(): JSX.Element {
 					))}
 				</select>
 			</div>
-			<table>
+
+			<table className="dark font_itim">
 				<thead>
 					<tr>
-						<th>Title</th>
-						<th>City</th>
-						<th>Address</th>
-						<th>Capacity</th>
+						<th>Kindergarten's Title</th>
+						<th>Kindergarten's City</th>
+						<th>Kindergarten's Address</th>
+						<th>Kindergarten's Capacity</th>
 					</tr>
 				</thead>
 				<tbody>
 					{filteredKindergartens.map((kindergarten) => (
 						<tr key={kindergarten.id}>
 							<td>
-								<GradeIcon />
 								<Link to={`/kindergartens/${kindergarten.id}`}>{kindergarten.title}</Link>
 							</td>
 							<td>{kindergarten.city}</td>

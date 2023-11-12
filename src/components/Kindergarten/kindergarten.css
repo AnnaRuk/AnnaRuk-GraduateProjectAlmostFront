@@ -6,10 +6,69 @@
 }
 #kindergartenBack {
 	display: flex;
-	width: 60vw;
+	width: 50vw;
 	height: 100vh;
 	justify-content: center;
 }
+#kTableContainer {
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	align-items: center;
+}
 #kListTitle {
 	font-size: 3vw;
+}
+#cityChooserLbl {
+	font-size: 1.6vw;
+	margin-right: 1.3vw;
+}
+#citySelector {
+	width: auto;
+	height: 2vw;
+	padding-left: 1vw;
+	padding-right: 1vw;
+	background-color: rgba(175, 255, 175, 0.9);
+	margin-bottom: 1vw;
+	font-size: 1.3vw;
+}
+table {
+	font-size: 1vw;
+	border-radius: 2vw;
+	border-spacing: 0;
+	text-align: center;
+}
+th {
+	background-color: #ffc0cb;
+	padding: 10px 20px;
+}
+th,
+td {
+	border-style: solid;
+	border-width: 0 1px 1px 0;
+	border-color: white;
+}
+th:first-child,
+td:first-child {
+	text-align: left;
+}
+th:first-child {
+	border-top-left-radius: 10px;
+}
+th:last-child {
+	border-top-right-radius: 10px;
+	border-right: none;
+}
+td {
+	padding: 10px 20px;
+	background-color: rgb(175, 255, 175);
+}
+tr:last-child td:first-child {
+	border-radius: 0 0 0 10px;
+}
+tr:last-child td:last-child {
+	border-radius: 0 0 10px 0;
+}
+tr td:last-child {
+	border-right: none;
 }
