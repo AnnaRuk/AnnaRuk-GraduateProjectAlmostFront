@@ -12,6 +12,7 @@ function Sidepanel(): JSX.Element {
 					<h3>SIDE panel</h3>
 					<NavLink to="/userDataForm">My data</NavLink>
 					<NavLink to="/dialogues">My dialogues</NavLink>
+					<NavLink to="/dialogues/1">dialogue</NavLink>
 					{user.role === 'USER' && (
 						<>
 							<NavLink to="/childrenForm">My children</NavLink>

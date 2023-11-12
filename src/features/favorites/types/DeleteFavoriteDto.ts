@@ -1,3 +1,3 @@
-export default interface DeleteFromFavorites {
+export default interface DeleteFavoriteDto {
 	kindergartenId: number;
 }
