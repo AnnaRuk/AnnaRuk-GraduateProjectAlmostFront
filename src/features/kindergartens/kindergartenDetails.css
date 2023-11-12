@@ -49,8 +49,8 @@
 	align-items: center;
 	height: 2vw;
 	border-radius: 1vw 1vw 1vw 1vw;
-  margin-top: 1vw;
-  margin-bottom: 1vw;
+	margin-top: 1vw;
+	margin-bottom: 1vw;
 	font-size: 1.2vw;
 }
 .kBtn_green:hover {
@@ -67,8 +67,8 @@
 	align-items: center;
 	height: 2vw;
 	border-radius: 1vw 1vw 1vw 1vw;
-  margin-top: 1vw;
-  margin-bottom: 1vw;
+	margin-top: 1vw;
+	margin-bottom: 1vw;
 	font-size: 1.2vw;
 }
 .kBtn_blue:hover {
@@ -86,7 +86,7 @@
 	height: 2vw;
 	border-radius: 1vw 1vw 1vw 1vw;
 	margin-top: 1vw;
-  margin-bottom: 1vw;
+	margin-bottom: 1vw;
 	font-size: 1.2vw;
 }
 .kBtn_pink:hover {
@@ -95,11 +95,10 @@
 	border-color: transparent;
 }
 #kAdditionalContainer {
-	height: max-content;
 	display: flex;
-	width: max-content;
-	display: flex;
+	max-width:20vw;
 	flex-direction: column;
+	margin-bottom: 2vw;
 }
 #kRequestContainer {
 	display: flex;
@@ -110,7 +109,7 @@
 	font-size: 1.2vw;
 }
 select {
-  width: auto;
+	width: auto;
 	height: 2vw;
 	border-radius: 5px;
 	padding-left: 1vw;
@@ -118,4 +117,15 @@ select {
 	background-color: rgba(175, 255, 175, 0.8);
 	margin-bottom: 1vw;
 	font-size: 1.3vw;
+}
+#kMessageContainer {
+	display: flex;
+	flex-direction: column;
+}
+textarea {
+	font-size: 1vw;
+}
+
+.hide {
+	display: none;
 }

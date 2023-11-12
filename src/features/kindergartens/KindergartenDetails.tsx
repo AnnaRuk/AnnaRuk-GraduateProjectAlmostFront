@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectUser } from '../auth/selectors';
@@ -9,6 +9,7 @@ import { addToFavorites, deleteFavorites } from '../favorites/FavoritesSlice';
 import { createRequest } from '../requests/RequestsSlice';
 import '../../basic_styles/styles.css';
 import './kindergartenDetails.css';
+import { loadChildren } from '../children/ChildrenSlice';
 
 export default function KindergartenDetails(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -16,7 +17,6 @@ export default function KindergartenDetails(): JSX.Element {
 	const children = useAppSelector((state) => state.children.children);
 	const { id } = useParams();
 	const kindergartens = useAppSelector((state) => state.kindergartens.kindergartenDTOList);
-
 	const favorites = useAppSelector((state) => state.favorites.kindergartens);
 
 	let kindergarten: Kindergarten | null | undefined = null;
@@ -35,7 +35,11 @@ export default function KindergartenDetails(): JSX.Element {
 		setIsInFavorites(false);
 		dispatch(deleteFavorites({ kindergartenId }));
 	};
-
+	useEffect(() => {
+		if (user?.role == 'USER') {
+			dispatch(loadChildren());
+		}
+	}, [dispatch]);
 	const handleCreateRequest = (id: number): void => {
 		if (selectedChildId !== null) {
 			dispatch(
@@ -56,7 +60,7 @@ export default function KindergartenDetails(): JSX.Element {
 		setSelectedChildId(Number(e.target.value));
 	};
 
-	function filtered(children: Child[], selectedChildId: number | null) {
+	/*function filtered(children: Child[], selectedChildId: number | null) {
 		if (selectedChildId === null) {
 			return children;
 		} else if (selectedChildId === 0) {
@@ -64,6 +68,15 @@ export default function KindergartenDetails(): JSX.Element {
 		} else {
 			return children.filter((ch) => ch.id === selectedChildId);
 		}
+	}*/
+	function showMessageArea(): void {
+		const area = document.getElementById('textArea');
+		const button = document.getElementById('kShowMessageBTN');
+		const button1 = document.getElementById('kSendMessageBTN');
+		area?.classList.toggle('hide');
+		area?.focus({ preventScroll: false });
+		button?.classList.toggle('hide');
+		button1?.classList.toggle('hide');
 	}
 
 	if (kindergarten) {
@@ -142,9 +155,28 @@ export default function KindergartenDetails(): JSX.Element {
 							Send a Request
 						</button>
 
-						<button type="button" id="kShowMessageBTN" className="kBtn_pink dark mg">
+						<button
+							type="button"
+							id="kShowMessageBTN"
+							className="kBtn_pink dark mg"
+							onClick={showMessageArea}
+						>
 							Send a Message
 						</button>
+						<div id="kMessageContainer" className="hide">
+							<textarea
+								id="textArea"
+								placeholder="Write your message here"
+								cols={50}
+								rows={7}
+								maxLength={1000}
+								wrap="soft"
+								className="hide"
+							></textarea>
+							<button type="button" id="kSendMessageBTN" className="kBtn_pink dark mg hide">
+								Send a Message
+							</button>
+						</div>
 					</div>
 				) : (
 					<></>

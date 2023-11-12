@@ -11,23 +11,18 @@ export default function Account(): JSX.Element {
 	const user = useAppSelector((state) => state.auth.user);
 	const dispatch = useAppDispatch();
 
-	function loadData(): void {
+	useEffect(() => {
 		if (user?.role == 'USER') {
-			useEffect(() => {
-				dispatch(loadChildren());
-				dispatch(loadFavorites());
-				dispatch(loadDialogues());
-				dispatch(loadRequests());
-			}, [dispatch]);
+			dispatch(loadChildren());
+			dispatch(loadFavorites());
+			dispatch(loadDialogues());
+			dispatch(loadRequests());
 		} else {
-			useEffect(() => {
-				dispatch(loadDialogues());
-				dispatch(loadRequests());
-				dispatch(loadControlKindergarten());
-			}, [dispatch]);
+			dispatch(loadDialogues());
+			dispatch(loadRequests());
+			dispatch(loadControlKindergarten());
 		}
-	}
-	loadData();
+	}, [dispatch]);
 
 	return (
 		<div className="content">
