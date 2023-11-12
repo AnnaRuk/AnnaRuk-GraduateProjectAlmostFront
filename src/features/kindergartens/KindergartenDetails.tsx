@@ -16,6 +16,7 @@ export default function KindergartenDetails(): JSX.Element {
 	const { id } = useParams();
 	const kindergartens = useAppSelector((state) => state.kindergartens.kindergartenDTOList);
 	const favorites = useAppSelector((state) => state.favorites.kindergartens);
+
 	let kindergarten: Kindergarten | null | undefined = null;
 
 	kindergarten = kindergartens.find((k) => String(k.id) === String(id));
@@ -33,7 +34,7 @@ export default function KindergartenDetails(): JSX.Element {
 		dispatch(deleteFavorites({ kindergartenId }));
 	};
 
-	const handleCreateRequest = (): void => {
+	const handleCreateRequest = (id: number): void => {
 		if (selectedChildId !== null) {
 			dispatch(
 				createRequest({
@@ -53,7 +54,7 @@ export default function KindergartenDetails(): JSX.Element {
 		setSelectedChildId(Number(e.target.value));
 	};
 
-	function filtered(children: Child[], selectedChildId: number | null) {
+	/*function filtered(children: Child[], selectedChildId: number | null) {
 		if (selectedChildId === null) {
 			return children;
 		} else if (selectedChildId === 0) {
@@ -61,11 +62,11 @@ export default function KindergartenDetails(): JSX.Element {
 		} else {
 			return children.filter((ch) => ch.id === selectedChildId);
 		}
-	}
+	}*/
 
 	if (kindergarten) {
 		return (
-			<div>
+			<div className="dark content">
 				<div>
 					<h3>Kindergarten</h3>
 					<div>{kindergarten?.title}</div>
@@ -79,11 +80,12 @@ export default function KindergartenDetails(): JSX.Element {
 					<div>{`Contact person: ${kindergarten.manager?.firstName} ${kindergarten.manager?.lastName}`}</div>
 					<div>{kindergarten?.capacity}</div>
 					<div>
-						<img src={kindergarten?.linkImg} alt="KINDERGARTEN" />
+						<img src={kindergarten?.linkImg} alt="KINDERGARTEN" className="kImage" />
 					</div>
 					<div>{kindergarten?.description}</div>
 				</div>
-				{user?.role === 'USER' ? (
+
+				{user && user?.role === 'USER' ? (
 					<div>
 						<div>
 							{!isInFavorites ? (
@@ -125,7 +127,9 @@ export default function KindergartenDetails(): JSX.Element {
 							<button type="button">message</button>
 						</div>
 					</div>
-				) : null}
+				) : (
+					<div> Error</div>
+				)}
 			</div>
 		);
 	} else {

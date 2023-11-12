@@ -72,3 +72,7 @@ tr:last-child td:last-child {
 tr td:last-child {
 	border-right: none;
 }
+.kImage {
+	width: 300px;
+	height: 300px;
+}
