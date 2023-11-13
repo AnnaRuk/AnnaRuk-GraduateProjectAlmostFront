@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useCallback, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectLoginFormError } from './selectors';
 import { getUser, login, resetLoginFormError } from './authSlice';
+import './auth.css';
 
 function Login(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -55,43 +56,57 @@ function Login(): JSX.Element {
 	);
 
 	return (
-		<div className="content">
-			<form className="auth-form bg_pink dark" onSubmit={handleSubmit}>
-				<h2>Sign In</h2>
-				{error && (
-					<div className="invalid-feedback mb-3" style={{ display: 'block' }}>
-						{error}
+		<div className="content font_itim">
+			<form id="loginForm" className="bg_pink dark" onSubmit={handleSubmit}>
+				<div id="loginContainer">
+					<div id="signInTitle"> Let's Sign In!</div>
+					{error && (
+						<div className="invalid-feedback mb-3" style={{ display: 'block' }}>
+							{error}
+						</div>
+					)}
+					<div className="mb-3">
+						<label htmlFor="name-input" className="form-label lbl" id="nameInputLbl">
+							E-mail
+						</label>
+						<input
+							type="text"
+							className={`form-control input ${error ? 'is-invalid' : ''}`}
+							id="name-input"
+							name="username"
+							value={email}
+							onChange={handleNameChange}
+						/>
 					</div>
-				)}
-				<div className="mb-3">
-					<label htmlFor="name-input" className="form-label">
-						user name (email)
-					</label>
-					<input
-						type="text"
-						className={`form-control ${error ? 'is-invalid' : ''}`}
-						id="name-input"
-						name="username"
-						value={email}
-						onChange={handleNameChange}
-					/>
+					<div className="mb-3">
+						<label htmlFor="password-input" className="form-label lbl">
+							Password
+						</label>
+						<input
+							type="password"
+							className={`form-control input ${error ? 'is-invalid' : ''}`}
+							id="password-input"
+							name="password"
+							value={password}
+							onChange={handlePasswordChange}
+						/>
+					</div>
+
+					<button type="submit" className="aBtn_green dark btn_toRight">
+						Sign In
+					</button>
+
+					<div id="additionalLogin">
+						<nav>
+							<NavLink to="/auth/forgot_password" id="fgPass">
+								Forgot password?
+							</NavLink>
+							<NavLink to="/auth/register" id="toSIgnUp">
+								Have no Acc? Let's Sign Up!
+							</NavLink>
+						</nav>
+					</div>
 				</div>
-				<div className="mb-3">
-					<label htmlFor="password-input" className="form-label">
-						password
-					</label>
-					<input
-						type="password"
-						className={`form-control ${error ? 'is-invalid' : ''}`}
-						id="password-input"
-						name="password"
-						value={password}
-						onChange={handlePasswordChange}
-					/>
-				</div>
-				<button type="submit" className="btn btn-primary">
-					sigh In
-				</button>
 			</form>
 		</div>
 	);

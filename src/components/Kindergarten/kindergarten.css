@@ -44,7 +44,7 @@ table {
 	text-align: center;
 }
 th {
-	background-color: #ffc0cb;
+	background-color: rgba(37, 174, 206, 1);
 	padding: 15px 20px;
 }
 th,
