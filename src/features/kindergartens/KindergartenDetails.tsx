@@ -10,6 +10,7 @@ import { createRequest } from '../requests/RequestsSlice';
 import '../../basic_styles/styles.css';
 import './kindergartenDetails.css';
 import { loadChildren } from '../children/ChildrenSlice';
+import { createDialogue } from '../dialogues/DialoguesSlice';
 
 export default function KindergartenDetails(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -19,11 +20,15 @@ export default function KindergartenDetails(): JSX.Element {
 	const kindergartens = useAppSelector((state) => state.kindergartens.kindergartenDTOList);
 	const favorites = useAppSelector((state) => state.favorites.kindergartens);
 
+	const [messageAreaEditable, setMessageAreaEditable] = useState(false);
+
 	let kindergarten: Kindergarten | null | undefined = null;
 
 	kindergarten = kindergartens?.find((k) => String(k.id) === String(id));
 
 	const [selectedChildId, setSelectedChildId] = useState<number | null>(null);
+
+	const [newMessage, setNewMessage] = useState<string>('');
 
 	const isKindergartenInFavorites = (kindergartenId: number): boolean => {
 		return favorites?.find((k) => k.id === kindergartenId) ? true : false;
@@ -77,7 +82,20 @@ export default function KindergartenDetails(): JSX.Element {
 		area?.focus({ preventScroll: false });
 		button?.classList.toggle('hide');
 		button1?.classList.toggle('hide');
+		setMessageAreaEditable(!messageAreaEditable);
+
 	}
+
+	function handleSendMessage(recipientId: number, messageText: string): void {
+		dispatch(
+			createDialogue({
+				recipientId,
+				messageText,
+			})
+		);
+		setNewMessage('');
+	}
+
 
 	if (kindergarten) {
 		return (
@@ -163,7 +181,7 @@ export default function KindergartenDetails(): JSX.Element {
 						>
 							Send a Message
 						</button>
-						<div id="kMessageContainer" className="hide">
+						<div id="kMessageContainer" className={messageAreaEditable ? '' : 'hide'}>
 							<textarea
 								id="textArea"
 								placeholder="Write your message here"
@@ -171,9 +189,17 @@ export default function KindergartenDetails(): JSX.Element {
 								rows={7}
 								maxLength={1000}
 								wrap="soft"
-								className="hide"
+								className={messageAreaEditable ? '' : 'hide'}
+								value={newMessage}
+								onChange={(e) => setNewMessage(e.target.value)}
 							></textarea>
-							<button type="button" id="kSendMessageBTN" className="kBtn_pink dark mg hide">
+							<button
+								type="button"
+								id="kSendMessageBTN"
+								className="kBtn_pink dark mg hide"
+								onClick={() =>{ handleSendMessage(kindergarten?.manager?.id, newMessage);
+									setMessageAreaEditable(!messageAreaEditable);}}
+							>
 								Send a Message
 							</button>
 						</div>

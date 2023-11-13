@@ -15,6 +15,7 @@ export default function Dialogue(): JSX.Element {
 	useEffect(() => {
 		dispatch(loadDialogues());
 	}, [dispatch]);
+	
 
 	// {
 	//   "dialogues": [
