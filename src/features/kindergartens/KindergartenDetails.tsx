@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useLocation, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectUser } from '../auth/selectors';
 import Kindergarten from './types/Kindergarten';
@@ -83,7 +83,6 @@ export default function KindergartenDetails(): JSX.Element {
 		button?.classList.toggle('hide');
 		button1?.classList.toggle('hide');
 		setMessageAreaEditable(!messageAreaEditable);
-
 	}
 
 	function handleSendMessage(recipientId: number, messageText: string): void {
@@ -96,13 +95,14 @@ export default function KindergartenDetails(): JSX.Element {
 		setNewMessage('');
 	}
 
+	const path = useLocation()?.pathname.replace(`/${id}`, '');
 
 	if (kindergarten) {
 		return (
 			<div id="kindergartenDataContainer" className="dark font_itim flex">
 				<div>
 					<div id="kTitleContainer" className="dark font_itim">
-						<NavLink to={'/kindergartens'}>
+						<NavLink to={`${path}`}>
 							<button className="btn_pink dark btn">Go Back</button>
 						</NavLink>
 						<div id="kTitle">{kindergarten?.title}</div>
@@ -197,8 +197,10 @@ export default function KindergartenDetails(): JSX.Element {
 								type="button"
 								id="kSendMessageBTN"
 								className="kBtn_pink dark mg hide"
-								onClick={() =>{ handleSendMessage(kindergarten?.manager?.id, newMessage);
-									setMessageAreaEditable(!messageAreaEditable);}}
+								onClick={() => {
+									handleSendMessage(kindergarten?.manager?.id, newMessage);
+									setMessageAreaEditable(!messageAreaEditable);
+								}}
 							>
 								Send a Message
 							</button>

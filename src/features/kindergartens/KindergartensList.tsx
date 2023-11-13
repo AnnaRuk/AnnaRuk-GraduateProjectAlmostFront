@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { loadKindergartens, setSelectedCity } from './KindergartensSlice';
 import Kindergarten from './types/Kindergarten';
 import GradeIcon from '@mui/icons-material/Grade';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import '../../basic_styles/styles.css';
 import { loadFavorites } from '../favorites/FavoritesSlice';
@@ -14,6 +14,7 @@ export default function KindergartensList(): JSX.Element {
 	const cities = useAppSelector((state) => state.kindergartens.cities);
 	const selectedCity = useAppSelector((state) => state.kindergartens.selectedCity);
 	const dispatch = useAppDispatch();
+	const path = useLocation().pathname;
 
 	useEffect(() => {
 		dispatch(loadKindergartens());
@@ -77,7 +78,7 @@ export default function KindergartensList(): JSX.Element {
 						<tr key={kindergarten.id}>
 							<td>
 								<nav className={isInFavorites(kindergarten.id) ? 'posLeft' : ''}>
-									<NavLink to={`/kindergartens/${kindergarten.id}`}>
+									<NavLink to={`${path}/${kindergarten.id}`}>
 										<div id="iconTitle">
 											{isInFavorites(kindergarten.id) ? (
 												<div id="icon">

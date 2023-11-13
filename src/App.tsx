@@ -59,8 +59,10 @@ function App(): JSX.Element {
 					<Route path="/profile" element={<Account />}>
 						<Route path="my_data" element={<UserData />} />
 						<Route path="favorites" element={<FavoritesKindergartensList />} />
+						<Route path="favorites/:id" element={<KindergartenDetails />} />
 						<Route path="kindergarten" element={<KindergartenForm />} />
 						<Route path="kindergartens" element={<KindergartensList />} />
+						<Route path="kindergartens/:id" element={<KindergartenDetails />} />
 						<Route path="children" element={<ChildrenForm />} />
 						<Route path="children/addChild" element={<AddChildrenForm />} />
 						<Route path="u_requests" element={<UserRequestsList />} />
