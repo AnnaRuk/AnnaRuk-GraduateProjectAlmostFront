@@ -5,6 +5,7 @@ import { addChildren, updateChildren } from './ChildrenSlice';
 import AddChildrenForm from './AddChildrenForm';
 import { NavLink, Route } from 'react-router-dom';
 import Switch from '@mui/material/Switch/Switch';
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function ChildrenForm(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -56,9 +57,9 @@ export default function ChildrenForm(): JSX.Element {
 						<li key={ch.id}>
 							{ch.firstName} {ch.lastName} {new Date(ch.dateOfBirth).toLocaleDateString()}{' '}
 							{ch.gender}
-							<button type="button" onClick={() => handleEditClick(ch.id)}>
+							<EditIcon type="button" onClick={() => handleEditClick(ch.id)}>
 								Edit
-							</button>
+							</EditIcon>
 						</li>
 					))}
 				</ul>

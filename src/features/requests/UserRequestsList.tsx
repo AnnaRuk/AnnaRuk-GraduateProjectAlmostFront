@@ -4,6 +4,8 @@ import { loadRequests, rejectRequest } from './RequestsSlice';
 import Kindergarten from '../kindergartens/types/Kindergarten';
 import { loadKindergartens } from '../kindergartens/KindergartensSlice';
 import Child from '../children/types/Child';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EmailIcon from '@mui/icons-material/Email';
 
 export default function UserRequestsList(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -49,6 +51,17 @@ export default function UserRequestsList(): JSX.Element {
 		dispatch(rejectRequest(id));
 	}
 
+
+	function putDownStatus(status: string): string {
+		if (status === 'CONFIRMED') { 
+			return 'approved, please wait for your meeting invitation';
+		} else if (status === 'NOT_CONFIRMED'){
+			return 'in progress';
+		} else {
+			return 'you rejected';
+		}
+	}
+
 	return (
 		<table>
 			<thead>
@@ -56,8 +69,10 @@ export default function UserRequestsList(): JSX.Element {
 					<th>TITLE</th>
 					<th>ADDRESS</th>
 					<th>CHILD</th>
-					<th>STATUS</th>
+					<th>DATE</th>
+					<th>ANSWER FROM KINDERGARTEN</th>
 					<th>REFUSE</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -66,12 +81,16 @@ export default function UserRequestsList(): JSX.Element {
 						<td>{kindergartenTitle(request.kindergartenId)}</td>
 						<td>{kindergartenAddress(request.kindergartenId)}</td>
 						<td>{childName(request.childId)}</td>
-						<td>{request.status}</td>
+						<td>{new Date(request.requestDateTime).toLocaleDateString()}</td>
+						<td>{putDownStatus(request.status)}</td>
 						<td>
-							<button type="button" onClick={() => handleRejectRequest(request.id)}>
+							<DeleteForeverIcon type="button" onClick={() => handleRejectRequest(request.id)}>
 								del
-							</button>
+							</DeleteForeverIcon>
 						</td>
+						<td>
+              <EmailIcon type="button">send a message</EmailIcon>
+            </td>
 					</tr>
 				))}
 			</tbody>
