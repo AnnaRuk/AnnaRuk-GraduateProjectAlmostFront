@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { updateUsersProfile } from './AccountSlice';
+import './UserData.css';
 
 export default function UserData(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -60,27 +61,55 @@ export default function UserData(): JSX.Element {
 	}
 
 	return (
-		<div>
+		<div className="dark font_itim">
 			{editable ? (
-				<div>
+				<div id="updateDataContainer">
 					<h5>My data</h5>
 					<form id="userDataForm" onSubmit={handleUpdateSubmit}>
-						<label>Email:</label>
-						<input type="text" value={email} onChange={(e) => setEmail(e.target.value)} required />
-						<label>first name:</label>
-						<input
-							type="text"
-							value={firstName}
-							onChange={(e) => setFirstName(e.target.value)}
-							required
-						/>
-						<label>last name:</label>
-						<input
-							type="text"
-							value={lastName}
-							onChange={(e) => setLastName(e.target.value)}
-							required
-						/>
+						<div id="fAndLNameContainer">
+							<div className="mb-3">
+								<label htmlFor="firstName-input" className="form-label lbl">
+									First name
+								</label>
+								<input
+									type="text"
+									className="form-control input"
+									value={firstName}
+									onChange={(e) => setFirstName(e.target.value)}
+									id="firstName-input"
+									name="email"
+									required
+								/>
+							</div>
+							<div>
+								<label htmlFor="lastName-input" className="form-label lbl">
+									Last name
+								</label>
+								<input
+									type="text"
+									className="form-control input"
+									value={lastName}
+									onChange={(e) => setLastName(e.target.value)}
+									id="lastName-input"
+									name="email"
+									required
+								/>
+							</div>
+						</div>
+						<div className="mb-3">
+							<label htmlFor="email-input" className="form-label lbl" id="dEmailInput">
+								Email:
+							</label>
+							<input
+								type="text"
+								className="form-control input"
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+								id="email-input"
+								name="email"
+								required
+							/>
+						</div>
 						<label>postcode:</label>
 						<input type="text" value={postcode} onChange={(e) => setPostcode(e.target.value)} />
 						<label>address:</label>
@@ -93,7 +122,6 @@ export default function UserData(): JSX.Element {
 							value={dateOfBirth}
 							onChange={(e) => setDateOfBirth(e.target.value)}
 						/>
-
 						<div>
 							<label>
 								<input

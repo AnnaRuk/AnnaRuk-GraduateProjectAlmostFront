@@ -1,0 +1,26 @@
+#fAndLNameContainer {
+	display: flex;
+}
+#updateDataContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: center;
+}
+#userDataForm {
+  max-width: 70vw;
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-content: flex-start;
+}
+.input {
+	max-width: 20vw;
+
+}
+.lbl {
+	position: relative;
+	bottom: -1vw;
+}
