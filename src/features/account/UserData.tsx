@@ -97,7 +97,7 @@ export default function UserData(): JSX.Element {
 							</div>
 						</div>
 						<div>
-							<label>
+							<label className="radio-right ">
 								<input
 									id="userGender"
 									type="radio"
@@ -107,7 +107,7 @@ export default function UserData(): JSX.Element {
 								/>
 								Male
 							</label>
-							<label>
+							<label className="radio-right ">
 								<input
 									type="radio"
 									value="FEMALE"
@@ -116,7 +116,7 @@ export default function UserData(): JSX.Element {
 								/>
 								Female
 							</label>
-							<label>
+							<label className="radio-right ">
 								<input
 									type="radio"
 									value="DIVERSE"
@@ -129,7 +129,7 @@ export default function UserData(): JSX.Element {
 						<div id="dAEInputContainer">
 							<div className="couple">
 								<label htmlFor="dateOfBirth-input" className="form-label lbl">
-									Date Of Birth
+									Date of Birth
 								</label>
 								<input
 									type="date"
@@ -214,7 +214,6 @@ export default function UserData(): JSX.Element {
 								className="form-control input"
 								id="phone-input"
 								name="phone-input"
-								required
 							/>
 						</div>
 

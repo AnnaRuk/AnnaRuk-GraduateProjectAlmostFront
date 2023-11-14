@@ -6,6 +6,7 @@ import AddChildrenForm from './AddChildrenForm';
 import { NavLink, Route } from 'react-router-dom';
 import Switch from '@mui/material/Switch/Switch';
 import EditIcon from '@mui/icons-material/Edit';
+import './children.css';
 
 export default function ChildrenForm(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -49,67 +50,126 @@ export default function ChildrenForm(): JSX.Element {
 	};
 
 	return (
-		<div>
-			<div>
-				<h3>CHILDREN</h3>
-				<ul>
-					{children.map((ch) => (
-						<li key={ch.id}>
-							{ch.firstName} {ch.lastName} {new Date(ch.dateOfBirth).toLocaleDateString()}{' '}
-							{ch.gender}
-							<EditIcon type="button" onClick={() => handleEditClick(ch.id)}>
-								Edit
-							</EditIcon>
-						</li>
-					))}
-				</ul>
-			</div>
-			{editable && (
-				<div>
-					<form onSubmit={handleSaveChanges}>
-						<input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-						<input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-						<input
-							type="date"
-							value={dateOfBirth}
-							onChange={(e) => setDateOfBirth(e.target.value)}
-						/>
+		<div className="font_itim dark">
+			<div id="childrenTitle">My Children</div>
+			<div id="cAllContainer">
+				<div id="cAAddContainer">
+					{children?.length > 0 ? (
 						<div>
-							<label>
-								<input
-									type="radio"
-									value="MALE"
-									checked={gender === 'MALE'}
-									onChange={(e) => setGender(e.target.value)}
-								/>
-								Male
-							</label>
-							<label>
-								<input
-									type="radio"
-									value="FEMALE"
-									checked={gender === 'FEMALE'}
-									onChange={(e) => setGender(e.target.value)}
-								/>
-								Female
-							</label>
-							<label>
-								<input
-									type="radio"
-									value="DIVERSE"
-									checked={gender === 'DIVERSE'}
-									onChange={(e) => setGender(e.target.value)}
-								/>
-								Diverse
-							</label>
+							{children.map((ch) => (
+								<div key={ch.id} id={`cDataContainer${ch.id}`} className="childContainer">
+									<div className="flex">
+										<div className="form-control input-imit childWith">{ch.firstName}</div>
+										<div className="form-control input-imit childWith">{ch.lastName}</div>
+									</div>
+									<div className="form-control input-imit">
+										{new Date(ch.dateOfBirth).toLocaleDateString()}
+									</div>
+									<div className="form-control input-imit">{ch.gender}</div>
+									<div>
+										<EditIcon
+											id={`cEditBtn${ch.id}`}
+											className="cEditBtn"
+											type="button"
+											onClick={() => handleEditClick(ch.id)}
+										></EditIcon>
+									</div>
+								</div>
+							))}
 						</div>
-
-						<button type="submit">Save Changes</button>
-					</form>
+					) : (
+						<div id="noChildren">No added Children's data</div>
+					)}
+					<NavLink to="/profile/children/addChild">
+						<button id="addChildBtn" className="btn_blue btn bpn-padding">
+							Add a Child
+						</button>
+					</NavLink>
 				</div>
-			)}
+				{editable && (
+					<div id="childEditFormContainer">
+						<form onSubmit={handleSaveChanges}>
+							<div>
+								<div className="couple1">
+									<label htmlFor="kFirstName-input" className="form-label lbl">
+										First name
+									</label>
+									<input
+										type="text"
+										value={firstName}
+										onChange={(e) => setFirstName(e.target.value)}
+										className="form-control input"
+										id="kFirstName-input"
+										name="kFirstName-input"
+										required
+									/>
+								</div>
+								<div className="couple1">
+									<label htmlFor="kLastName-input" className="form-label lbl">
+										Last name
+									</label>
+									<input
+										type="text"
+										value={lastName}
+										onChange={(e) => setLastName(e.target.value)}
+										className="form-control input"
+										id="kLastName-input"
+										name="kLastName-input"
+										required
+									/>
+								</div>
+								<div className="couple1">
+									<label htmlFor="kDateOfBirth-input" className="form-label lbl">
+										Date of Birth
+									</label>
+									<input
+										type="date"
+										value={dateOfBirth}
+										onChange={(e) => setDateOfBirth(e.target.value)}
+										className="form-control input"
+										id="kDateOfBirth-input"
+										name="kDateOfBirth-input"
+										required
+									/>
+								</div>
+								<div>
+									<label className="radio-right">
+										<input
+											type="radio"
+											value="MALE"
+											checked={gender === 'MALE'}
+											onChange={(e) => setGender(e.target.value)}
+										/>
+										Male
+									</label>
+									<label className="radio-right">
+										<input
+											type="radio"
+											value="FEMALE"
+											checked={gender === 'FEMALE'}
+											onChange={(e) => setGender(e.target.value)}
+										/>
+										Female
+									</label>
+									<label className="radio-right">
+										<input
+											type="radio"
+											value="DIVERSE"
+											checked={gender === 'DIVERSE'}
+											onChange={(e) => setGender(e.target.value)}
+										/>
+										Diverse
+									</label>
+								</div>
 
-			<NavLink to="/profile/children/addChild">Add a child</NavLink>
+								<button id="cSaveDataBtn" className="btn_blue btn bpn-padding" type="submit">
+									Save Changes
+								</button>
+							</div>
+						</form>
+					</div>
+				)}
+			</div>
 		</div>
 	);
 }
