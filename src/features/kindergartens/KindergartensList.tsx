@@ -40,7 +40,7 @@ export default function KindergartensList(): JSX.Element {
 	const filteredKindergartens = filtered(kindergartens, selectedCity);
 
 	return (
-		<div id="kTableContainer" className="content dark">
+		<div id="kTableContainer" className="dark">
 			<div id="kListTitle" className="dark font_itim">
 				Kindergartens
 			</div>

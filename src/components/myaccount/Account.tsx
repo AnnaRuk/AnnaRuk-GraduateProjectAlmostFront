@@ -28,9 +28,9 @@ export default function Account(): JSX.Element {
 
 	return (
 		<div id="profileSubstrate">
-			<div id="profileContainer" className="content bg_white dark">
+			<div id="profileContainer" className="bg_white dark">
 				<Sidepanel />
-				<div id="profileContentContainer" className="bg_pink dark">
+				<div id="profileContentContainer" className=" content bg_pink dark">
 					<Outlet />
 				</div>
 			</div>

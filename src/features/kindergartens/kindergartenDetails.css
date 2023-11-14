@@ -12,7 +12,7 @@
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	padding: 2vw 2vw 2vw 2vw;
+	padding: 0vw 2vw 0vw 2vw;
 }
 #kDescriptionContainer {
 	margin-top: 1vw;
@@ -52,6 +52,7 @@
 	margin-top: 1vw;
 	margin-bottom: 1vw;
 	font-size: 1.2vw;
+	padding: 1vw 2vw 1vw 2vw;
 }
 .kBtn_green:hover {
 	text-decoration: none !important;
@@ -70,6 +71,7 @@
 	margin-top: 1vw;
 	margin-bottom: 1vw;
 	font-size: 1.2vw;
+	padding: 1vw 2vw 1vw 2vw;
 }
 .kBtn_blue:hover {
 	text-decoration: none !important;
@@ -88,6 +90,7 @@
 	margin-top: 1vw;
 	margin-bottom: 1vw;
 	font-size: 1.2vw;
+	padding: 1vw 2vw 1vw 2vw;
 }
 .kBtn_pink:hover {
 	text-decoration: none !important;
@@ -96,9 +99,10 @@
 }
 #kAdditionalContainer {
 	display: flex;
-	max-width:20vw;
+	max-width: 20vw;
 	flex-direction: column;
 	margin-bottom: 2vw;
+	align-items: center;
 }
 #kRequestContainer {
 	display: flex;
@@ -123,9 +127,15 @@ select {
 	flex-direction: column;
 }
 textarea {
+	padding: 1vw 1vw 1vw 1vw;
 	font-size: 1vw;
 }
 
 .hide {
 	display: none;
+}
+#kostyl {
+	display: flex;
+	border-radius: 2vw;
+	width: max-content;
 }

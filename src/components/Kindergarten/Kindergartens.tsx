@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 export default function Kindergartens(): JSX.Element {
 	return (
 		<div id="substrate">
-			<div id="kindergartenBack" className="bg_white content">
+			<div id="kindergartenBack" className="bg_white">
 				<Outlet />
 			</div>
 		</div>

@@ -28,6 +28,7 @@ import { loadDialogues } from './features/dialogues/DialoguesSlice';
 import { loadControlKindergarten } from './features/kindergartens/KindergartensSlice';
 import { loadFavorites } from './features/favorites/FavoritesSlice';
 import { loadChildren } from './features/children/ChildrenSlice';
+import Profile from './components/Profile/Profile';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -57,6 +58,7 @@ function App(): JSX.Element {
 						<Route path=":id" element={<KindergartenDetails />} />
 					</Route>
 					<Route path="/profile" element={<Account />}>
+						<Route path="" element={<Profile />} />
 						<Route path="my_data" element={<UserData />} />
 						<Route path="favorites" element={<FavoritesKindergartensList />} />
 						<Route path="favorites/:id" element={<KindergartenDetails />} />

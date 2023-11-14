@@ -99,116 +99,118 @@ export default function KindergartenDetails(): JSX.Element {
 
 	if (kindergarten) {
 		return (
-			<div id="kindergartenDataContainer" className="dark font_itim flex">
-				<div>
-					<div id="kTitleContainer" className="dark font_itim">
-						<NavLink to={`${path}`}>
-							<button className="btn_pink dark btn">Go Back</button>
-						</NavLink>
-						<div id="kTitle">{kindergarten?.title}</div>
-					</div>
-					<div id="imgAndDataContainer">
-						<div>
-							<img id="kImage" src={kindergarten?.linkImg} alt="KINDERGARTEN" />
+			<div id="kostyl" className="dark font_itim bg_white">
+				<div id="kindergartenDataContainer">
+					<div>
+						<div id="kTitleContainer" className="dark font_itim">
+							<NavLink to={`${path}`}>
+								<button className="kBtn_blue dark btn">Go Back</button>
+							</NavLink>
+							<div id="kTitle">{kindergarten?.title}</div>
 						</div>
-						<div id="kDataContainer" className="bg_green">
+						<div id="imgAndDataContainer">
 							<div>
-								<BusinessIcon /> {kindergarten?.address}
+								<img id="kImage" src={kindergarten?.linkImg} alt="KINDERGARTEN" />
+							</div>
+							<div id="kDataContainer" className="bg_green">
 								<div>
-									{kindergarten?.postcode}, {kindergarten?.city}
+									<BusinessIcon /> {kindergarten?.address}
+									<div>
+										{kindergarten?.postcode}, {kindergarten?.city}
+									</div>
 								</div>
+								<div>
+									<PhoneInTalkIcon /> {kindergarten?.phone}
+								</div>
+								<div>{`Person: ${kindergarten?.manager?.firstName} ${kindergarten?.manager?.lastName}`}</div>
+								<div>Capacity: {kindergarten?.capacity}</div>
 							</div>
+						</div>
+						<div id="kDescriptionContainer" className="bg_pink">
+							{kindergarten?.description}
+						</div>
+					</div>
+
+					{user && user?.role === 'USER' ? (
+						<div id="kAdditionalContainer">
+							{!isInFavorites ? (
+								<button
+									className="kBtn_blue dark mg"
+									type="button"
+									id="kToFavoritesBTN"
+									onClick={() => handleAddToFavorite(kindergarten ? Number(kindergarten.id) : 0)}
+								>
+									Add to Favorites
+								</button>
+							) : (
+								<button
+									type="button"
+									className="kBtn_blue dark mg"
+									id="kFromFavoritesBTN"
+									onClick={() => handleDelete(Number(kindergarten.id))}
+								>
+									Remove from Favorites
+								</button>
+							)}
+
 							<div>
-								<PhoneInTalkIcon /> {kindergarten?.phone}
+								<label id="kChoseLbl">Choose a child: </label>
+								<select value={selectedChildId || 'children'} onChange={handleChildChange}>
+									<option value="children">children</option>
+									{children?.map((child) => (
+										<option key={child.id} value={child.id}>
+											{child.firstName}
+										</option>
+									))}
+								</select>
 							</div>
-							<div>{`Person: ${kindergarten?.manager?.firstName} ${kindergarten?.manager?.lastName}`}</div>
-							<div>Capacity: {kindergarten?.capacity}</div>
-						</div>
-					</div>
-					<div id="kDescriptionContainer" className="bg_pink">
-						{kindergarten?.description}
-					</div>
-				</div>
 
-				{user && user?.role === 'USER' ? (
-					<div id="kAdditionalContainer">
-						{!isInFavorites ? (
 							<button
-								className="kBtn_blue dark mg"
+								className="kBtn_green dark mg "
 								type="button"
-								id="kToFavoritesBTN"
-								onClick={() => handleAddToFavorite(kindergarten ? Number(kindergarten.id) : 0)}
+								id="kRequestBTN"
+								onClick={() => handleCreateRequest(Number(kindergarten.id || 0))}
 							>
-								Add to Favorites
+								Send a Request
 							</button>
-						) : (
+
 							<button
 								type="button"
-								className="kBtn_blue dark mg"
-								id="kFromFavoritesBTN"
-								onClick={() => handleDelete(Number(kindergarten.id))}
-							>
-								Remove from Favorites
-							</button>
-						)}
-
-						<div>
-							<label id="kChoseLbl">Choose a child: </label>
-							<select value={selectedChildId || 'children'} onChange={handleChildChange}>
-								<option value="children">children</option>
-								{children?.map((child) => (
-									<option key={child.id} value={child.id}>
-										{child.firstName}
-									</option>
-								))}
-							</select>
-						</div>
-
-						<button
-							className="kBtn_green dark mg "
-							type="button"
-							id="kRequestBTN"
-							onClick={() => handleCreateRequest(Number(kindergarten.id || 0))}
-						>
-							Send a Request
-						</button>
-
-						<button
-							type="button"
-							id="kShowMessageBTN"
-							className="kBtn_pink dark mg"
-							onClick={showMessageArea}
-						>
-							Send a Message
-						</button>
-						<div id="kMessageContainer" className={messageAreaEditable ? '' : 'hide'}>
-							<textarea
-								id="textArea"
-								placeholder="Write your message here"
-								cols={50}
-								rows={7}
-								maxLength={1000}
-								wrap="soft"
-								className={messageAreaEditable ? '' : 'hide'}
-								value={newMessage}
-								onChange={(e) => setNewMessage(e.target.value)}
-							></textarea>
-							<button
-								type="button"
-								id="kSendMessageBTN"
-								className="kBtn_pink dark mg hide"
-								onClick={() => {
-									handleSendMessage(kindergarten?.manager?.id, newMessage);
-									setMessageAreaEditable(!messageAreaEditable);
-								}}
+								id="kShowMessageBTN"
+								className="kBtn_pink dark mg"
+								onClick={showMessageArea}
 							>
 								Send a Message
 							</button>
+							<div id="kMessageContainer" className={messageAreaEditable ? '' : 'hide'}>
+								<textarea
+									id="textArea"
+									placeholder="Write your message here"
+									cols={50}
+									rows={7}
+									maxLength={1000}
+									wrap="soft"
+									className={messageAreaEditable ? '' : 'hide'}
+									value={newMessage}
+									onChange={(e) => setNewMessage(e.target.value)}
+								></textarea>
+								<button
+									type="button"
+									id="kSendMessageBTN"
+									className="kBtn_pink dark mg hide"
+									onClick={() => {
+										handleSendMessage(kindergarten?.manager?.id, newMessage);
+										setMessageAreaEditable(!messageAreaEditable);
+									}}
+								>
+									Send a Message
+								</button>
+							</div>
 						</div>
-					</div>
-				) : (
-					<></>
-				)}
+					) : (
+						<></>
+					)}
+				</div>
 			</div>
 		);
 	} else {

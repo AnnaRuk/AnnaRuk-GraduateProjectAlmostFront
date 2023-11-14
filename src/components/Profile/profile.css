@@ -1,0 +1,11 @@
+.aTitle {
+	font-size: 4vw;
+}
+.aText {
+	font-size: 2vw;
+	word-spacing: 1vw;
+}
+.aMid {
+	display: flex;
+	justify-content: center;
+}
