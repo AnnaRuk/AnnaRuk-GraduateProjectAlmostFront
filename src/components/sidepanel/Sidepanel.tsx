@@ -9,6 +9,7 @@ function Sidepanel(): JSX.Element {
 	const user = useAppSelector(selectUser);
 	const [show1, setShow1] = useState(false);
 	const [show2, setShow2] = useState(false);
+	const [show3, setShow3] = useState(false);
 	const dialogues = useAppSelector((state) => state.dialogues.dialogues);
 
 	function showHide1(): void {
@@ -16,6 +17,9 @@ function Sidepanel(): JSX.Element {
 	}
 	function showHide2(): void {
 		setShow2(!show2);
+	}
+	function showHide3(): void {
+		setShow3(!show3);
 	}
 
 	return (
@@ -64,17 +68,29 @@ function Sidepanel(): JSX.Element {
 					{user.role === 'MANAGER' && (
 						<>
 							<div>
-								<NavLink to="/profile/kindergarten">My Kindergarten</NavLink>
+								<NavLink to="/profile/kindergarten">
+									<button className="sBtn_green dark">My Kindergarten</button>
+								</NavLink>
 							</div>
 							<div>
-								<span>Requests</span>
+								<button id="mRequestBtn" className="sBtn_green dark" onClick={showHide3}>
+									My requests
+								</button>
 							</div>
-							<div>
-								<NavLink to="/profile/m_requests/confirmed">Confirmed</NavLink>
-							</div>
-							<div>
-								<NavLink to="/profile/m_requests/in_process">In Process</NavLink>
-							</div>
+							{show3 && (
+								<div id="mRequestsContainer" className="aBg_pink dark">
+									<div>
+										<NavLink to="/profile/m_requests/confirmed">
+											<button className="sBtn_pink dark">Confirmed</button>
+										</NavLink>
+									</div>
+									<div>
+										<NavLink to="/profile/m_requests/in_process">
+											<button className="sBtn_pink dark">In Process</button>
+										</NavLink>
+									</div>
+								</div>
+							)}
 						</>
 					)}
 					<div>

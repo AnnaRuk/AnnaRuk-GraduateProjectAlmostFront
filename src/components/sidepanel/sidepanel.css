@@ -119,3 +119,20 @@
 	align-content: center;
 	justify-content: flex-start;
 }
+#mRequestBtn {
+	position: relative;
+	z-index: 10;
+}
+#mRequestsContainer {
+	position: relative;
+	top: -2vw;
+	width: 13vw;
+	padding-top: 1vw;
+	padding-bottom: 1vw;
+	border-radius: 0vw 0vw 1vw 1vw;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: flex-start;
+}
