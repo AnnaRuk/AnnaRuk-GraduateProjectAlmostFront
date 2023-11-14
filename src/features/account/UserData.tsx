@@ -64,10 +64,10 @@ export default function UserData(): JSX.Element {
 		<div className="dark font_itim">
 			{editable ? (
 				<div id="updateDataContainer">
-					<h5>My data</h5>
 					<form id="userDataForm" onSubmit={handleUpdateSubmit}>
+						<div id="dataEditTitle">Data Edit</div>
 						<div id="fAndLNameContainer">
-							<div className="mb-3">
+							<div className="couple">
 								<label htmlFor="firstName-input" className="form-label lbl">
 									First name
 								</label>
@@ -77,11 +77,11 @@ export default function UserData(): JSX.Element {
 									value={firstName}
 									onChange={(e) => setFirstName(e.target.value)}
 									id="firstName-input"
-									name="email"
+									name="firstName-input"
 									required
 								/>
 							</div>
-							<div>
+							<div className="couple">
 								<label htmlFor="lastName-input" className="form-label lbl">
 									Last name
 								</label>
@@ -91,37 +91,11 @@ export default function UserData(): JSX.Element {
 									value={lastName}
 									onChange={(e) => setLastName(e.target.value)}
 									id="lastName-input"
-									name="email"
+									name="lastName-input"
 									required
 								/>
 							</div>
 						</div>
-						<div className="mb-3">
-							<label htmlFor="email-input" className="form-label lbl" id="dEmailInput">
-								Email:
-							</label>
-							<input
-								type="text"
-								className="form-control input"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								id="email-input"
-								name="email"
-								required
-							/>
-						</div>
-						<label>postcode:</label>
-						<input type="text" value={postcode} onChange={(e) => setPostcode(e.target.value)} />
-						<label>address:</label>
-						<input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
-						<label>city:</label>
-						<input type="text" value={city} onChange={(e) => setCity(e.target.value)} />
-						<label>date of birth:</label>
-						<input
-							type="date"
-							value={dateOfBirth}
-							onChange={(e) => setDateOfBirth(e.target.value)}
-						/>
 						<div>
 							<label>
 								<input
@@ -152,29 +126,135 @@ export default function UserData(): JSX.Element {
 								Diverse
 							</label>
 						</div>
-						<label>phone:</label>
-						<input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
-						<button type="submit">Save</button>
+						<div id="dAEInputContainer">
+							<div className="couple">
+								<label htmlFor="dateOfBirth-input" className="form-label lbl">
+									Date Of Birth
+								</label>
+								<input
+									type="date"
+									value={dateOfBirth}
+									onChange={(e) => setDateOfBirth(e.target.value)}
+									className="form-control input date_width"
+									name="dateOfBirth-input"
+									id="dateOfBirth-input"
+									required
+								/>
+							</div>
+							<div className="couple">
+								<label htmlFor="email-input" className="form-label lbl">
+									Email
+								</label>
+								<input
+									type="text"
+									className="form-control input"
+									value={email}
+									onChange={(e) => setEmail(e.target.value)}
+									name="email-input"
+									id="email-input"
+									required
+								/>
+							</div>
+						</div>
+
+						<div className="couple">
+							<label htmlFor="address-input" className="form-label lbl">
+								Address
+							</label>
+							<input
+								type="text"
+								value={address}
+								onChange={(e) => setAddress(e.target.value)}
+								className="form-control input"
+								id="address-input"
+								name="address-input"
+								required
+							/>
+						</div>
+						<div id="pACInputContainer">
+							<div className="couple">
+								<label htmlFor="postcode-input" className="form-label lbl">
+									Postcode
+								</label>
+								<input
+									type="text"
+									value={postcode}
+									onChange={(e) => setPostcode(e.target.value)}
+									className="form-control input"
+									id="postcode-input"
+									name="postcode-input"
+									required
+								/>
+							</div>
+
+							<div className="couple">
+								<label htmlFor="city-input" className="form-label lbl">
+									City
+								</label>
+								<input
+									type="text"
+									value={city}
+									onChange={(e) => setCity(e.target.value)}
+									className="form-control input"
+									id="city-input"
+									name="city-input"
+									required
+								/>
+							</div>
+						</div>
+
+						<div className="couple">
+							<label htmlFor="phone-input" className="form-label lbl">
+								Phone
+							</label>
+							<input
+								type="text"
+								value={phone}
+								onChange={(e) => setPhone(e.target.value)}
+								className="form-control input"
+								id="phone-input"
+								name="phone-input"
+								required
+							/>
+						</div>
+
+						<button type="submit" className="btn_blue btn bpn-padding mrg">
+							Save Data
+						</button>
 					</form>
 				</div>
 			) : (
 				<div>
-					<h3>My data</h3>
-					<p> {firstName}</p>
-					<p> {lastName}</p>
-					<p>
-						{' '}
-						{address}, {city}, {postcode}{' '}
-					</p>
-					<p> {phone}</p>
-					<p> {gender}</p>
-					<p> {new Date(dateOfBirth).toLocaleDateString()}</p>
-					<p> {email}</p>
+					<div id="MyDataTitle">My data</div>
+					<div className="flex">
+						<div className="form-control input-imit"> {firstName}</div>
+						<div className="form-control input-imit"> {lastName}</div>
+					</div>
+					<div className="form-control input-imit">{gender}</div>
+					<div className="flex">
+						<div className="form-control input-imit">
+							{new Date(dateOfBirth).toLocaleDateString()}
+						</div>
+						<div className="form-control input-imit">{email}</div>
+					</div>
+					<div className="flex">
+						<div className="form-control input-imit">{address}</div>
+						<div className="form-control input-imit">
+							{postcode}, {city}
+						</div>
+					</div>
+					<div className="form-control input-imit"> {phone}</div>
+					<div className="flex">
+						<button onClick={handleEditClick} className="btn_blue btn bpn-padding dark editDataBtn">
+							Edit Data
+						</button>
 
-					<button onClick={handleEditClick}>Edit</button>
+						<button type="button" className="btn btn_blue bpn-padding dark editDataBtn">
+							Change Password
+						</button>
+					</div>
 				</div>
 			)}
-			<button type="button">Change password</button>
 		</div>
 	);
 }
