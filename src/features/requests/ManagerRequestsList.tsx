@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { confirmRequest, loadRequests, rejectRequest } from './RequestsSlice';
 import ChildWithParent from './types/ChildWithParent';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EmailIcon from '@mui/icons-material/Email';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 
 export default function ManagerRequestsList(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -64,7 +67,7 @@ export default function ManagerRequestsList(): JSX.Element {
           <th>PARENT NAME</th>
           <th>PARENT LASTNAME</th>
           <th>CHILD INFORMATION</th>
-          <th>STATUS</th>
+          <th>DATE</th>
           <th></th>
           <th></th>
           <th></th>
@@ -76,17 +79,17 @@ export default function ManagerRequestsList(): JSX.Element {
             <td>{parentName(request.childId)}</td>
             <td>{parentLastName(request.childId)}</td>
             <td>{childData(request.childId)}</td>
-            <td>{request.status}</td>
+            <td>{new Date(request.requestDateTime).toLocaleDateString()}</td>
             <td>
-              <button type="button" onClick={() => handleRejectRequest(request.id)}>
+              <DeleteForeverIcon type="button" onClick={() => handleRejectRequest(request.id)}>
                 del
-              </button>
+              </DeleteForeverIcon>
             </td>
             <td>
-              <button type="button">send a message</button>
+              <EmailIcon type="button">send a message</EmailIcon>
             </td>
             <td>
-              <button type="button">Invite</button>
+              <GroupAddIcon type="button">Invite</GroupAddIcon>
             </td>
           </tr>
         ))}

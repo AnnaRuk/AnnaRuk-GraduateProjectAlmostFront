@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { deleteFavorites, loadFavorites } from './FavoritesSlice';
-import BackspaceIcon from '@mui/icons-material/Backspace';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useLocation, NavLink } from 'react-router-dom';
 
 export default function FavoritesKindergartensList(): JSX.Element {
@@ -46,7 +46,7 @@ export default function FavoritesKindergartensList(): JSX.Element {
 							<td>{kindergarten.address}</td>
 							<td>{kindergarten.capacity}</td>
 							<td>
-								<BackspaceIcon type="button" onClick={() => handleDelete(kindergarten.id)} />
+								<DeleteForeverIcon type="button" onClick={() => handleDelete(kindergarten.id)} />
 							</td>
 						</tr>
 					))}
