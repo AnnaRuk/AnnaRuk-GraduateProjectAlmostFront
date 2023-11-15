@@ -66,41 +66,47 @@ export default function ManagerRequestsList(): JSX.Element {
 	}
 
 	return (
-		<table>
-			<thead>
-				<tr>
-					<th>PARENT NAME</th>
-					<th>PARENT LASTNAME</th>
-					<th>CHILD INFORMATION</th>
-					<th>DATE</th>
-					<th></th>
-					<th></th>
-          <th></th>
-				</tr>
-			</thead>
-			<tbody>
-				{notConfirmedRequestsList.map((request) => (
-					<tr key={request.id}>
-						<td>{parentName(request.childId)}</td>
-						<td>{parentLastName(request.childId)}</td>
-						<td>{childData(request.childId)}</td>
-						<td>{new Date(request.requestDateTime).toLocaleDateString()}</td>
-						<td>
-							<DeleteForeverIcon type="button" onClick={() => handleRejectRequest(request.id)}>
-								del
-							</DeleteForeverIcon>
-						</td>
-						<td>
-							<CheckIcon type="button" onClick={() => handleConfirmRequest(request.id)}>
-								conf
-							</CheckIcon>
-						</td>
-            <td>
-              <EmailIcon type="button">send a message</EmailIcon>
-            </td>
-					</tr>
-				))}
-			</tbody>
-		</table>
+		<>
+			{notConfirmedRequestsList.length > 0 ? (
+				<table>
+					<thead>
+						<tr>
+							<th>PARENT NAME</th>
+							<th>PARENT LASTNAME</th>
+							<th>CHILD INFORMATION</th>
+							<th>DATE</th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{notConfirmedRequestsList.map((request) => (
+							<tr key={request.id}>
+								<td>{parentName(request.childId)}</td>
+								<td>{parentLastName(request.childId)}</td>
+								<td>{childData(request.childId)}</td>
+								<td>{new Date(request.requestDateTime).toLocaleDateString()}</td>
+								<td>
+									<DeleteForeverIcon type="button" onClick={() => handleRejectRequest(request.id)}>
+										del
+									</DeleteForeverIcon>
+								</td>
+								<td>
+									<CheckIcon type="button" onClick={() => handleConfirmRequest(request.id)}>
+										conf
+									</CheckIcon>
+								</td>
+								<td>
+									<EmailIcon type="button">send a message</EmailIcon>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			) : (
+				<h1>You have no requests to consider</h1>
+			)}
+		</>
 	);
 }

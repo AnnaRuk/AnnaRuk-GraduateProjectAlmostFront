@@ -51,14 +51,13 @@ export default function UserRequestsList(): JSX.Element {
 		dispatch(rejectRequest(id));
 	}
 
-
 	function putDownStatus(status: string): string {
-		if (status === 'CONFIRMED') { 
+		if (status === 'CONFIRMED') {
 			return 'approved, please wait for your meeting invitation';
-		} else if (status === 'NOT_CONFIRMED'){
+		} else if (status === 'NOT_CONFIRMED') {
 			return 'in progress';
 		} else {
-			return 'you rejected';
+			return 'rejected';
 		}
 	}
 
@@ -83,14 +82,18 @@ export default function UserRequestsList(): JSX.Element {
 						<td>{childName(request.childId)}</td>
 						<td>{new Date(request.requestDateTime).toLocaleDateString()}</td>
 						<td>{putDownStatus(request.status)}</td>
+						{request.status !== 'REJECTED' ? (
+							<td>
+								<DeleteForeverIcon type="button" onClick={() => handleRejectRequest(request.id)}>
+									del
+								</DeleteForeverIcon>
+							</td>
+						) : (
+							<td></td>
+						)}
 						<td>
-							<DeleteForeverIcon type="button" onClick={() => handleRejectRequest(request.id)}>
-								del
-							</DeleteForeverIcon>
+							<EmailIcon type="button">send a message</EmailIcon>
 						</td>
-						<td>
-              <EmailIcon type="button">send a message</EmailIcon>
-            </td>
 					</tr>
 				))}
 			</tbody>
