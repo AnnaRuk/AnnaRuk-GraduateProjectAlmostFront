@@ -13,7 +13,7 @@ import KindergartenDetails from './features/kindergartens/KindergartenDetails';
 import Account from './components/myaccount/Account';
 import Home from './components/home/Home';
 import Sidepanel from './components/sidepanel/Sidepanel';
-import KindergartenForm from './features/kindergartens/KindergartenForm';
+import ControlKindergarten from './features/kindergartens/ControlKindergarten';
 import UserData from './features/account/UserData';
 import ChildrenForm from './features/children/ChildrenForm';
 import AddChildrenForm from './features/children/AddChildrenForm';
@@ -62,7 +62,7 @@ function App(): JSX.Element {
 						<Route path="my_data" element={<UserData />} />
 						<Route path="favorites" element={<FavoritesKindergartensList />} />
 						<Route path="favorites/:id" element={<KindergartenDetails />} />
-						<Route path="kindergarten" element={<KindergartenForm />} />
+						<Route path="kindergarten" element={<ControlKindergarten />} />
 						<Route path="kindergartens" element={<KindergartensList />} />
 						<Route path="kindergartens/:id" element={<KindergartenDetails />} />
 						<Route path="children" element={<ChildrenForm />} />

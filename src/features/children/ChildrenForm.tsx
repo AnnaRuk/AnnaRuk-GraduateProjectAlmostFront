@@ -78,7 +78,7 @@ export default function ChildrenForm(): JSX.Element {
 							))}
 						</div>
 					) : (
-						<div id="noChildren">No added Children's data</div>
+						<div id="noChildren">{`There is no added Children's data yet.`}</div>
 					)}
 					<NavLink to="/profile/children/addChild">
 						<button id="addChildBtn" className="btn_blue btn bpn-padding">

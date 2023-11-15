@@ -1,9 +1,9 @@
 import React, { FormEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { addControlKindergarten, updateControlKindergarten } from './KindergartensSlice';
-import './KindergartenForm.module.css';
+import './ControlKindergarten.css';
 
-export default function KindergartenForm(): JSX.Element {
+export default function ControlKindergarten(): JSX.Element {
 	const dispatch = useAppDispatch();
 	const controlKindergarten = useAppSelector((state) => state.kindergartens.controlKindergarten);
 
@@ -88,7 +88,7 @@ export default function KindergartenForm(): JSX.Element {
 	}
 
 	return (
-		<div>
+		<div className="font_itim dark">
 			{editable ? (
 				<div>
 					<h3>Edit Kindergarden data</h3>
@@ -119,16 +119,36 @@ export default function KindergartenForm(): JSX.Element {
 				</div>
 			) : (
 				<div>
-					<h3>My Kindergarden</h3>
-					<div> {title}</div>
-					<p> {city}</p>
-					<p> {address}</p>
-					<p> {postcode}</p>
-					<p> {description}</p>
-					<p> {capacity}</p>
-					<a href={linkImg}></a>
-					<p> {controlKindergarten?.phone}</p>
-					<button onClick={handleEditClick}>Edit</button>
+					<div id="cKTitle">My Kindergarden</div>
+					{controlKindergarten?.title ? (
+						<>
+							<div className="form-control input-imit"> {title}</div>
+							<div className="form-control input-imit"> {address}</div>
+							<div className="flex">
+								<div className="form-control input-imit"> {city}</div>
+								<div className="form-control input-imit"> {postcode}</div>
+							</div>
+							<div id="cKDescription" className="form-control input-imit">
+								{description}
+							</div>
+							<div className="flex">
+								<div className="form-control input-imit"> {capacity}</div>
+								<div className="form-control input-imit"> {controlKindergarten?.phone}</div>
+							</div>
+							<div id="ckLinkImg" className="form-control input-imit">
+								{linkImg}
+							</div>
+
+							<button
+								onClick={handleEditClick}
+								className="btn_blue btn bpn-padding dark editDataBtn"
+							>
+								Edit Data
+							</button>
+						</>
+					) : (
+						<div id="ckNoData">There is no added Kindergarten yet.</div>
+					)}
 				</div>
 			)}
 		</div>
