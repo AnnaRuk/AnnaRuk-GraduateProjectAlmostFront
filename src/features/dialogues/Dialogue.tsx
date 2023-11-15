@@ -15,6 +15,7 @@ export default function Dialogue(): JSX.Element {
 	useEffect(() => {
 		dispatch(loadDialogues());
 	}, [dispatch]);
+	
 
 	// {
 	//   "dialogues": [
@@ -54,24 +55,12 @@ export default function Dialogue(): JSX.Element {
 						if (message.senderId === dialog?.recipient.id) {
 							return (
 								<li key={message.id}>
-									{`${new Date(message.messageDateTime).toLocaleDateString('en-GB', {
-										day: 'numeric',
-										month: 'numeric',
-									})} ${new Date(message.messageDateTime).toLocaleTimeString([], {
-										hour: '2-digit',
-										minute: '2-digit',
-									})}, ${dialog.recipient.firstName}: ${message.messageText}`}
+									{`${new Date(message.messageDateTime).toLocaleString()}, ${dialog.recipient.firstName}: ${message.messageText}`}
 								</li>
 							);
 						} else {
 							return (
-								<li key={message.id}>{`${new Date(message.messageDateTime).toLocaleDateString(
-									'en-GB',
-									{ day: 'numeric', month: 'numeric' }
-								)} ${new Date(message.messageDateTime).toLocaleTimeString([], {
-									hour: '2-digit',
-									minute: '2-digit',
-								})}}, ${user?.firstName}: ${message.messageText}`}</li>
+								<li key={message.id}>{`${new Date(message.messageDateTime).toLocaleString()}, ${user?.firstName}: ${message.messageText}`}</li>
 							);
 						}
 					})}

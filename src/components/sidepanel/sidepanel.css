@@ -1,0 +1,138 @@
+#sidePanelContainer {
+	min-height: 90%;
+	display: flex;
+	border-radius: 1vw;
+	padding: 1vw 1vw 1vw 1vw;
+}
+#sidePanelBtnContainer {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: center;
+}
+.sBtn_green {
+	display: inline-flex;
+	justify-content: center;
+	--padding-x: 1.2em;
+	background-color: rgb(175, 255, 175);
+	border-color: transparent;
+	align-items: center;
+	height: 2vw;
+	width: 13vw;
+	border-radius: 1vw 1vw 1vw 1vw;
+	margin-top: 1vw;
+	margin-bottom: 1vw;
+	font-size: 1.2vw;
+	padding: 1vw 2vw 1vw 2vw;
+}
+.sBtn_green:hover {
+	text-decoration: none !important;
+	background-color: rgba(175, 255, 175, 0.9);
+	border-color: transparent;
+}
+.sBtn_blue {
+	display: inline-flex;
+	justify-content: center;
+	--padding-x: 1.2em;
+	background-color: rgba(37, 174, 206, 1);
+	border-color: transparent;
+	align-items: center;
+	height: 2vw;
+	border-radius: 1vw 1vw 1vw 1vw;
+	margin-top: 1vw;
+	margin-bottom: 1vw;
+	font-size: 1.2vw;
+	padding: 1vw 2vw 1vw 2vw;
+}
+.sBtn_blue:hover {
+	text-decoration: none !important;
+	background-color: rgba(37, 174, 206, 0.8);
+	border-color: transparent;
+}
+.sBtn_pink {
+	display: inline-flex;
+	justify-content: center;
+	--padding-x: 1.2em;
+	background-color: rgba(255, 192, 203, 1);
+	border-color: transparent;
+	align-items: center;
+	height: 2vw;
+	border-radius: 1vw 1vw 1vw 1vw;
+	width: 11vw;
+	font-size: 1.2vw;
+	padding: 1vw 2vw 1vw 2vw;
+}
+.sBtn_pink:hover {
+	text-decoration: none !important;
+	background-color: rgba(255, 192, 203, 0.8);
+	border-color: transparent;
+}
+#aKindergartensContainer {
+	position: relative;
+	top: -2vw;
+	width: 13vw;
+	padding-top: 1vw;
+	padding-bottom: 1vw;
+	border-radius: 0vw 0vw 1vw 1vw;
+	flex-wrap: wrap;
+	justify-content: center;
+	display: flex;
+}
+#aKindergartens {
+	position: relative;
+	z-index: 10;
+}
+.aBg_pink {
+	background-color: #ffc0cb;
+}
+
+#aDcontainer {
+	position: relative;
+	top: -2vw;
+	width: 13vw;
+	padding-top: 1vw;
+	padding-bottom: 1vw;
+	border-radius: 0vw 0vw 1vw 1vw;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: flex-start;
+}
+#aDialogueBtn {
+	position: relative;
+	z-index: 10;
+}
+.dialogLnk {
+	width: auto;
+}
+#noDialogContainer {
+	position: relative;
+	top: -2vw;
+	width: 13vw;
+	padding-top: 2vw;
+	padding-bottom: 1vw;
+	border-radius: 0vw 0vw 1vw 1vw;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: flex-start;
+}
+#mRequestBtn {
+	position: relative;
+	z-index: 10;
+}
+#mRequestsContainer {
+	position: relative;
+	top: -2vw;
+	width: 13vw;
+	padding-top: 1vw;
+	padding-bottom: 1vw;
+	border-radius: 0vw 0vw 1vw 1vw;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: flex-start;
+}

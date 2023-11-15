@@ -1,0 +1,69 @@
+#fAndLNameContainer {
+	display: flex;
+}
+#updateDataContainer {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	align-items: center;
+}
+#userDataForm {
+	max-width: 70vw;
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-content: flex-start;
+}
+.input {
+	max-width: 20vw;
+	margin-right: 2vw;
+}
+.date_width {
+	margin-right: 6vw;
+}
+.couple {
+	padding-right: 3vw;
+}
+.lbl {
+	position: relative;
+	bottom: -1vw;
+}
+#dAEInputContainer {
+	display: flex;
+}
+#pACInputContainer {
+	display: flex;
+}
+.bpn-padding {
+	padding: 1vw 2vw 1vw 2vw;
+}
+.mrg {
+	position: relative;
+	top: -1vw;
+	margin-left: 26vw;
+}
+#dataEditTitle {
+	margin-left: 10vw;
+	margin-top: -2vw;
+	font-size: 3vw;
+}
+#MyDataTitle {
+	margin-left: 10vw;
+	font-size: 3vw;
+}
+.input-imit {
+	max-width: 15vw;
+	margin-left: 1vw;
+	margin-right: 2vw;
+	margin-bottom: 1.5vw;
+}
+.editDataBtn {
+	margin-left: 2vw;
+	margin-right: 1vw;
+	margin-bottom: 1vw;
+}
+.radio-right {
+	margin-right: 1vw;
+}

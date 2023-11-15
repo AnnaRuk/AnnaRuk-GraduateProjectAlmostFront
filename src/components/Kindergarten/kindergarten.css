@@ -1,0 +1,91 @@
+#substrate {
+	display: flex;
+	width: 100vw;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+}
+#kindergartenBack {
+	display: flex;
+	min-height: 100vh;
+	justify-content: flex-start;
+	flex-direction: column;
+	align-items: center;
+	padding: 5vw 1vw 1vw 1vw;
+}
+#kTableContainer {
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+#kListTitle {
+	font-size: 3vw;
+	display: flex;
+	justify-content: center;
+}
+#cityChooserLbl {
+	margin-left: 2vw;
+	font-size: 1.6vw;
+	margin-right: 1.3vw;
+}
+#citySelector {
+	width: auto;
+	height: 2vw;
+	border-radius: 5px;
+	padding-left: 1vw;
+	padding-right: 1vw;
+	background-color: rgba(175, 255, 175, 0.8);
+	margin-bottom: 1vw;
+	font-size: 1.3vw;
+}
+table {
+	margin-left: 1.5vw;
+	margin-right: 1.5vw;
+	margin-bottom: 5vw;
+	font-size: 1vw;
+	border-radius: 2vw;
+	border-spacing: 0;
+	text-align: center;
+}
+th {
+	background-color: rgba(37, 174, 206, 1);
+	padding: 15px 20px;
+}
+th,
+td {
+	border-style: solid;
+	border-width: 0 1px 1px 0;
+	border-color: white;
+}
+th:first-child,
+td:first-child {
+	padding: 10px 30px 10px 30px;
+	text-align: left;
+}
+th:first-child {
+	border-top-left-radius: 10px;
+}
+th:last-child {
+	border-top-right-radius: 10px;
+	border-right: none;
+}
+td {
+	padding: 10px 30px 10px 30px;
+	background-color: rgba(175, 255, 175, 0.8);
+}
+tr:last-child td:first-child {
+	border-radius: 0 0 0 10px;
+}
+tr:last-child td:last-child {
+	border-radius: 0 0 10px 0;
+}
+tr td:last-child {
+	border-right: none;
+}
+#iconTitle {
+	display: flex;
+}
+.posLeft {
+	position: relative;
+	left: -25px;
+}

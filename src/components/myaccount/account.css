@@ -1,0 +1,23 @@
+#profileSubstrate {
+	width: 100%;
+	min-height: 100%;
+	display: flex;
+	justify-content: center;
+}
+#profileContainer {
+	display: flex;
+	width: 90vw;
+	min-height: 100vh;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-wrap: nowrap;
+	padding-left: 1vw;
+	padding-right: 1vw;
+}
+#profileContentContainer {
+	min-width: 80%;
+	margin: 5vw 1vw 2vw 2vw;
+	border-radius: 2vw 2vw 2vw 2vw;
+	padding: 1vw 1vw 1vw 1vw;
+}

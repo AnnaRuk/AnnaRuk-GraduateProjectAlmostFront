@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { updateUsersProfile } from './AccountSlice';
+import './UserData.css';
 
 export default function UserData(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -60,42 +61,43 @@ export default function UserData(): JSX.Element {
 	}
 
 	return (
-		<div>
+		<div className="dark font_itim">
 			{editable ? (
-				<div>
-					<h5>My data</h5>
+				<div id="updateDataContainer">
 					<form id="userDataForm" onSubmit={handleUpdateSubmit}>
-						<label>Email:</label>
-						<input type="text" value={email} onChange={(e) => setEmail(e.target.value)} required />
-						<label>first name:</label>
-						<input
-							type="text"
-							value={firstName}
-							onChange={(e) => setFirstName(e.target.value)}
-							required
-						/>
-						<label>last name:</label>
-						<input
-							type="text"
-							value={lastName}
-							onChange={(e) => setLastName(e.target.value)}
-							required
-						/>
-						<label>postcode:</label>
-						<input type="text" value={postcode} onChange={(e) => setPostcode(e.target.value)} />
-						<label>address:</label>
-						<input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
-						<label>city:</label>
-						<input type="text" value={city} onChange={(e) => setCity(e.target.value)} />
-						<label>date of birth:</label>
-						<input
-							type="date"
-							value={dateOfBirth}
-							onChange={(e) => setDateOfBirth(e.target.value)}
-						/>
-
+						<div id="dataEditTitle">Data Edit</div>
+						<div id="fAndLNameContainer">
+							<div className="couple">
+								<label htmlFor="firstName-input" className="form-label lbl">
+									First name
+								</label>
+								<input
+									type="text"
+									className="form-control input"
+									value={firstName}
+									onChange={(e) => setFirstName(e.target.value)}
+									id="firstName-input"
+									name="firstName-input"
+									required
+								/>
+							</div>
+							<div className="couple">
+								<label htmlFor="lastName-input" className="form-label lbl">
+									Last name
+								</label>
+								<input
+									type="text"
+									className="form-control input"
+									value={lastName}
+									onChange={(e) => setLastName(e.target.value)}
+									id="lastName-input"
+									name="lastName-input"
+									required
+								/>
+							</div>
+						</div>
 						<div>
-							<label>
+							<label className="radio-right ">
 								<input
 									id="userGender"
 									type="radio"
@@ -105,7 +107,7 @@ export default function UserData(): JSX.Element {
 								/>
 								Male
 							</label>
-							<label>
+							<label className="radio-right ">
 								<input
 									type="radio"
 									value="FEMALE"
@@ -114,7 +116,7 @@ export default function UserData(): JSX.Element {
 								/>
 								Female
 							</label>
-							<label>
+							<label className="radio-right ">
 								<input
 									type="radio"
 									value="DIVERSE"
@@ -124,29 +126,134 @@ export default function UserData(): JSX.Element {
 								Diverse
 							</label>
 						</div>
-						<label>phone:</label>
-						<input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
-						<button type="submit">Save</button>
+						<div id="dAEInputContainer">
+							<div className="couple">
+								<label htmlFor="dateOfBirth-input" className="form-label lbl">
+									Date of Birth
+								</label>
+								<input
+									type="date"
+									value={dateOfBirth}
+									onChange={(e) => setDateOfBirth(e.target.value)}
+									className="form-control input date_width"
+									name="dateOfBirth-input"
+									id="dateOfBirth-input"
+									required
+								/>
+							</div>
+							<div className="couple">
+								<label htmlFor="email-input" className="form-label lbl">
+									Email
+								</label>
+								<input
+									type="text"
+									className="form-control input"
+									value={email}
+									onChange={(e) => setEmail(e.target.value)}
+									name="email-input"
+									id="email-input"
+									required
+								/>
+							</div>
+						</div>
+
+						<div className="couple">
+							<label htmlFor="address-input" className="form-label lbl">
+								Address
+							</label>
+							<input
+								type="text"
+								value={address}
+								onChange={(e) => setAddress(e.target.value)}
+								className="form-control input"
+								id="address-input"
+								name="address-input"
+								required
+							/>
+						</div>
+						<div id="pACInputContainer">
+							<div className="couple">
+								<label htmlFor="postcode-input" className="form-label lbl">
+									Postcode
+								</label>
+								<input
+									type="text"
+									value={postcode}
+									onChange={(e) => setPostcode(e.target.value)}
+									className="form-control input"
+									id="postcode-input"
+									name="postcode-input"
+									required
+								/>
+							</div>
+
+							<div className="couple">
+								<label htmlFor="city-input" className="form-label lbl">
+									City
+								</label>
+								<input
+									type="text"
+									value={city}
+									onChange={(e) => setCity(e.target.value)}
+									className="form-control input"
+									id="city-input"
+									name="city-input"
+									required
+								/>
+							</div>
+						</div>
+
+						<div className="couple">
+							<label htmlFor="phone-input" className="form-label lbl">
+								Phone
+							</label>
+							<input
+								type="text"
+								value={phone}
+								onChange={(e) => setPhone(e.target.value)}
+								className="form-control input"
+								id="phone-input"
+								name="phone-input"
+							/>
+						</div>
+
+						<button type="submit" className="btn_blue btn bpn-padding mrg">
+							Save Data
+						</button>
 					</form>
 				</div>
 			) : (
 				<div>
-					<h3>My data</h3>
-					<p> {firstName}</p>
-					<p> {lastName}</p>
-					<p>
-						{' '}
-						{address}, {city}, {postcode}{' '}
-					</p>
-					<p> {phone}</p>
-					<p> {gender}</p>
-					<p> {new Date(dateOfBirth).toLocaleDateString()}</p>
-					<p> {email}</p>
+					<div id="MyDataTitle">My data</div>
+					<div className="flex">
+						<div className="form-control input-imit"> {firstName}</div>
+						<div className="form-control input-imit"> {lastName}</div>
+					</div>
+					<div className="form-control input-imit">{gender}</div>
+					<div className="flex">
+						<div className="form-control input-imit">
+							{new Date(dateOfBirth).toLocaleDateString()}
+						</div>
+						<div className="form-control input-imit">{email}</div>
+					</div>
+					<div className="flex">
+						<div className="form-control input-imit">{address}</div>
+						<div className="form-control input-imit">
+							{postcode}, {city}
+						</div>
+					</div>
+					<div className="form-control input-imit"> {phone}</div>
+					<div className="flex">
+						<button onClick={handleEditClick} className="btn_blue btn bpn-padding dark editDataBtn">
+							Edit Data
+						</button>
 
-					<button onClick={handleEditClick}>Edit</button>
+						<button type="button" className="btn btn_blue bpn-padding dark editDataBtn">
+							Change Password
+						</button>
+					</div>
 				</div>
 			)}
-			<button type="button">Change password</button>
 		</div>
 	);
 }

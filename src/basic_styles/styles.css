@@ -1,0 +1,101 @@
+.blue {
+	color: #25aece;
+}
+.bg_blue {
+	background-color: rgba(37, 174, 206, 0.8);
+}
+.white {
+	color: white;
+}
+.bg_white {
+	background-color: rgba(255, 255, 255, 0.8);
+}
+.green {
+	color: rgb(175, 255, 175);
+}
+.bg_green {
+	background-color: rgba(175, 255, 175, 0.8);
+}
+.pink {
+	background-color: #ffc0cb;
+}
+.bg_pink {
+	background-color: rgba(255, 192, 203, 0.8);
+}
+.font_itim {
+	font-family: 'Itim', cursive;
+}
+.font_jolly_lodger {
+	font-family: 'Jolly Lodger';
+}
+.font_kavoon {
+	font-family: 'Kavoon', serif;
+}
+.dark {
+	color: #122243;
+}
+.btn_green {
+	display: inline-flex;
+	justify-content: center;
+	--padding-x: 1.2em;
+	background-color: rgb(175, 255, 175);
+	border-color: transparent;
+	align-items: center;
+	width: 14vw;
+	height: 2vw;
+}
+.btn_green:hover {
+	text-decoration: none !important;
+	background-color: rgba(175, 255, 175, 0.9);
+	border-color: transparent;
+}
+
+.btn_pink {
+	display: inline-flex;
+	justify-content: center;
+	--padding-x: 1.2em;
+	background-color: #ffc0cb;
+	border-color: transparent;
+	align-items: center;
+	height: 30px;
+}
+.btn_pink:hover {
+	text-decoration: none !important;
+	background-color: rgba(255, 192, 203, 0.8);
+	border-color: transparent;
+}
+.btn_blue {
+	display: inline-flex;
+	justify-content: center;
+	--padding-x: 1.2em;
+	background-color: rgba(37, 174, 206, 1);
+	border-color: transparent;
+	align-items: center;
+	height: 30px;
+}
+.btn_blue:hover {
+	text-decoration: none !important;
+	background-color: rgba(37, 174, 206, 0.8);
+	border-color: transparent;
+}
+.leftBtn {
+	width: 9vw;
+	margin-left: 30px;
+	border-radius: 30px 0px 0px 30px;
+	font-size: 0.9vw;
+}
+.rightBtn {
+	width: 9vw;
+	border-radius: 0px 30px 30px 0px;
+	font-size: 0.9vw;
+}
+.btn {
+	border-radius: 30px 30px 30px 30px;
+	font-size: 0.9vw;
+}
+.content {
+	margin-top: 5vw;
+}
+.flex {
+	display: flex;
+}

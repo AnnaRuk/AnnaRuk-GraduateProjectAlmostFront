@@ -1,23 +1,23 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { loadKindergartens, setSelectedCity } from './KinderdartensSlice';
-import { Link } from 'react-router-dom';
+import { loadKindergartens, setSelectedCity } from './KindergartensSlice';
 import Kindergarten from './types/Kindergarten';
 import GradeIcon from '@mui/icons-material/Grade';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+
+import '../../basic_styles/styles.css';
 import { loadFavorites } from '../favorites/FavoritesSlice';
 
 export default function KindergartensList(): JSX.Element {
+	const favorites = useAppSelector((state) => state.favorites.kindergartens);
 	const kindergartens = useAppSelector((state) => state.kindergartens.kindergartenDTOList);
 	const cities = useAppSelector((state) => state.kindergartens.cities);
 	const selectedCity = useAppSelector((state) => state.kindergartens.selectedCity);
 	const dispatch = useAppDispatch();
-
+	const path = useLocation().pathname;
 
 	useEffect(() => {
 		dispatch(loadKindergartens());
-	}, [dispatch]);
-
-	useEffect(() => {
 		dispatch(loadFavorites());
 	}, [dispatch]);
 
@@ -25,23 +25,36 @@ export default function KindergartensList(): JSX.Element {
 		dispatch(setSelectedCity(e.target.value));
 	};
 
-	function filtered(kitas: Kindergarten[], city: string) {
+	function filtered(kitas: Kindergarten[], city: string): Kindergarten[] | undefined {
 		if (city) {
 			if (city === 'All cities') {
 				return kitas;
 			} else {
-				return kitas.filter((k) => k.city === city);
+				return kitas?.filter((k) => k.city === city);
 			}
 		}
+	}
+	function isInFavorites(kId: number): boolean {
+		return favorites?.find((k) => k.id === kId) ? true : false;
 	}
 	const filteredKindergartens = filtered(kindergartens, selectedCity);
 
 	return (
-		<div>
-			<h1>Kindergartens list</h1>
+		<div id="kTableContainer" className="dark">
+			<div id="kListTitle" className="dark font_itim">
+				Kindergartens
+			</div>
+
 			<div>
-				<label>Choose the city: </label>
-				<select value={selectedCity} onChange={handleCityChange}>
+				<label id="cityChooserLbl" className="dark font_itim">
+					Choose the city:
+				</label>
+				<select
+					id="citySelector"
+					value={selectedCity}
+					onChange={handleCityChange}
+					className="dark font_itim"
+				>
 					<option value="All cities">All cities</option>
 					{cities.map((city) => (
 						<option key={city} value={city}>
@@ -50,21 +63,34 @@ export default function KindergartensList(): JSX.Element {
 					))}
 				</select>
 			</div>
-			<table>
+
+			<table className="dark font_itim">
 				<thead>
 					<tr>
-						<th>Title</th>
-						<th>City</th>
-						<th>Address</th>
-						<th>Capacity</th>
+						<th>Kindergarten's Title</th>
+						<th>Kindergarten's City</th>
+						<th>Kindergarten's Address</th>
+						<th>Kindergarten's Capacity</th>
 					</tr>
 				</thead>
 				<tbody>
-					{filteredKindergartens.map((kindergarten) => (
+					{filteredKindergartens?.map((kindergarten) => (
 						<tr key={kindergarten.id}>
 							<td>
-								<GradeIcon />
-								<Link to={`/allKindergartens/${kindergarten.id}`}>{kindergarten.title}</Link>
+								<nav className={isInFavorites(kindergarten.id) ? 'posLeft' : ''}>
+									<NavLink to={`${path}/${kindergarten.id}`}>
+										<div id="iconTitle">
+											{isInFavorites(kindergarten.id) ? (
+												<div id="icon">
+													<GradeIcon />
+												</div>
+											) : (
+												<></>
+											)}
+											{kindergarten.title}
+										</div>
+									</NavLink>
+								</nav>
 							</td>
 							<td>{kindergarten.city}</td>
 							<td>{kindergarten.address}</td>
