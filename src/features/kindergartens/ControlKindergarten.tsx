@@ -58,7 +58,7 @@ export default function ControlKindergarten(): JSX.Element {
 		e.preventDefault();
 		if (validateInputs()) {
 			setEditable(false);
-			if (controlKindergarten) {
+			if (controlKindergarten?.title) {
 				dispatch(
 					updateControlKindergarten({
 						id: controlKindergarten.id,
@@ -138,17 +138,13 @@ export default function ControlKindergarten(): JSX.Element {
 							<div id="ckLinkImg" className="form-control input-imit">
 								{linkImg}
 							</div>
-
-							<button
-								onClick={handleEditClick}
-								className="btn_blue btn bpn-padding dark editDataBtn"
-							>
-								Edit Data
-							</button>
 						</>
 					) : (
 						<div id="ckNoData">There is no added Kindergarten yet.</div>
 					)}
+					<button onClick={handleEditClick} className="btn_blue btn bpn-padding dark editDataBtn">
+						{controlKindergarten?.title ? 'Edit Data' : 'Add a Kindergarten'}
+					</button>
 				</div>
 			)}
 		</div>
