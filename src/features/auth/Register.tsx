@@ -1,8 +1,9 @@
 import { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { register, resetRegisterFormError, login } from './authSlice';
 import { selectRegisterFormError } from './selectors';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import './auth.css';
 
 function Register(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -86,104 +87,120 @@ function Register(): JSX.Element {
 	);
 
 	return (
-		<form className="auth-form" onSubmit={handleSubmit}>
-			<h2>Sign up</h2>
-			{error && (
-				<div className="invalid-feedback mb-3" style={{ display: 'block' }}>
-					{error}
+		<div className="content font_itim">
+			<form id="registerForm" className="auth-form bg_green dark" onSubmit={handleSubmit}>
+				<div id="registerContainer">
+					<div id="registerTitle">Let's Sign Up!</div>
+					{error && (
+						<div className="invalid-feedback mb-3" style={{ display: 'block' }}>
+							{error}
+						</div>
+					)}
+					<div id="fAlContainer" className="fAlContainer">
+						<div className="mb-3">
+							<label htmlFor="name-input" className="form-label lbl ">
+								First name
+							</label>
+							<input
+								type="text"
+								className={` input_reg form-control ${error ? 'is-invalid' : ''}`}
+								id="firstName-input"
+								name="userFirstName"
+								value={firstName}
+								onChange={handleFirstNameChange}
+								required
+							/>
+						</div>
+						<div className="mb-3">
+							<label htmlFor="name-input" className="form-label lbl">
+								Last name
+							</label>
+							<input
+								type="text"
+								className={`input_reg form-control ${error ? 'is-invalid' : ''}`}
+								id="lastName-input"
+								name="lastFirstName"
+								value={lastName}
+								onChange={handleLastNameChange}
+								required
+							/>
+						</div>
+					</div>
+					<div className="mb-3">
+						<label htmlFor="role-input" className="form-label">
+							Choose a role
+						</label>
+						<select
+							className={`input_reg form-select ${error ? 'is-invalid' : ''}`}
+							id="role-input"
+							name="userRole"
+							value={role}
+							onChange={handleRoleChange}
+							required
+						>
+							<option value="">Select Role</option>
+							<option value="MANAGER">Kindergarten Manager</option>
+							<option value="USER">Just parent</option>
+						</select>
+					</div>
+					<div className="mb-3">
+						<label htmlFor="name-input" className="form-label lbl">
+							E-mail
+						</label>
+						<input
+							type="text"
+							className={`input_reg form-control ${error ? 'is-invalid' : ''}`}
+							id="name-input"
+							name="username"
+							value={email}
+							onChange={handleNameChange}
+							required
+						/>
+					</div>
+					<div className="fAlContainer">
+						<div className="mb-3">
+							<label htmlFor="password-input" className="form-label lbl">
+								Password
+							</label>
+							<input
+								type="password"
+								className={`input_reg form-control ${error ? 'is-invalid' : ''}`}
+								id="password-input"
+								name="password"
+								value={password}
+								onChange={handlePasswordChange}
+								required
+							/>
+						</div>
+						<div className="mb-3">
+							<label htmlFor="password-repeat-input" className="form-label lbl">
+								Confirm password
+							</label>
+							<input
+								type="password"
+								className={`input_reg form-control ${error ? 'is-invalid' : ''}`}
+								id="password-repeat-input"
+								name="passwordRepeat"
+								value={passwordRepeat}
+								onChange={handlePasswordRepeatChange}
+								required
+							/>
+						</div>
+					</div>
+					<div id="regBtnContainer" className="">
+						<div>
+							<input type="checkbox" id="agreeCheck" name="agreeCheck" />
+							<label id="agreeLbl" htmlFor="agreeCheck">
+								I agree with <NavLink to={'/terms_of_use'}>Terms of Use</NavLink> .
+							</label>
+						</div>
+						<button id="regBtn" type="submit" className="aBtn_blue dark" disabled={true}>
+							Sign up
+						</button>
+					</div>
 				</div>
-			)}
-			<div className="mb-3">
-				<label htmlFor="name-input" className="form-label">
-					first name
-				</label>
-				<input
-					type="text"
-					className={`form-control ${error ? 'is-invalid' : ''}`}
-					id="firstName-input"
-					name="userFirstName"
-					value={firstName}
-					onChange={handleFirstNameChange}
-					required
-				/>
-			</div>
-			<div className="mb-3">
-				<label htmlFor="name-input" className="form-label">
-					last name
-				</label>
-				<input
-					type="text"
-					className={`form-control ${error ? 'is-invalid' : ''}`}
-					id="lastName-input"
-					name="lastFirstName"
-					value={lastName}
-					onChange={handleLastNameChange}
-					required
-				/>
-			</div>
-			<div className="mb-3">
-				<label htmlFor="role-input" className="form-label">
-					Choose a role
-				</label>
-				<select
-					className={`form-select ${error ? 'is-invalid' : ''}`}
-					id="role-input"
-					name="userRole"
-					value={role}
-					onChange={handleRoleChange}
-					required
-				>
-					<option value="">Select Role</option>
-					<option value="MANAGER">Kindergarten Manager</option>
-					<option value="USER">Just parent</option>
-				</select>
-			</div>
-			<div className="mb-3">
-				<label htmlFor="name-input" className="form-label">
-					Login(email)
-				</label>
-				<input
-					type="text"
-					className={`form-control ${error ? 'is-invalid' : ''}`}
-					id="name-input"
-					name="username"
-					value={email}
-					onChange={handleNameChange}
-					required
-				/>
-			</div>
-			<div className="mb-3">
-				<label htmlFor="password-input" className="form-label">
-					password
-				</label>
-				<input
-					type="password"
-					className={`form-control ${error ? 'is-invalid' : ''}`}
-					id="password-input"
-					name="password"
-					value={password}
-					onChange={handlePasswordChange}
-					required
-				/>
-			</div>
-			<div className="mb-3">
-				<label htmlFor="password-repeat-input" className="form-label">
-					Confirm your password
-				</label>
-				<input
-					type="password"
-					className={`form-control ${error ? 'is-invalid' : ''}`}
-					id="password-repeat-input"
-					name="passwordRepeat"
-					value={passwordRepeat}
-					onChange={handlePasswordRepeatChange}
-					required
-				/>
-			</div>
-			<button type="submit" className="btn btn-primary">
-				Register
-			</button>
-		</form>
+			</form>
+		</div>
 	);
 }
 

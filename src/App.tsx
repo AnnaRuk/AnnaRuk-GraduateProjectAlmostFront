@@ -2,22 +2,18 @@ import './App.css';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { useEffect } from 'react';
 import { getUser } from './features/auth/authSlice';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import Login from './features/auth/Login';
 import Register from './features/auth/Register';
 import { selectAuthChecked } from './features/auth/selectors';
-import AdminCabinet from './components/main/AdminCabinet';
 import Layout from './components/layouts/Layout';
-import Tasks from './features/tasks/Tasks';
 import KindergartensList from './features/kindergartens/KindergartensList';
 import FavoritesKindergartensList from './features/favorites/FavoritesKindergartensList';
 import KindergartenDetails from './features/kindergartens/KindergartenDetails';
 import Account from './components/myaccount/Account';
 import Home from './components/home/Home';
 import Sidepanel from './components/sidepanel/Sidepanel';
-import ChildForm from './features/children/ChildrenForm';
-import KindergartenForm from './features/kindergartens/KindergartenForm';
+import ControlKindergarten from './features/kindergartens/ControlKindergarten';
 import UserData from './features/account/UserData';
 import ChildrenForm from './features/children/ChildrenForm';
 import AddChildrenForm from './features/children/AddChildrenForm';
@@ -25,7 +21,14 @@ import UserRequestsList from './features/requests/UserRequestsList';
 import ManagerRequestsList from './features/requests/ManagerRequestsList';
 import ManagerNOTConfirmRequestList from './features/requests/ManagerNOTConfirmedRequestList';
 import DialoguesList from './features/dialogues/DialoguesList';
+import Kindergartens from './components/Kindergarten/Kindergartens';
 import Dialogue from './features/dialogues/Dialogue';
+import { loadRequests } from './features/requests/RequestsSlice';
+import { loadDialogues } from './features/dialogues/DialoguesSlice';
+import { loadControlKindergarten } from './features/kindergartens/KindergartensSlice';
+import { loadFavorites } from './features/favorites/FavoritesSlice';
+import { loadChildren } from './features/children/ChildrenSlice';
+import Profile from './components/Profile/Profile';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -48,27 +51,27 @@ function App(): JSX.Element {
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route path="/" element={<Home />} />
-					<Route path="/tasks" element={<Tasks />} />
 					<Route path="/auth/login" element={<Login />} />
 					<Route path="/auth/register" element={<Register />} />
-					<Route path="/admin/tasks" element={<AdminCabinet />} />
-					<Route path="/allKindergartens" element={<KindergartensList />} />
-					<Route path="/allKindergartens/:id" element={<KindergartenDetails />} />
-					<Route path="/favorites" element={<FavoritesKindergartensList />} />
-					<Route path="/kindergartenForm" element={<KindergartenForm />} />
-					<Route path="/userAccount" element={<Account />} />
-					<Route path="/sidepanel" element={<Sidepanel />} />
-					<Route path="/childrenForm" element={<ChildrenForm />} />
-					<Route path="/childrenForm/addChildrenForm" element={<AddChildrenForm />} />
-					<Route path="/userDataForm" element={<UserData />} />
-					<Route path="/userRequests" element={<UserRequestsList />} />
-					<Route path="/managerRequests" element={<ManagerRequestsList />} />
-					<Route path="/managerNotConfirmedRequests" element={<ManagerNOTConfirmRequestList />} />
-					<Route path="/dialogues" element={<DialoguesList />} />
-					<Route path="/dialogues/:dialogueId" element={<Dialogue />} />
-
-					
-					
+					<Route path="/kindergartens" element={<Kindergartens />}>
+						<Route path="" element={<KindergartensList />} />
+						<Route path=":id" element={<KindergartenDetails />} />
+					</Route>
+					<Route path="/profile" element={<Account />}>
+						<Route path="" element={<Profile />} />
+						<Route path="my_data" element={<UserData />} />
+						<Route path="favorites" element={<FavoritesKindergartensList />} />
+						<Route path="favorites/:id" element={<KindergartenDetails />} />
+						<Route path="kindergarten" element={<ControlKindergarten />} />
+						<Route path="kindergartens" element={<KindergartensList />} />
+						<Route path="kindergartens/:id" element={<KindergartenDetails />} />
+						<Route path="children" element={<ChildrenForm />} />
+						<Route path="children/addChild" element={<AddChildrenForm />} />
+						<Route path="u_requests" element={<UserRequestsList />} />
+						<Route path="m_requests/confirmed" element={<ManagerRequestsList />} />
+						<Route path="m_requests/in_process" element={<ManagerNOTConfirmRequestList />} />
+						<Route path="dialogues/:dialogueId" element={<Dialogue />} />
+					</Route>
 				</Route>
 			</Routes>
 		</HashRouter>

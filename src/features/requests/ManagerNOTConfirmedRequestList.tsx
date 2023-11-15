@@ -3,6 +3,9 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { confirmRequest, loadRequests, rejectRequest } from './RequestsSlice';
 import ChildWithParent from './types/ChildWithParent';
 import Request from './types/Request';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import CheckIcon from '@mui/icons-material/Check';
+import EmailIcon from '@mui/icons-material/Email';
 
 export default function ManagerRequestsList(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -63,41 +66,47 @@ export default function ManagerRequestsList(): JSX.Element {
 	}
 
 	return (
-		<table>
-			<thead>
-				<tr>
-					<th>PARENT NAME</th>
-					<th>PARENT LASTNAME</th>
-					<th>CHILD INFORMATION</th>
-					<th>STATUS</th>
-					<th></th>
-					<th></th>
-          <th></th>
-				</tr>
-			</thead>
-			<tbody>
-				{notConfirmedRequestsList.map((request) => (
-					<tr key={request.id}>
-						<td>{parentName(request.childId)}</td>
-						<td>{parentLastName(request.childId)}</td>
-						<td>{childData(request.childId)}</td>
-						<td>{request.status}</td>
-						<td>
-							<button type="button" onClick={() => handleRejectRequest(request.id)}>
-								del
-							</button>
-						</td>
-						<td>
-							<button type="button" onClick={() => handleConfirmRequest(request.id)}>
-								conf
-							</button>
-						</td>
-            <td>
-              <button type="button">send a message</button>
-            </td>
-					</tr>
-				))}
-			</tbody>
-		</table>
+		<>
+			{notConfirmedRequestsList.length > 0 ? (
+				<table>
+					<thead>
+						<tr>
+							<th>PARENT NAME</th>
+							<th>PARENT LASTNAME</th>
+							<th>CHILD INFORMATION</th>
+							<th>DATE</th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{notConfirmedRequestsList.map((request) => (
+							<tr key={request.id}>
+								<td>{parentName(request.childId)}</td>
+								<td>{parentLastName(request.childId)}</td>
+								<td>{childData(request.childId)}</td>
+								<td>{new Date(request.requestDateTime).toLocaleDateString()}</td>
+								<td>
+									<DeleteForeverIcon type="button" onClick={() => handleRejectRequest(request.id)}>
+										del
+									</DeleteForeverIcon>
+								</td>
+								<td>
+									<CheckIcon type="button" onClick={() => handleConfirmRequest(request.id)}>
+										conf
+									</CheckIcon>
+								</td>
+								<td>
+									<EmailIcon type="button">send a message</EmailIcon>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			) : (
+				<h1>You have no requests to consider</h1>
+			)}
+		</>
 	);
 }

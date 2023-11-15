@@ -1,0 +1,82 @@
+#childrenTitle {
+	font-size: 3vw;
+	margin-left: 9vw;
+}
+.childWith {
+	width: 15vw;
+}
+.childContainer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-bottom: 3vw;
+	margin-top: 1vw;
+}
+#cAAddContainer {
+	display: flex;
+	max-width: 50vw;
+	flex-direction: column;
+}
+.cEditBtn {
+	position: relative;
+	margin-left: 2vw;
+	top: -4vw;
+}
+#addChildBtn {
+	margin-left: 2vw;
+	margin-bottom: 2vw;
+	margin-top: -1vw;
+}
+#noChildren {
+	font-size: 2vw;
+	margin-top: 2vw;
+	margin-left: 2vw;
+	margin-bottom: 3vw;
+}
+#childEditFormContainer {
+	margin-top: -2.5vw;
+	margin-left: -3vw;
+}
+.couple1 {
+	margin-top: -0.2vw;
+}
+.radio-right {
+	margin-right: 1vw;
+}
+#cSaveDataBtn {
+	margin-top: 3.5vw;
+}
+#cAllContainer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+#addChildTitle {
+	font-size: 3vw;
+	margin-left: 2vw;
+}
+#backATitleContainer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: flex-start;
+}
+#cBackBtn {
+	margin-left: 2vw;
+}
+#cAddFormContainer {
+	margin-left: 2vw;
+	padding: 0vw 2vw 2vw 4vw;
+}
+#cAddContainer {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	align-items: flex-start;
+}
+#saveNewChildBtn {
+	margin-top: 2vw;
+
+}
