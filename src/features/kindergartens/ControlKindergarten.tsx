@@ -105,6 +105,7 @@ export default function ControlKindergarten(): JSX.Element {
 								className="form-control input"
 								id="cKTitle-input"
 								name="cKTitle-input"
+								required
 							/>
 						</div>
 						<div className="couple">
@@ -118,6 +119,7 @@ export default function ControlKindergarten(): JSX.Element {
 								className="form-control input"
 								id="cKAddress-input"
 								name="cKAddress-input"
+								required
 							/>
 						</div>
 						<div id="cKPaCContainer">
@@ -132,6 +134,7 @@ export default function ControlKindergarten(): JSX.Element {
 									className="form-control input"
 									id="cKPostcode-input"
 									name="cKPostcode-input"
+									required
 								/>
 							</div>
 							<div className="couple">
@@ -145,6 +148,7 @@ export default function ControlKindergarten(): JSX.Element {
 									className="form-control input"
 									id="cKCity-input"
 									name="cKCity-input"
+									required
 								/>
 							</div>
 						</div>
@@ -159,6 +163,7 @@ export default function ControlKindergarten(): JSX.Element {
 								className="form-control input"
 								id="cKCapacity-input"
 								name="cKCapacity-input"
+								required
 							/>
 						</div>
 						<div className="couple">

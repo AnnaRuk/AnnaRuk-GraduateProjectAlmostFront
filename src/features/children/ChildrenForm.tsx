@@ -22,7 +22,7 @@ export default function ChildrenForm(): JSX.Element {
 	const children = useAppSelector((state) => state.children.children);
 
 	const handleEditClick = (id: number): void => {
-		const child: Child = children.find((ch) => ch.id === id);
+		const child: Child = children?.find((ch) => ch.id === id);
 		if (child) {
 			setEditable(true);
 			setEditChild(child);
