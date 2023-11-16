@@ -116,8 +116,8 @@ export default function KindergartenDetails(): JSX.Element {
 								<div>
 									<PhoneInTalkIcon /> {kindergarten?.phone}
 								</div>
-								<div>{`Person: ${kindergarten?.manager?.firstName} ${kindergarten?.manager?.lastName}`}</div>
-								<div>Capacity: {kindergarten?.capacity}</div>
+								<div>{`contact person: ${kindergarten?.manager?.firstName} ${kindergarten?.manager?.lastName}`}</div>
+								<div> capacity: {kindergarten?.capacity}</div>
 							</div>
 						</div>
 						<div id="kDescriptionContainer" className="bg_pink">

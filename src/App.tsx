@@ -30,6 +30,7 @@ import { loadFavorites } from './features/favorites/FavoritesSlice';
 import { loadChildren } from './features/children/ChildrenSlice';
 import Profile from './components/Profile/Profile';
 
+
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
 	const authChecked = useAppSelector(selectAuthChecked);
@@ -47,7 +48,7 @@ function App(): JSX.Element {
 	}
 
 	return (
-		<HashRouter>
+		<HashRouter> 
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route path="/" element={<Home />} />

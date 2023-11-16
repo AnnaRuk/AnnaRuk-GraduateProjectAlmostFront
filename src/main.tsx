@@ -1,4 +1,3 @@
-
 // eslint-disable-next-line import/default
 import React from 'react';
 // eslint-disable-next-line import/default
@@ -10,9 +9,7 @@ import './index.css';
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, import/no-named-as-default-member
 ReactDOM.createRoot(document.getElementById('root')!).render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<App />
-		</Provider>
-	</React.StrictMode>
+	<Provider store={store}>
+		<App />
+	</Provider>
 );

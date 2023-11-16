@@ -2,6 +2,9 @@ import React, { FormEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { updateUsersProfile } from './AccountSlice';
 import './UserData.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function UserData(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -62,6 +65,7 @@ export default function UserData(): JSX.Element {
 
 	return (
 		<div className="dark font_itim">
+			<ToastContainer />
 			{editable ? (
 				<div id="updateDataContainer">
 					<form id="userDataForm" onSubmit={handleUpdateSubmit}>
@@ -146,7 +150,7 @@ export default function UserData(): JSX.Element {
 									Email
 								</label>
 								<input
-									type="text"
+									type="email"
 									className="form-control input"
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}

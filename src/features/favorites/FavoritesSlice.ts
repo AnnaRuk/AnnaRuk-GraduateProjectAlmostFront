@@ -30,6 +30,7 @@ export const favoritesSlice = createSlice({
 			})
 			.addCase(loadFavorites.rejected, (state, action) => {
 				state.error = action.error.message;
+				alert(action.error.message);
 			})
 			.addCase(deleteFavorites.fulfilled, (state, action) => {
 				state.kindergartens = state.kindergartens.filter((kita) => kita.id !== action.payload.id);
