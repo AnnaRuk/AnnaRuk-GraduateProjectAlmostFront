@@ -56,7 +56,7 @@ export default function KindergartenDetails(): JSX.Element {
 		}
 	};
 
-	const handleAddToFavorite = (id: number): void => {
+	const handleAddToFavorite = (id): void => {
 		setIsInFavorites(true);
 		dispatch(addToFavorites(id));
 	};
@@ -65,15 +65,6 @@ export default function KindergartenDetails(): JSX.Element {
 		setSelectedChildId(Number(e.target.value));
 	};
 
-	/*function filtered(children: Child[], selectedChildId: number | null) {
-		if (selectedChildId === null) {
-			return children;
-		} else if (selectedChildId === 0) {
-			return children;
-		} else {
-			return children.filter((ch) => ch.id === selectedChildId);
-		}
-	}*/
 	function showMessageArea(): void {
 		const area = document.getElementById('textArea');
 		const button = document.getElementById('kShowMessageBTN');
@@ -86,13 +77,16 @@ export default function KindergartenDetails(): JSX.Element {
 	}
 
 	function handleSendMessage(recipientId: number, messageText: string): void {
-		dispatch(
-			createDialogue({
-				recipientId,
-				messageText,
-			})
-		);
-		setNewMessage('');
+		if (messageText) {
+			dispatch(
+				createDialogue({
+					recipientId,
+					messageText,
+				})
+			);
+			setNewMessage('');
+			setMessageAreaEditable(!messageAreaEditable);
+		}
 	}
 
 	const path = useLocation()?.pathname.replace(`/${id}`, '');
@@ -153,12 +147,20 @@ export default function KindergartenDetails(): JSX.Element {
 								</button>
 							)}
 
-							<div>
-								<label id="kChoseLbl">Choose a child: </label>
-								<select value={selectedChildId || 'children'} onChange={handleChildChange}>
-									<option value="children">children</option>
+							<div id="kChildSelectorContainer">
+								<label htmlFor="kChildSelector" id="kChoseLbl">
+									Choose a child:
+								</label>
+								<select
+									value={selectedChildId || 'children'}
+									onChange={handleChildChange}
+									className="form-control input"
+									id="kChildSelector"
+									name="kChildSelector"
+								>
+									<option value="children">Children</option>
 									{children?.map((child) => (
-										<option key={child.id} value={child.id}>
+										<option key={child.id} value={child.id} >
 											{child.firstName}
 										</option>
 									))}
@@ -190,9 +192,12 @@ export default function KindergartenDetails(): JSX.Element {
 									rows={7}
 									maxLength={1000}
 									wrap="soft"
-									className={messageAreaEditable ? '' : 'hide'}
+									className={
+										messageAreaEditable ? 'form-control input' : ' form-control input hide'
+									}
 									value={newMessage}
 									onChange={(e) => setNewMessage(e.target.value)}
+									required
 								></textarea>
 								<button
 									type="button"
@@ -200,7 +205,6 @@ export default function KindergartenDetails(): JSX.Element {
 									className="kBtn_pink dark mg hide"
 									onClick={() => {
 										handleSendMessage(kindergarten?.manager?.id, newMessage);
-										setMessageAreaEditable(!messageAreaEditable);
 									}}
 								>
 									Send a Message

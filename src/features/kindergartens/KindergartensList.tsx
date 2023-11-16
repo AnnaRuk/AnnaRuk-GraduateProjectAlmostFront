@@ -45,7 +45,7 @@ export default function KindergartensList(): JSX.Element {
 				Kindergartens
 			</div>
 
-			<div>
+			<div className="flex">
 				<label id="cityChooserLbl" className="dark font_itim">
 					Choose the city:
 				</label>
@@ -53,10 +53,10 @@ export default function KindergartensList(): JSX.Element {
 					id="citySelector"
 					value={selectedCity}
 					onChange={handleCityChange}
-					className="dark font_itim"
+					className="dark font_itim form-control input"
 				>
 					<option value="All cities">All cities</option>
-					{cities.map((city) => (
+					{cities?.map((city) => (
 						<option key={city} value={city}>
 							{city}
 						</option>

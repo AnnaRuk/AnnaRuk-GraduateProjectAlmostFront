@@ -18,7 +18,7 @@ import UserData from './features/account/UserData';
 import ChildrenForm from './features/children/ChildrenForm';
 import AddChildrenForm from './features/children/AddChildrenForm';
 import UserRequestsList from './features/requests/UserRequestsList';
-import ManagerRequestsList from './features/requests/ManagerRequestsList';
+import ManagerRequestsList from './features/requests/ManagerConfirmedRequestsList';
 import ManagerNOTConfirmRequestList from './features/requests/ManagerNOTConfirmedRequestList';
 import DialoguesList from './features/dialogues/DialoguesList';
 import Kindergartens from './components/Kindergarten/Kindergartens';

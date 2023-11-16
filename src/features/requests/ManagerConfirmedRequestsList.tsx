@@ -1,22 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { confirmRequest, loadRequests, rejectRequest } from './RequestsSlice';
+import { loadRequests, rejectRequest } from './RequestsSlice';
 import ChildWithParent from './types/ChildWithParent';
-import Request from './types/Request';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import CheckIcon from '@mui/icons-material/Check';
 import EmailIcon from '@mui/icons-material/Email';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import Child from '../children/types/Child';
 
-export default function ManagerRequestsList(): JSX.Element {
+export default function ManagerConfirmedRequestsList(): JSX.Element {
 	const dispatch = useAppDispatch();
 	const childWithUserList = useAppSelector((state) => state.requests.childWithUserList);
+	const requests = useAppSelector((state) => state.requests.requests);
 	const hasCKindergarten = useAppSelector(
 		(state) => state.kindergartens.controlKindergarten
 	)?.title;
-	const requests = useAppSelector((state) => state.requests.requests);
 
 	useEffect(() => {
-		dispatch(loadRequests());
+		if (hasCKindergarten) {
+			dispatch(loadRequests());
+		}
 	}, [dispatch]);
 
 	function getParentName(childId: number): string {
@@ -50,26 +52,22 @@ export default function ManagerRequestsList(): JSX.Element {
 		return foundedChild?.gender ? `${foundedChild?.gender}` : '';
 	}
 
-	function notConfirmedRequests(): Request[] {
-		return requests?.filter((r) => r.status === 'NOT_CONFIRMED');
+	function confirmedRequests(): Request[] {
+		return requests?.filter((r) => r.status === 'CONFIRMED');
 	}
-	const notConfirmedRequestsList = notConfirmedRequests();
+	const confirmedRequestsList = confirmedRequests();
 
 	function handleRejectRequest(id: number): void {
 		dispatch(rejectRequest(id));
 	}
 
-	function handleConfirmRequest(id: number): void {
-		dispatch(confirmRequest(id));
-	}
-
 	return (
 		<div className="font_itim dark">
-			<div id="rMNotConfirmedTitle">Requests In Process</div>
+			<div id="rMConfirmedTitle">Confirmed Requests</div>
 			{hasCKindergarten ? (
 				<div>
-					{notConfirmedRequestsList.length > 0 ? (
-						<table id="rMNotConfirmedContainer">
+					{confirmedRequestsList.length > 0 ? (
+						<table id="rMConfirmedContainer">
 							<thead>
 								<tr>
 									<th>Date</th>
@@ -81,7 +79,7 @@ export default function ManagerRequestsList(): JSX.Element {
 								</tr>
 							</thead>
 							<tbody>
-								{notConfirmedRequestsList.map((request) => (
+								{confirmedRequestsList.map((request) => (
 									<tr key={request.id}>
 										<td>{new Date(request.requestDateTime).toLocaleDateString()}</td>
 										<td>{getParentName(request.childId)}</td>
@@ -90,22 +88,19 @@ export default function ManagerRequestsList(): JSX.Element {
 										<td>{getChildDateOfBirth(request.childId)}</td>
 										<td>{getChildGender(request.childId)}</td>
 										<td>
-											<CheckIcon
-												type="button"
-												onClick={() => handleConfirmRequest(request.id)}
-											></CheckIcon>
 											<DeleteForeverIcon
 												type="button"
 												onClick={() => handleRejectRequest(request.id)}
-											></DeleteForeverIcon>
+											/>
 											<EmailIcon type="button"></EmailIcon>
+											<GroupAddIcon type="button"></GroupAddIcon>
 										</td>
 									</tr>
 								))}
 							</tbody>
 						</table>
 					) : (
-						<div className="rMAdditional">You have no Requests to process.</div>
+						<div className="rMAdditional">You have no confirmed Requests.</div>
 					)}
 				</div>
 			) : (
