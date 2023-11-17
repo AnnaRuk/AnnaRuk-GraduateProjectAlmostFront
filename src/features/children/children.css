@@ -34,7 +34,7 @@
 	margin-bottom: 3vw;
 }
 #childEditFormContainer {
-	margin-top: -2.5vw;
+	margin-top: -.5vw;
 	margin-left: -3vw;
 }
 .couple1 {
@@ -79,4 +79,8 @@
 #saveNewChildBtn {
 	margin-top: 2vw;
 
+}
+#cEditBtn {
+	position: relative;
+	left: -2vw;
 }

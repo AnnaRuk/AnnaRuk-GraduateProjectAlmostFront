@@ -2,6 +2,11 @@
 	margin-left: 2vw;
 	font-size: 2vw;
 }
+#kChildSelectorContainer {
+	display: flex;
+	align-items: baseline;
+}
+
 #kTitleContainer {
 	display: flex;
 	flex-direction: row;
@@ -111,15 +116,13 @@
 #kChoseLbl {
 	margin-right: 1vw;
 	font-size: 1.2vw;
+	min-width: 8vw;
 }
-select {
-	width: auto;
-	height: 2vw;
-	border-radius: 5px;
+#kChildSelector {
 	padding-left: 1vw;
 	padding-right: 1vw;
 	background-color: rgba(175, 255, 175, 0.8);
-	margin-bottom: 1vw;
+	margin-bottom: 0.5vw;
 	font-size: 1.3vw;
 }
 #kMessageContainer {
@@ -138,4 +141,7 @@ textarea {
 	display: flex;
 	border-radius: 2vw;
 	width: max-content;
+	margin-bottom: 2vw;
+	
+	
 }

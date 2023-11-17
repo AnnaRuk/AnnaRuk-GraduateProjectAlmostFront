@@ -6,10 +6,10 @@ import { loadKindergartens } from '../kindergartens/KindergartensSlice';
 import Child from '../children/types/Child';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EmailIcon from '@mui/icons-material/Email';
+import './requests.css';
 
 export default function UserRequestsList(): JSX.Element {
 	const dispatch = useAppDispatch();
-	// const childWithUserList = useAppSelector((state) => state.requests.childWithUserList);
 	const requests = useAppSelector((state) => state.requests.requests);
 	const kindergartens = useAppSelector((state) => state.kindergartens.kindergartenDTOList);
 	const children = useAppSelector((state) => state.children.children);
@@ -33,8 +33,7 @@ export default function UserRequestsList(): JSX.Element {
 	function kindergartenAddress(id: number): string {
 		const kindergarten: Kindergarten | undefined = kindergartens.find((kita) => kita.id === id);
 		if (kindergarten) {
-			// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-			return `${kindergarten.address}, ${kindergarten.postcode}, ${kindergarten.city}`;
+			return `${kindergarten.address},  ${kindergarten.city}`;
 		}
 		return '';
 	}
@@ -42,7 +41,7 @@ export default function UserRequestsList(): JSX.Element {
 	function childName(id: number): string {
 		const child: Child | undefined = children.find((ch) => ch.id === id);
 		if (child) {
-			return child.firstName;
+			return `${child.firstName} ${child.lastName}`;
 		}
 		return '';
 	}
@@ -53,7 +52,7 @@ export default function UserRequestsList(): JSX.Element {
 
 	function putDownStatus(status: string): string {
 		if (status === 'CONFIRMED') {
-			return 'approved, please wait for your meeting invitation';
+			return 'approved';
 		} else if (status === 'NOT_CONFIRMED') {
 			return 'in progress';
 		} else {
@@ -62,41 +61,53 @@ export default function UserRequestsList(): JSX.Element {
 	}
 
 	return (
-		<table>
-			<thead>
-				<tr>
-					<th>TITLE</th>
-					<th>ADDRESS</th>
-					<th>CHILD</th>
-					<th>DATE</th>
-					<th>ANSWER FROM KINDERGARTEN</th>
-					<th>REFUSE</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				{requests.map((request) => (
-					<tr key={request.id}>
-						<td>{kindergartenTitle(request.kindergartenId)}</td>
-						<td>{kindergartenAddress(request.kindergartenId)}</td>
-						<td>{childName(request.childId)}</td>
-						<td>{new Date(request.requestDateTime).toLocaleDateString()}</td>
-						<td>{putDownStatus(request.status)}</td>
-						{request.status !== 'REJECTED' ? (
-							<td>
-								<DeleteForeverIcon type="button" onClick={() => handleRejectRequest(request.id)}>
-									del
-								</DeleteForeverIcon>
-							</td>
-						) : (
-							<td></td>
-						)}
-						<td>
-							<EmailIcon type="button">send a message</EmailIcon>
-						</td>
-					</tr>
-				))}
-			</tbody>
-		</table>
+		<div id="rURequestsContainer" className="font_itim dark">
+			<div id="rUTitle">My Requests</div>
+			{requests.length > 0 ? (
+				<div>
+					<table id="rUTableContainer">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Kindergarten's Title</th>
+								<th>Kindergarten's Address</th>
+								<th>Child's Name</th>
+								<th>Status</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{requests.map((request) => (
+								<tr key={request.id}>
+									<td>{new Date(request.requestDateTime).toLocaleDateString()}</td>
+									<td>{kindergartenTitle(request.kindergartenId)}</td>
+									<td>{kindergartenAddress(request.kindergartenId)}</td>
+									<td>{childName(request.childId)}</td>
+									<td>{putDownStatus(request.status)}</td>
+
+									{request.status !== 'REJECTED' ? (
+										<td>
+											<div className="rUButtonsContainer ">
+												<DeleteForeverIcon
+													type="button"
+													onClick={() => handleRejectRequest(request.id)}
+												></DeleteForeverIcon>
+												<EmailIcon type="button"></EmailIcon>
+											</div>
+										</td>
+									) : (
+										<td>
+											<EmailIcon type="button"></EmailIcon>
+										</td>
+									)}
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+			) : (
+				<div id="noURequestsTitle">There are no requests yet.</div>
+			)}
+		</div>
 	);
 }

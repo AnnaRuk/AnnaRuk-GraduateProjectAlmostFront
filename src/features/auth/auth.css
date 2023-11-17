@@ -9,10 +9,26 @@
 	margin-left: 12vw;
 	margin-right: 10vw;
 }
+#registerAllContainer {
+	display: flex;
+	justify-content: center;
+	padding-top: 2vw;
+}
+#loginAllContainer {
+	padding-top: 2vw;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-content: stretch;
+}
 #loginForm {
+	padding: 2vw 2vw 2vw 2vw;
+	display: flex;
 	border-radius: 2vw;
-	min-width: 30vw;
-	min-height: 35vw;
+	flex-wrap: nowrap;
+	justify-content: center;
+	max-width: 30vw;
+	max-height: 35vw;
 }
 #loginContainer {
 	display: flex;
@@ -72,12 +88,10 @@
 	border-color: transparent;
 }
 .input {
+	position: relative;
 	max-width: 20vw;
 }
-.lbl {
-	position: relative;
-	bottom: -1vw;
-}
+
 #additionalLogin {
 	display: flex;
 }
@@ -91,6 +105,7 @@
 	margin-bottom: 2vw;
 }
 #registerForm {
+	padding: 2vw 2vw 2vw 2vw;
 	border-radius: 2vw;
 	min-width: 50vw;
 	margin-bottom: 10vw;
@@ -134,4 +149,3 @@
 #role-input {
 	height: 2.5vw;
 }
-

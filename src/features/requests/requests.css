@@ -1,0 +1,38 @@
+#noURequestsTitle {
+	font-size: 2vw;
+	margin-left: 2vw;
+	margin-bottom: 2vw;
+}
+#rUTitle {
+	font-size: 3vw;
+	margin-left: 5vw;
+	margin-bottom: 2vw;
+}
+.pad {
+	padding-right: 0.5vw;
+}
+
+#rUTableContainer {
+	margin-left: 3vw;
+}
+#rMConfirmedTitle {
+	font-size: 3vw;
+	margin-left: 5vw;
+	margin-bottom: 2vw;
+}
+.rMAdditional {
+	font-size: 2vw;
+	margin-left: 2vw;
+	margin-bottom: 2vw;
+}
+#rMConfirmedContainer {
+	margin-left: 3vw;
+}
+#rMNotConfirmedTitle {
+	font-size: 3vw;
+	margin-left: 5vw;
+	margin-bottom: 2vw;
+}
+#rMNotConfirmedContainer {
+	margin-left: 3vw;
+}

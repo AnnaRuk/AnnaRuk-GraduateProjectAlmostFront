@@ -7,6 +7,7 @@
 	flex-wrap: wrap;
 	align-content: flex-start;
 	align-items: center;
+	margin-left: 1vw;
 }
 #userDataForm {
 	max-width: 70vw;
@@ -21,14 +22,15 @@
 	margin-right: 2vw;
 }
 .date_width {
-	margin-right: 6vw;
+	min-width: 13vw
+;
 }
 .couple {
 	padding-right: 3vw;
 }
 .lbl {
 	position: relative;
-	bottom: -1vw;
+	bottom: -10px;
 }
 #dAEInputContainer {
 	display: flex;
@@ -66,4 +68,5 @@
 }
 .radio-right {
 	margin-right: 1vw;
+	margin-top: 1vw;
 }

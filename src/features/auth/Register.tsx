@@ -87,17 +87,17 @@ function Register(): JSX.Element {
 	);
 
 	return (
-		<div className="content font_itim">
+		<div id="registerAllContainer" className="content font_itim">
 			<form id="registerForm" className="auth-form bg_green dark" onSubmit={handleSubmit}>
 				<div id="registerContainer">
 					<div id="registerTitle">Let's Sign Up!</div>
 					{error && (
-						<div className="invalid-feedback mb-3" style={{ display: 'block' }}>
+						<div className="invalid-feedback " style={{ display: 'block' }}>
 							{error}
 						</div>
 					)}
 					<div id="fAlContainer" className="fAlContainer">
-						<div className="mb-3">
+						<div>
 							<label htmlFor="name-input" className="form-label lbl ">
 								First name
 							</label>
@@ -111,7 +111,7 @@ function Register(): JSX.Element {
 								required
 							/>
 						</div>
-						<div className="mb-3">
+						<div>
 							<label htmlFor="name-input" className="form-label lbl">
 								Last name
 							</label>
@@ -126,8 +126,8 @@ function Register(): JSX.Element {
 							/>
 						</div>
 					</div>
-					<div className="mb-3">
-						<label htmlFor="role-input" className="form-label">
+					<div >
+						<label htmlFor="role-input" className="form-label lbl">
 							Choose a role
 						</label>
 						<select
@@ -143,7 +143,7 @@ function Register(): JSX.Element {
 							<option value="USER">Just parent</option>
 						</select>
 					</div>
-					<div className="mb-3">
+					<div>
 						<label htmlFor="name-input" className="form-label lbl">
 							E-mail
 						</label>
@@ -158,7 +158,7 @@ function Register(): JSX.Element {
 						/>
 					</div>
 					<div className="fAlContainer">
-						<div className="mb-3">
+						<div>
 							<label htmlFor="password-input" className="form-label lbl">
 								Password
 							</label>
@@ -172,7 +172,7 @@ function Register(): JSX.Element {
 								required
 							/>
 						</div>
-						<div className="mb-3">
+						<div>
 							<label htmlFor="password-repeat-input" className="form-label lbl">
 								Confirm password
 							</label>

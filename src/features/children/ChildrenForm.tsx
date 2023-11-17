@@ -1,12 +1,13 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Child from './types/Child';
-import { addChildren, updateChildren } from './ChildrenSlice';
+import { addChildren, loadChildren, updateChildren } from './ChildrenSlice';
 import AddChildrenForm from './AddChildrenForm';
 import { NavLink, Route } from 'react-router-dom';
 import Switch from '@mui/material/Switch/Switch';
 import EditIcon from '@mui/icons-material/Edit';
 import './children.css';
+
 
 export default function ChildrenForm(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -21,8 +22,12 @@ export default function ChildrenForm(): JSX.Element {
 
 	const children = useAppSelector((state) => state.children.children);
 
+	useEffect(() => {
+		dispatch(loadChildren());
+	}, [dispatch]);
+
 	const handleEditClick = (id: number): void => {
-		const child: Child = children.find((ch) => ch.id === id);
+		const child: Child = children?.find((ch) => ch.id === id);
 		if (child) {
 			setEditable(true);
 			setEditChild(child);
@@ -66,7 +71,7 @@ export default function ChildrenForm(): JSX.Element {
 										{new Date(ch.dateOfBirth).toLocaleDateString()}
 									</div>
 									<div className="form-control input-imit">{ch.gender}</div>
-									<div>
+									<div id="cEditBtn">
 										<EditIcon
 											id={`cEditBtn${ch.id}`}
 											className="cEditBtn"
@@ -173,3 +178,6 @@ export default function ChildrenForm(): JSX.Element {
 		</div>
 	);
 }
+
+
+

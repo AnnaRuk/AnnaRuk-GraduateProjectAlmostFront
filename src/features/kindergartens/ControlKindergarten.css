@@ -5,8 +5,13 @@ p.error {
 
 #cKTitle {
 	font-size: 3vw;
-	margin-left: 2vw;
+	margin-left: 5vw;
 	margin-bottom: 1vw;
+}
+#cKEditTitle {
+	font-size: 3vw;
+	margin-bottom: 1vw;
+	margin-left: 4vw;
 }
 #ckNoData {
 	font-size: 2vw;
@@ -21,4 +26,32 @@ p.error {
 #ckLinkImg {
 	max-width: 33vw;
 	text-overflow: ellipsis;
+}
+#editForm {
+	padding-left: 2vw;
+	padding-bottom: 2vw;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: flex-start;
+}
+#cKFormContainer {
+	display: flex;
+	flex-direction: column;
+}
+
+#cKPaCContainer {
+	display: flex;
+}
+#cKSaveBtn {
+	margin-top: 2vw;
+	margin-left: 10vw;
+	padding: 1vw 2vw 1vw 2vw;
+}
+#cKDescription {
+	min-width: 34vw;
+	min-height: 7vw;
+}
+#cKFileSelector {
+	min-width: 20vw;
 }

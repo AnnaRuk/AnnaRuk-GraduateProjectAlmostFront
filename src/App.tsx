@@ -12,22 +12,15 @@ import FavoritesKindergartensList from './features/favorites/FavoritesKindergart
 import KindergartenDetails from './features/kindergartens/KindergartenDetails';
 import Account from './components/myaccount/Account';
 import Home from './components/home/Home';
-import Sidepanel from './components/sidepanel/Sidepanel';
 import ControlKindergarten from './features/kindergartens/ControlKindergarten';
 import UserData from './features/account/UserData';
 import ChildrenForm from './features/children/ChildrenForm';
 import AddChildrenForm from './features/children/AddChildrenForm';
 import UserRequestsList from './features/requests/UserRequestsList';
-import ManagerRequestsList from './features/requests/ManagerRequestsList';
+import ManagerRequestsList from './features/requests/ManagerConfirmedRequestsList';
 import ManagerNOTConfirmRequestList from './features/requests/ManagerNOTConfirmedRequestList';
-import DialoguesList from './features/dialogues/DialoguesList';
 import Kindergartens from './components/Kindergarten/Kindergartens';
 import Dialogue from './features/dialogues/Dialogue';
-import { loadRequests } from './features/requests/RequestsSlice';
-import { loadDialogues } from './features/dialogues/DialoguesSlice';
-import { loadControlKindergarten } from './features/kindergartens/KindergartensSlice';
-import { loadFavorites } from './features/favorites/FavoritesSlice';
-import { loadChildren } from './features/children/ChildrenSlice';
 import Profile from './components/Profile/Profile';
 
 function App(): JSX.Element {

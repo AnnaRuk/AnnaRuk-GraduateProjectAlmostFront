@@ -1,0 +1,64 @@
+.dTitle {
+	margin-top: -1vw;
+	margin-left: 4vw;
+	font-size: 2vw;
+}
+#dialogueContainer {
+	display: flex;
+	flex-direction: column-reverse;
+	width: 50vw;
+	height: 25vw;
+	overflow-y: scroll;
+	padding-top: 1vw;
+	padding-bottom: 2vw;
+	border-radius: 1vw 0vw 0vw 0vw;
+}
+.coupleContainer {
+	max-width: 30vw;
+	height: auto;
+
+	display: flex;
+	flex-direction: column;
+}
+.messageContainer {
+	width: 50vw;
+}
+.left {
+	display: flex;
+	justify-content: flex-start;
+	margin-left: 1vw;
+}
+.right {
+	display: flex;
+	justify-content: flex-end;
+	margin-right: 1vw;
+}
+
+.messageText {
+	font-size: 1.2vw;
+}
+#dTextArea {
+	width: 50vw;
+	height: 7vw;
+	border-radius: 0vw 0vw 0vw 1vw;
+}
+#dSendMessageBtn {
+	display: inline-flex;
+	justify-content: center;
+	--padding-x: 1.2em;
+	background-color: rgba(37, 174, 206, 1);
+	border-color: transparent;
+	align-items: center;
+	height: 30px;
+  font-size: 1vw;
+ padding: 1vw 2vw 1vw 2vw;
+ border-radius: 0vw 0vw 1vw 1vw;
+ position: relative;
+right: -39.7vw;
+margin-bottom: 2vw;
+}
+#dSendMessageBtn:hover {
+	text-decoration: none !important;
+	background-color: rgba(37, 174, 206, 0.8);
+	border-color: transparent;
+}
