@@ -22,7 +22,6 @@ export default function FavoritesKindergartensList(): JSX.Element {
 				kindergartenId,
 			})
 		);
-		positive('Kindergarten remove');
 	}
 
 	return (
