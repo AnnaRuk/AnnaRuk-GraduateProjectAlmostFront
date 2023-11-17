@@ -1,3 +1,4 @@
+import { negative, positive } from '../../basic_styles/toastify';
 import DialoguesDto from './types/DialoguesDto';
 import NewDialogueDto from './types/NewDialogueDto';
 
@@ -8,7 +9,8 @@ export async function getAllDialogues(): Promise<{
 	const res = await fetch('/api/users/profile/dialogues');
 	// TODO Error
 	if (res.status >= 400) {
-		console.log('HELP');
+		const { message }: { message: string } = await res.json();
+		throw new Error(message);
 	}
 	return res.json();
 }
@@ -24,8 +26,12 @@ export async function createDialogue(dto: NewDialogueDto): Promise<{
 		body: JSON.stringify(dto),
 	});
 
+	if (res.status === 201) {
+		positive('Message sent!');
+	}
 	if (res.status >= 400) {
-		console.log('HELP');
+		const { message }: { message: string } = await res.json();
+		throw new Error(message);
 	}
 
 	return res.json();

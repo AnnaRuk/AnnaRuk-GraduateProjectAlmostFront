@@ -1,3 +1,4 @@
+import { negative, positive } from '../../basic_styles/toastify';
 import Kindergarten from '../../features/kindergartens/types/Kindergarten';
 import DeleteFavoriteDto from './types/DeleteFavoriteDto';
 import FavoriteAddDto from './types/FavoriteAddDto';
@@ -24,8 +25,12 @@ export async function deleteFromFavorites(id: DeleteFavoriteDto): Promise<Kinder
 		},
 		body: JSON.stringify(id),
 	});
+	if (res.status === 200) {
+		positive('Kindergarten remove!');
+	}
 	if (res.status >= 400) {
-		console.log('HELP');
+		const { message }: { message: string } = await res.json();
+		throw new Error(message);
 	}
 
 	return res.json();
@@ -40,9 +45,13 @@ export async function addToFavorites(dto: FavoriteAddDto): Promise<Kindergarten>
 		},
 		body: JSON.stringify(dto),
 	});
-	if (res.status >= 400) {
-		console.log('HELP');
+	if (res.status === 201) {
+		positive('Adding was successful!');
 	}
-
+	if (res.status >= 400) {
+		if (res.status === 409) {
+			negative('Kindergarten already in favorites!');
+		}
+	}
 	return res.json();
 }

@@ -1,3 +1,4 @@
+import { negative, positive } from '../../basic_styles/toastify';
 import Kindergarten from './types/Kindergarten';
 import KindergartenDto from './types/KindergartenDto';
 import UpdateKindergartenDto from './types/UpdateKindergartenDto';
@@ -7,9 +8,9 @@ export async function getAllKindergarten(): Promise<{
 	cities: string[];
 }> {
 	const res = await fetch('/api/kindergartens');
-	// TODO Error
 	if (res.status >= 400) {
-		console.log('HELP');
+		const { message }: { message: string } = await res.json();
+		throw new Error(message);
 	}
 	return res.json();
 }
@@ -17,9 +18,9 @@ export async function getAllKindergarten(): Promise<{
 //GET
 export async function getKindergartenById(id: number): Promise<Kindergarten> {
 	const res = await fetch(`/api/kindergartens/${id}`);
-	// TODO Error
 	if (res.status >= 400) {
-		console.log('HELP');
+		const { message }: { message: string } = await res.json();
+		throw new Error(message);
 	}
 	return res.json();
 }
@@ -33,8 +34,13 @@ export async function addControlKindergarten(dto: KindergartenDto): Promise<Kind
 		body: JSON.stringify(dto),
 	});
 
+	if (res.status === 201) {
+		positive('Adding was successful!');
+	}
 	if (res.status >= 400) {
-		console.log('HELP');
+		if (res.status === 409) {
+			negative('Kindergarten already exists!');
+		}
 	}
 
 	return res.json();
@@ -49,8 +55,15 @@ export async function updateControlKindergarten(dto: UpdateKindergartenDto): Pro
 		body: JSON.stringify(dto),
 	});
 
+	if (res.status === 200) {
+		positive('Data update successful!');
+	}
 	if (res.status >= 400) {
-		console.log('HELP');
+		if (res.status === 409) {
+			negative('Kindergarten already exists!');
+		}
+		const { message }: { message: string } = await res.json();
+		throw new Error(message);
 	}
 
 	return res.json();
@@ -61,7 +74,8 @@ export async function loadControlKindergarten(): Promise<Kindergarten> {
 	const res = await fetch('/api/users/profile/controlKindergarten');
 	// TODO Error
 	if (res.status >= 400) {
-		console.log('HELP LOAD KINDERGARTEN');
+		const { message }: { message: string } = await res.json();
+		throw new Error(message);
 	}
 	return res.json();
 }

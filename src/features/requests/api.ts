@@ -1,3 +1,4 @@
+import { negative, positive } from '../../basic_styles/toastify';
 import ChildWithParent from './types/ChildWithParent';
 import NewRequestDto from './types/NewRequestDto';
 import Request from './types/Request';
@@ -8,9 +9,9 @@ export async function getAllRequests(): Promise<{
 	requests: Request[];
 }> {
 	const res = await fetch('/api/users/profile/requests');
-	// TODO Error
 	if (res.status >= 400) {
-		console.log('HELP');
+		const { message }: { message: string } = await res.json();
+		throw new Error(message);
 	}
 	return res.json();
 }
@@ -27,8 +28,13 @@ export async function createRequest(dto: NewRequestDto): Promise<{
 		body: JSON.stringify(dto),
 	});
 
+	if (res.status === 201) {
+		positive('Request sent successfully!');
+	}
 	if (res.status >= 400) {
-		console.log('HELP');
+		if (res.status === 409) {
+			negative('Request already exists!');
+		}
 	}
 
 	return res.json();
@@ -45,8 +51,12 @@ export async function rejectRequest(id: number): Promise<{
 		},
 	});
 
+	if (res.status === 200) {
+		positive('Request was rejected!');
+	}
 	if (res.status >= 400) {
-		console.log('HELP');
+		const { message }: { message: string } = await res.json();
+		throw new Error(message);
 	}
 
 	return res.json();
@@ -64,8 +74,12 @@ export async function confirmRequest(id: number): Promise<{
 		},
 	});
 
+	if (res.status === 200) {
+		positive('Request was confirmed!');
+	}
 	if (res.status >= 400) {
-		console.log('HELP');
+		const { message }: { message: string } = await res.json();
+		throw new Error(message);
 	}
 
 	return res.json();

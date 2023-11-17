@@ -56,8 +56,8 @@ export async function updateChildren(child: Child): Promise<Child> {
 export async function loadChildren(): Promise<{ children: Child[] }> {
 	const res = await fetch('/api/users/profile/children');
 	if (res.status >= 400) {
-		console.log('HELP LOAD CHILDREN');
+		const { message }: { message: string } = await res.json();
+		throw new Error(message);
 	}
-	console.log('LOAD CHILDREN');
 	return res.json();
 }
