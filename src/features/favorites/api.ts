@@ -16,7 +16,6 @@ export async function getFavorites(): Promise<{
 }
 
 //DELETE
-
 export async function deleteFromFavorites(id: DeleteFavoriteDto): Promise<Kindergarten> {
 	const res = await fetch('/api/users/profile/favorites', {
 		method: 'DELETE',
