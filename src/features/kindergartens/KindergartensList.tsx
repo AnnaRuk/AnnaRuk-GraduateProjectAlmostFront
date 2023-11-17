@@ -44,62 +44,66 @@ export default function KindergartensList(): JSX.Element {
 			<div id="kListTitle" className="dark font_itim">
 				Kindergartens
 			</div>
+			{kindergartens?.length > 0 ? (
+				<div>
+					<div className="flex">
+						<label id="cityChooserLbl" className="dark font_itim">
+							Choose the city:
+						</label>
+						<select
+							id="citySelector"
+							value={selectedCity}
+							onChange={handleCityChange}
+							className="dark font_itim form-control input"
+						>
+							<option value="All cities">All cities</option>
+							{cities?.map((city) => (
+								<option key={city} value={city}>
+									{city}
+								</option>
+							))}
+						</select>
+					</div>
 
-			<div className="flex">
-				<label id="cityChooserLbl" className="dark font_itim">
-					Choose the city:
-				</label>
-				<select
-					id="citySelector"
-					value={selectedCity}
-					onChange={handleCityChange}
-					className="dark font_itim form-control input"
-				>
-					<option value="All cities">All cities</option>
-					{cities?.map((city) => (
-						<option key={city} value={city}>
-							{city}
-						</option>
-					))}
-				</select>
-			</div>
-
-			<table className="dark font_itim">
-				<thead>
-					<tr>
-						<th>Kindergarten's Title</th>
-						<th>Kindergarten's City</th>
-						<th>Kindergarten's Address</th>
-						<th>Kindergarten's Capacity</th>
-					</tr>
-				</thead>
-				<tbody>
-					{filteredKindergartens?.map((kindergarten) => (
-						<tr key={kindergarten.id}>
-							<td>
-								<nav className={isInFavorites(kindergarten.id) ? 'posLeft' : ''}>
-									<NavLink to={`${path}/${kindergarten.id}`}>
-										<div id="iconTitle">
-											{isInFavorites(kindergarten.id) ? (
-												<div id="icon">
-													<GradeIcon />
+					<table className="dark font_itim">
+						<thead>
+							<tr>
+								<th>Kindergarten's Title</th>
+								<th>Kindergarten's City</th>
+								<th>Kindergarten's Address</th>
+								<th>Kindergarten's Capacity</th>
+							</tr>
+						</thead>
+						<tbody>
+							{filteredKindergartens?.map((kindergarten) => (
+								<tr key={kindergarten.id}>
+									<td>
+										<nav className={isInFavorites(kindergarten.id) ? 'posLeft' : ''}>
+											<NavLink to={`${path}/${kindergarten.id}`}>
+												<div id="iconTitle">
+													{isInFavorites(kindergarten.id) ? (
+														<div id="icon">
+															<GradeIcon />
+														</div>
+													) : (
+														<></>
+													)}
+													{kindergarten.title}
 												</div>
-											) : (
-												<></>
-											)}
-											{kindergarten.title}
-										</div>
-									</NavLink>
-								</nav>
-							</td>
-							<td>{kindergarten.city}</td>
-							<td>{kindergarten.address}</td>
-							<td>{kindergarten.capacity}</td>
-						</tr>
-					))}
-				</tbody>
-			</table>
-			<div></div>
+											</NavLink>
+										</nav>
+									</td>
+									<td>{kindergarten.city}</td>
+									<td>{kindergarten.address}</td>
+									<td>{kindergarten.capacity}</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+			) : (
+				<div id="noKindergartens">There are no Kindergartens yet.</div>
+			)}
 		</div>
 	);
 }

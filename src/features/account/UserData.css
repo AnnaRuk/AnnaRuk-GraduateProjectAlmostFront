@@ -7,6 +7,7 @@
 	flex-wrap: wrap;
 	align-content: flex-start;
 	align-items: center;
+	margin-left: 1vw;
 }
 #userDataForm {
 	max-width: 70vw;

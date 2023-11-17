@@ -66,7 +66,7 @@ export default function ChildrenForm(): JSX.Element {
 										{new Date(ch.dateOfBirth).toLocaleDateString()}
 									</div>
 									<div className="form-control input-imit">{ch.gender}</div>
-									<div>
+									<div id="cEditBtn">
 										<EditIcon
 											id={`cEditBtn${ch.id}`}
 											className="cEditBtn"
