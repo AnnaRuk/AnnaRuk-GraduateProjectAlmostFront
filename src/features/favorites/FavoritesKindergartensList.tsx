@@ -4,6 +4,7 @@ import { deleteFavorites, loadFavorites } from './FavoritesSlice';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useLocation, NavLink } from 'react-router-dom';
 import './favorites.css';
+import { positive } from '../../basic_styles/toastify';
 
 export default function FavoritesKindergartensList(): JSX.Element {
 	const favorites = useAppSelector((state) => state.favorites.kindergartens);

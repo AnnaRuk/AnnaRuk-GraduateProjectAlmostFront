@@ -68,6 +68,7 @@ export default function UserData(): JSX.Element {
 			<ToastContainer />
 			{editable ? (
 				<div id="updateDataContainer">
+					<span style={{ color: 'red' }}>{error}</span>
 					<form id="userDataForm" onSubmit={handleUpdateSubmit}>
 						<div id="dataEditTitle">Data Edit</div>
 						<div id="fAndLNameContainer">

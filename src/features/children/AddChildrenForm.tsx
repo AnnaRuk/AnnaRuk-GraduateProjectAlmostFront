@@ -1,8 +1,8 @@
 import React, { FormEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import Child from './types/Child';
 import { addChildren, updateChildren } from './ChildrenSlice';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+
 
 export default function EditChildrenForm(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -12,27 +12,52 @@ export default function EditChildrenForm(): JSX.Element {
 	const [newChildLastName, setNewChildLastName] = useState<string>('');
 	const [newChildDateOfBirth, setNewChildDateOfBirth] = useState<string>('');
 	const [newChildGender, setNewChildGender] = useState<string>('');
-
+	const navigate = useNavigate();
 	const children = useAppSelector((state) => state.children.children);
 
 	const handleEditClick = (id: number): void => {
 		setEditable(true);
 	};
 
+	function validateInputs(): boolean {
+		if (newChildFirstName.trim() === '') {
+			setError('Child first name is empty, please enter it. Empty data will not be saved!');
+			return false;
+		}
+		if (newChildLastName.trim() === '') {
+			setError('Child last name name is empty, please enter it. Empty data will not be saved!');
+			return false;
+		}
+		if (newChildDateOfBirth.trim() === '') {
+			setError('Child birthday is empty, please enter it. Empty data will not be saved!');
+			return false;
+		}
+		if (newChildGender.trim() === '') {
+			setError('Child gender is empty, please enter it. Empty data will not be saved!');
+			return false;
+		}
+
+		return true;
+	}
+
 	function handleAddNewChildSaveSubmit(e: FormEvent<HTMLFormElement>): void {
 		e.preventDefault();
-		dispatch(
-			addChildren({
-				firstName: newChildFirstName,
-				lastName: newChildLastName,
-				dateOfBirth: newChildDateOfBirth,
-				gender: newChildGender,
-			})
-		);
-		setNewChildFirstName('');
-		setNewChildLastName('');
-		setNewChildDateOfBirth('');
-		setNewChildGender('');
+		if (validateInputs()) {
+			dispatch(
+				addChildren({
+					firstName: newChildFirstName,
+					lastName: newChildLastName,
+					dateOfBirth: newChildDateOfBirth,
+					gender: newChildGender,
+				})
+			);
+
+			navigate('/profile/children');
+			setNewChildFirstName('');
+			setNewChildLastName('');
+			setNewChildDateOfBirth('');
+			setNewChildGender('');
+		}
 	}
 
 	return (
@@ -49,6 +74,7 @@ export default function EditChildrenForm(): JSX.Element {
 			</div>
 			<div id="cAddFormContainer">
 				<form onSubmit={handleAddNewChildSaveSubmit}>
+					<span style={{ color: 'red' }}>{error}</span>
 					<div>
 						<label htmlFor="cNewFirstName-input" className="form-label lbl">
 							First name
