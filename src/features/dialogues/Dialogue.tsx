@@ -4,35 +4,27 @@ import User from '../auth/types/User';
 import { createDialogue, loadDialogues } from './DialoguesSlice';
 import { useParams } from 'react-router-dom';
 import DialoguesDto from './types/DialoguesDto';
+import './dialogue.css';
+import Message from './types/Message';
 
 export default function Dialogue(): JSX.Element {
 	const dispatch = useAppDispatch();
 	const dialogues = useAppSelector((state) => state.dialogues.dialogues);
 	const [newMessage, setNewMessage] = useState<string>('');
-	const user: User | undefined = useAppSelector((state) => state.auth.user);
-	const { dialogueId } = useParams(); ///rukami
+	const user: User | undefined = useAppSelector((state) => state.auth?.user);
+	const { dialogueId } = useParams();
 
 	useEffect(() => {
 		dispatch(loadDialogues());
 	}, [dispatch]);
-	
 
-	// {
-	//   "dialogues": [
-	//     {"id": 1,
-	//       "recipient": {"id": 1,"firstName": "Sergey","lastName": "Sedakov"},
-	//       "messages": [{"id": 1,"senderId": 1,"messageDateTime": "1990-03-05 10:44:14.000000","messageText": "Kurlyk! Kurlyk!"}]
-	//     }
-	//   ]
-	// }
-
-	function dialogue(): DialoguesDto | undefined {
+	function getDialogue(): DialoguesDto | undefined {
 		if (dialogueId) {
 			return dialogues.find((d) => d.id === Number(dialogueId));
 		}
 		return undefined;
 	}
-	const dialog = dialogue();
+	const dialogue = getDialogue();
 
 	function handleSendMessage(recipientId: number, messageText: string): void {
 		dispatch(
@@ -43,32 +35,58 @@ export default function Dialogue(): JSX.Element {
 		);
 		setNewMessage('');
 	}
+	function getSenderName(dialogueToMap: DialoguesDto, messageToMap: Message): string {
+		return messageToMap.senderId == dialogueToMap.recipient.id
+			? `${dialogueToMap.recipient.firstName} ${dialogueToMap.recipient.lastName}`
+			: 'You';
+	}
+	function getClassList(userId: number, senderToMapId: number): string {
+		return (
+			'form-control' +
+			(userId == senderToMapId ? 'messageContainer right' : 'messageContainer left')
+		);
+	}
 
 	return (
-		<div>
+		<div className="font_itim dark">
+			<div id={`dialogue${dialogue?.id}`} className="dTitle">
+				Dialogue with {dialogue?.recipient.firstName} {dialogue?.recipient.lastName}
+			</div>
 			<div>
-				<h2>
-					Dialogue with {dialog?.recipient.firstName} {dialog?.recipient.lastName}
-				</h2>
-				<ul>
-					{dialog?.messages.map((message) => {
-						if (message.senderId === dialog?.recipient.id) {
-							return (
-								<li key={message.id}>
-									{`${new Date(message.messageDateTime).toLocaleString()}, ${dialog.recipient.firstName}: ${message.messageText}`}
-								</li>
-							);
-						} else {
-							return (
-								<li key={message.id}>{`${new Date(message.messageDateTime).toLocaleString()}, ${user?.firstName}: ${message.messageText}`}</li>
-							);
-						}
-					})}
-				</ul>
+				<div id="dialogueContainer" className="bg_green">
+					{dialogue?.messages?.map((message) => (
+						<div
+							key={message.id}
+							id={`message${message.id}`}
+							className={getClassList(user?.id, message.senderId)}
+						>
+							<div className="coupleContainer">
+								<label htmlFor={`message${message.id}text`} className="form-label lbl small">
+									{`${new Date(message.messageDateTime).toLocaleString()} ${getSenderName(
+										dialogue,
+										message
+									)}`}
+								</label>
+								<div id={`message${message.id}text`} className="form-control messageText">
+									{message.messageText}
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
 
-				<textarea value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
-				<button onClick={() => handleSendMessage(dialog?.recipient.id, newMessage)}>
-					Send a message
+				<textarea
+					value={newMessage}
+					onChange={(e) => setNewMessage(e.target.value)}
+					placeholder="Enter your message here"
+					className="form-control"
+					id="dTextArea"
+				/>
+				<button
+					id="dSendMessageBtn"
+					onClick={() => handleSendMessage(dialogue?.recipient.id, newMessage)}
+				>
+					Send Message
 				</button>
 			</div>
 		</div>

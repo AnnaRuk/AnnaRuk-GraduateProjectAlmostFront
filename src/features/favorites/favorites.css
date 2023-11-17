@@ -1,0 +1,22 @@
+#fTitle {
+	font-size: 3vw;
+  margin-left: 4vw;
+}
+#noFavoritesTitle {
+	font-size: 2vw;
+  margin-left: 2vw;
+  margin-top: 1vw;
+  margin-bottom: 3vw;
+}
+#favoritesContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	align-content: flex-start;
+}
+#fTableContainer {
+	display: flex;
+	margin-top: 2vw;
+	margin-left: 1vw;
+}

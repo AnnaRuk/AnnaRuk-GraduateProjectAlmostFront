@@ -56,7 +56,7 @@ function Login(): JSX.Element {
 	);
 
 	return (
-		<div className="content font_itim">
+		<div id="loginAllContainer" className="content font_itim">
 			<form id="loginForm" className="bg_pink dark" onSubmit={handleSubmit}>
 				<div id="loginContainer">
 					<div id="signInTitle"> Let's Sign In!</div>

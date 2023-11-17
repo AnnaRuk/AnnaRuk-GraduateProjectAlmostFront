@@ -20,8 +20,7 @@
 }
 #kListTitle {
 	font-size: 3vw;
-	display: flex;
-	justify-content: center;
+	margin-left: 5vw;
 }
 #cityChooserLbl {
 	margin-left: 2vw;
@@ -30,7 +29,7 @@
 }
 #citySelector {
 	width: auto;
-	height: 2vw;
+	height: auto;
 	border-radius: 5px;
 	padding-left: 1vw;
 	padding-right: 1vw;
@@ -88,4 +87,10 @@ tr td:last-child {
 .posLeft {
 	position: relative;
 	left: -25px;
+}
+#noKindergartens {
+	font-size: 2vw;
+	margin-left: 2vw;
+	margin-top: 1vw;
+	margin-bottom: 3vw;
 }

@@ -91,30 +91,109 @@ export default function ControlKindergarten(): JSX.Element {
 		<div className="font_itim dark">
 			{editable ? (
 				<div>
-					<h3>Edit Kindergarden data</h3>
+					<div id="cKEditTitle">Edit Kindergarten's Data</div>
 					{error && <p>{error}</p>}
-					<form onSubmit={handleSaveSubmit}>
-						<label>Title:</label>
-						<input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-						<label>City:</label>
-						<input type="text" value={city} onChange={(e) => setCity(e.target.value)} />
-						<label>Address:</label>
-						<input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
-						<label>Postcode:</label>
-						<input type="text" value={postcode} onChange={(e) => setPostcode(e.target.value)} />
-						<label>Description:</label>
-						<input
-							type="text"
-							value={description}
-							onChange={(e) => setDescription(e.target.value)}
-						/>
-						<label>Capacity:</label>
-						<input
-							type="number"
-							value={capacity}
-							onChange={(e) => setCapacity(Number(e.target.value))}
-						/>
-						<button type="submit">Save</button>
+					<form id="editForm" onSubmit={handleSaveSubmit}>
+						<div className="couple">
+							<label htmlFor="cKTitle-input" className="form-label lbl">
+								Title
+							</label>
+							<input
+								type="text"
+								value={title}
+								onChange={(e) => setTitle(e.target.value)}
+								className="form-control input"
+								id="cKTitle-input"
+								name="cKTitle-input"
+								required
+							/>
+						</div>
+						<div className="couple">
+							<label htmlFor="cKAddress-input" className="form-label lbl">
+								Address
+							</label>
+							<input
+								type="text"
+								value={address}
+								onChange={(e) => setAddress(e.target.value)}
+								className="form-control input"
+								id="cKAddress-input"
+								name="cKAddress-input"
+								required
+							/>
+						</div>
+						<div id="cKPaCContainer">
+							<div className="couple">
+								<label htmlFor="cKPostcode-input" className="form-label lbl">
+									Postcode
+								</label>
+								<input
+									type="text"
+									value={postcode}
+									onChange={(e) => setPostcode(e.target.value)}
+									className="form-control input"
+									id="cKPostcode-input"
+									name="cKPostcode-input"
+									required
+								/>
+							</div>
+							<div className="couple">
+								<label htmlFor="cKCity-input" className="form-label lbl">
+									City
+								</label>
+								<input
+									type="text"
+									value={city}
+									onChange={(e) => setCity(e.target.value)}
+									className="form-control input"
+									id="cKCity-input"
+									name="cKCity-input"
+									required
+								/>
+							</div>
+						</div>
+						<div className="couple">
+							<label htmlFor="cKCapacity-input" className="form-label lbl">
+								Capacity
+							</label>
+							<input
+								type="number"
+								value={capacity}
+								onChange={(e) => setCapacity(Number(e.target.value))}
+								className="form-control input"
+								id="cKCapacity-input"
+								name="cKCapacity-input"
+								required
+							/>
+						</div>
+						<div className="couple">
+							<label htmlFor="cKFileSelector" className="form-label lbl">
+								Photo
+							</label>
+							<input
+								type="file"
+								name="cKFileSelector"
+								id="cKFileSelector"
+								accept="image/*"
+								className="form-control input"
+							/>
+						</div>
+						<div className="couple">
+							<label htmlFor="cKDescription" className="form-label lbl">
+								Description
+							</label>
+							<textarea
+								type="text"
+								value={description}
+								onChange={(e) => setDescription(e.target.value)}
+								id="cKDescription"
+								name="cKDescription"
+								className="form-control input"
+							/>
+						</div>
+						<button type="submit" className="btn_blue btn" id="cKSaveBtn">
+							Save Data
+						</button>
 					</form>
 				</div>
 			) : (
@@ -125,8 +204,8 @@ export default function ControlKindergarten(): JSX.Element {
 							<div className="form-control input-imit"> {title}</div>
 							<div className="form-control input-imit"> {address}</div>
 							<div className="flex">
-								<div className="form-control input-imit"> {city}</div>
 								<div className="form-control input-imit"> {postcode}</div>
+								<div className="form-control input-imit"> {city}</div>
 							</div>
 							<div id="cKDescription" className="form-control input-imit">
 								{description}

@@ -1,6 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import authSlice from '../features/auth/authSlice';
-import tasksSlice from '../features/tasks/tasksSlice';
 import kinderdartensSlice from '../features/kindergartens/KindergartensSlice';
 import favoritesSlice from '../features/favorites/FavoritesSlice';
 import childrenSlice from '../features/children/ChildrenSlice';
@@ -11,7 +10,6 @@ import dialoguesSlice from '../features/dialogues/DialoguesSlice';
 export const store = configureStore({
 	reducer: {
 		auth: authSlice,
-		tasks: tasksSlice,
 		kindergartens: kinderdartensSlice,
 		favorites: favoritesSlice,
 		children: childrenSlice,

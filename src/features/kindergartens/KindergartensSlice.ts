@@ -14,7 +14,7 @@ const initialState: KindergartensState = {
 
 export const loadKindergartens = createAsyncThunk('kindergartens/loadKindergartens', () =>
 	api.getAllKindergarten()
-); // payload = return Kindergarten[] with open Promise;
+); 
 
 export const loadKindergartenById = createAsyncThunk(
 	'kindergartens/loadKindergarten',
