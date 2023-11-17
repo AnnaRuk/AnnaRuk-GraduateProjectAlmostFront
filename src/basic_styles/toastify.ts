@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-export const negative = (text: string) =>
+export const negative = (text: string): void =>
 	toast.error(text, {
 		position: 'bottom-right',
 		autoClose: 5000,
@@ -10,9 +10,9 @@ export const negative = (text: string) =>
 		draggable: true,
 		progress: undefined,
 		theme: 'light',
-	});
+	}) as unknown as void;
 
-export const positive = (text: string) =>
+export const positive = (text: string): void =>
 	toast.success(text, {
 		position: 'bottom-right',
 		autoClose: 5000,
@@ -22,4 +22,4 @@ export const positive = (text: string) =>
 		draggable: true,
 		progress: undefined,
 		theme: 'light',
-	});
+	}) as unknown as void;

@@ -31,7 +31,6 @@ function Register(): JSX.Element {
 				})
 			);
 			if (register.fulfilled.match(dispatchResult)) {
-				dispatch(login({ email, password }));
 				navigate('/');
 			}
 		},
@@ -126,7 +125,7 @@ function Register(): JSX.Element {
 							/>
 						</div>
 					</div>
-					<div >
+					<div>
 						<label htmlFor="role-input" className="form-label lbl">
 							Choose a role
 						</label>
@@ -194,7 +193,7 @@ function Register(): JSX.Element {
 								I agree with <NavLink to={'/terms_of_use'}>Terms of Use</NavLink> .
 							</label>
 						</div>
-						<button id="regBtn" type="submit" className="aBtn_blue dark" disabled={true}>
+						<button id="regBtn" type="submit" className="aBtn_blue dark">
 							Sign up
 						</button>
 					</div>
