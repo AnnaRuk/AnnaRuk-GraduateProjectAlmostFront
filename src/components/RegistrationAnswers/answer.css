@@ -9,3 +9,10 @@
 	width: 30vw;
 	font-size: 1.7vw;
 }
+.aboutContainer {
+	border-radius: 2vw;
+	padding: 3vw 3vw 2vw 3vw;
+	width: 40vw;
+	font-size: 1.7vw;
+	margin-bottom: 3vw;
+}

@@ -26,6 +26,7 @@ import AnswerSuccess from './components/RegistrationAnswers/AnswerSuccess';
 import AnswerFail from './components/RegistrationAnswers/AnswerFail';
 import ConfirmPage from './components/Confirmation/ConfirmPage';
 import Voucher from './components/Voucher/Voucher';
+import AboutUs from './components/AboutUs/AboutUs';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -50,6 +51,7 @@ function App(): JSX.Element {
 					<Route path="/" element={<Home />} />
 					<Route path="/confirm/:code" element={<ConfirmPage />} />
 					<Route path="/voucher" element={<Voucher />} />
+					<Route path="/about" element={<AboutUs />} />
 					<Route path="/register/success" element={<AnswerSuccess />} />
 					<Route path="/register/fail" element={<AnswerFail />} />
 					<Route path="/auth/login" element={<Login />} />
