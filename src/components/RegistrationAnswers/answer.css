@@ -1,0 +1,11 @@
+.bgContainer {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.answerContainer {
+	border-radius: 2vw;
+	padding: 2vw 2vw 2vw 2vw;
+	width: 30vw;
+	font-size: 1.7vw;
+}

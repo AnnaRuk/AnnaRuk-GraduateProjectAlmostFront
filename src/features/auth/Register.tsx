@@ -31,7 +31,9 @@ function Register(): JSX.Element {
 				})
 			);
 			if (register.fulfilled.match(dispatchResult)) {
-				navigate('/');
+				navigate('/register/success');
+			} else {
+				navigate('/register/fail');
 			}
 		},
 		[dispatch, email, navigate, password, passwordRepeat]

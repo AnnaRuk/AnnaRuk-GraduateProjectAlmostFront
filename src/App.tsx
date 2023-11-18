@@ -10,7 +10,7 @@ import Layout from './components/layouts/Layout';
 import KindergartensList from './features/kindergartens/KindergartensList';
 import FavoritesKindergartensList from './features/favorites/FavoritesKindergartensList';
 import KindergartenDetails from './features/kindergartens/KindergartenDetails';
-import Account from './components/myaccount/Account';
+import Account from './components/myAccount/Account';
 import Home from './components/home/Home';
 import ControlKindergarten from './features/kindergartens/ControlKindergarten';
 import UserData from './features/account/UserData';
@@ -22,6 +22,10 @@ import ManagerNOTConfirmRequestList from './features/requests/ManagerNOTConfirme
 import Kindergartens from './components/Kindergarten/Kindergartens';
 import Dialogue from './features/dialogues/Dialogue';
 import Profile from './components/Profile/Profile';
+import AnswerSuccess from './components/RegistrationAnswers/AnswerSuccess';
+import AnswerFail from './components/RegistrationAnswers/AnswerFail';
+import ConfirmPage from './components/Confirmation/ConfirmPage';
+import Voucher from './components/Voucher/Voucher';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -44,6 +48,10 @@ function App(): JSX.Element {
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route path="/" element={<Home />} />
+					<Route path="/confirm/:code" element={<ConfirmPage />} />
+					<Route path="/voucher" element={<Voucher />} />
+					<Route path="/register/success" element={<AnswerSuccess />} />
+					<Route path="/register/fail" element={<AnswerFail />} />
 					<Route path="/auth/login" element={<Login />} />
 					<Route path="/auth/register" element={<Register />} />
 					<Route path="/kindergartens" element={<Kindergartens />}>
