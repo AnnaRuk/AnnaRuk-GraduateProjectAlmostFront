@@ -1,4 +1,5 @@
 import { negative, positive } from '../../basic_styles/toastify';
+import FilePath from './types/FilePath';
 import Kindergarten from './types/Kindergarten';
 import KindergartenDto from './types/KindergartenDto';
 import UpdateKindergartenDto from './types/UpdateKindergartenDto';
@@ -77,5 +78,23 @@ export async function loadControlKindergarten(): Promise<Kindergarten> {
 		const { message }: { message: string } = await res.json();
 		throw new Error(message);
 	}
+	return res.json();
+}
+
+//POST
+export async function loadPictureControlKindergarten(formData: FormData): Promise<FilePath> {
+	const res = await fetch('/api/files', {
+		method: 'POST',
+		body: formData,
+	});
+
+	if (res.status === 201) {
+		positive('Loading was successful!');
+	}
+	if (res.status >= 400) {
+		const { message }: { message: string } = await res.json();
+		throw new Error(message);
+	}
+
 	return res.json();
 }
