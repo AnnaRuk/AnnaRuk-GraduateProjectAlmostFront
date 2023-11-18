@@ -5,7 +5,6 @@ import './UserData.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 export default function UserData(): JSX.Element {
 	const dispatch = useAppDispatch();
 	const user = useAppSelector((state) => state.auth.user);
@@ -231,23 +230,26 @@ export default function UserData(): JSX.Element {
 				<div>
 					<div id="MyDataTitle">My data</div>
 					<div className="flex">
-						<div className="form-control input-imit"> {firstName}</div>
-						<div className="form-control input-imit"> {lastName}</div>
+						<div className="form-control input-imit">Name: {firstName}</div>
+						<div className="form-control input-imit">Last name: {lastName}</div>
 					</div>
-					<div className="form-control input-imit">{gender}</div>
+					<div className="form-control input-imit">Gender: {gender}</div>
 					<div className="flex">
 						<div className="form-control input-imit">
+							Birthday:
 							{new Date(dateOfBirth).toLocaleDateString()}
 						</div>
-						<div className="form-control input-imit">{email}</div>
+						<div className="form-control input-imit">Email: {email}</div>
 					</div>
 					<div className="flex">
-						<div className="form-control input-imit">{address}</div>
+						<div className="form-control input-imit">Address: {address}</div>
 						<div className="form-control input-imit">
+							{' '}
+							Postcode, city:
 							{postcode}, {city}
 						</div>
 					</div>
-					<div className="form-control input-imit"> {phone}</div>
+					<div className="form-control input-imit">Phone: {phone}</div>
 					<div className="flex">
 						<button onClick={handleEditClick} className="btn_blue btn bpn-padding dark editDataBtn">
 							Edit Data

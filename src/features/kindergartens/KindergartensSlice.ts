@@ -12,9 +12,10 @@ const initialState: KindergartensState = {
 	controlKindergarten: null,
 };
 
+
 export const loadKindergartens = createAsyncThunk('kindergartens/loadKindergartens', () =>
 	api.getAllKindergarten()
-); 
+);
 
 export const loadKindergartenById = createAsyncThunk(
 	'kindergartens/loadKindergarten',
