@@ -12,7 +12,6 @@ import FavoritesKindergartensList from './features/favorites/FavoritesKindergart
 import KindergartenDetails from './features/kindergartens/KindergartenDetails';
 import Account from './components/myAccount/Account';
 import Home from './components/home/Home';
-import ControlKindergarten from './features/kindergartens/ControlKindergarten';
 import UserData from './features/account/UserData';
 import ChildrenForm from './features/children/ChildrenForm';
 import AddChildrenForm from './features/children/AddChildrenForm';
@@ -27,6 +26,7 @@ import AnswerFail from './components/RegistrationAnswers/AnswerFail';
 import ConfirmPage from './components/Confirmation/ConfirmPage';
 import Voucher from './components/Voucher/Voucher';
 import AboutUs from './components/AboutUs/AboutUs';
+import MControlKindergarten from './components/Kindergarten/MControlKindergarten';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -65,7 +65,7 @@ function App(): JSX.Element {
 						<Route path="my_data" element={<UserData />} />
 						<Route path="favorites" element={<FavoritesKindergartensList />} />
 						<Route path="favorites/:id" element={<KindergartenDetails />} />
-						<Route path="kindergarten" element={<ControlKindergarten />} />
+						<Route path="kindergarten" element={<MControlKindergarten />} />
 						<Route path="kindergartens" element={<KindergartensList />} />
 						<Route path="kindergartens/:id" element={<KindergartenDetails />} />
 						<Route path="children" element={<ChildrenForm />} />

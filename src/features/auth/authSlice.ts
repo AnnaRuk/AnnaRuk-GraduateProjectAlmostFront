@@ -21,12 +21,12 @@ export const login = createAsyncThunk('login', async (credentials: Credentials) 
 });
 
 export const register = createAsyncThunk('api/register', async (data: RegisterData) => {
-	// if (data.password !== data.passwordRepeat) {
-	// 	throw new Error('Пароли не совпадают');
-	// }
-	// if (!data.email.trim() || !data.password.trim()) {
-	// 	throw new Error('Не все поля заполнены');
-	// }
+	if (data.password !== data.passwordRepeat) {
+		throw new Error('Password confirm is incorrect');
+	}
+	if (!data.email.trim() || !data.password.trim()) {
+		throw new Error('You should fill out all fields to register.');
+	}
 	return api.register(data);
 });
 
@@ -36,7 +36,6 @@ const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		// 332 редьюсер для очистки ошибки
 		resetLoginFormError: (state) => {
 			state.loginFormError = undefined;
 		},
@@ -56,7 +55,7 @@ const authSlice = createSlice({
 			.addCase(login.fulfilled, (state) => {
 				state.loginFormError = undefined;
 			})
-			// 332 так изменяется стэйт если вернулась ошибка
+
 			.addCase(login.rejected, (state, action) => {
 				state.loginFormError = action.error.message;
 			})
@@ -64,7 +63,7 @@ const authSlice = createSlice({
 				state.user = undefined;
 				state.authChecked = true;
 			})
-			.addCase(register.fulfilled, (state, action) => {
+			.addCase(register.fulfilled, (state) => {
 				//state.user = action.payload;
 				state.registerFormError = undefined;
 			})

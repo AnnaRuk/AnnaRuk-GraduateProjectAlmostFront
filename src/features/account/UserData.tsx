@@ -1,8 +1,7 @@
-import React, { FormEvent, useState } from 'react';
+import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { updateUsersProfile } from './AccountSlice';
 import './UserData.css';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function UserData(): JSX.Element {
@@ -43,7 +42,7 @@ export default function UserData(): JSX.Element {
 		setEditable(true);
 	};
 
-	function handleUpdateSubmit(e: FormEvent<HTMLFormElement>): void {
+	function handleUpdateSubmit(): void {
 		if (validateInputs()) {
 			setEditable(false);
 			dispatch(
@@ -64,7 +63,6 @@ export default function UserData(): JSX.Element {
 
 	return (
 		<div className="dark font_itim">
-			<ToastContainer />
 			{editable ? (
 				<div id="updateDataContainer">
 					<span style={{ color: 'red' }}>{error}</span>
@@ -227,39 +225,43 @@ export default function UserData(): JSX.Element {
 					</form>
 				</div>
 			) : (
-				<div>
-					<div id="MyDataTitle">My data</div>
-					<div className="flex">
-						<div className="form-control input-imit">Name: {firstName}</div>
-						<div className="form-control input-imit">Last name: {lastName}</div>
-					</div>
-					<div className="form-control input-imit">Gender: {gender}</div>
-					<div className="flex">
-						<div className="form-control input-imit">
-							Birthday:
-							{new Date(dateOfBirth).toLocaleDateString()}
+				user && (
+					<div>
+						<div id="MyDataTitle">My data</div>
+						<div className="flex">
+							<div className="form-control input-imit">Name: {user.firstName}</div>
+							<div className="form-control input-imit">Last name: {user.lastName}</div>
 						</div>
-						<div className="form-control input-imit">Email: {email}</div>
-					</div>
-					<div className="flex">
-						<div className="form-control input-imit">Address: {address}</div>
-						<div className="form-control input-imit">
-							{' '}
-							Postcode, city:
-							{postcode}, {city}
+						<div className="form-control input-imit">Gender: {user.gender}</div>
+						<div className="flex">
+							<div className="form-control input-imit">
+								Birthday:
+								{user.dateOfBirth ? new Date(user.dateOfBirth).toLocaleDateString() : ''}
+							</div>
+							<div className="form-control input-imit">Email: {user.email}</div>
 						</div>
-					</div>
-					<div className="form-control input-imit">Phone: {phone}</div>
-					<div className="flex">
-						<button onClick={handleEditClick} className="btn_blue btn bpn-padding dark editDataBtn">
-							Edit Data
-						</button>
+						<div className="flex">
+							<div className="form-control input-imit">Address: {user.address}</div>
+							<div className="form-control input-imit">
+								Postcode:
+								{user.postcode}, city: {user.city}
+							</div>
+						</div>
+						<div className="form-control input-imit">Phone: {user.phone}</div>
+						<div className="flex">
+							<button
+								onClick={handleEditClick}
+								className="btn_blue btn bpn-padding dark editDataBtn"
+							>
+								Edit Data
+							</button>
 
-						<button type="button" className="btn btn_blue bpn-padding dark editDataBtn">
-							Change Password
-						</button>
+							<button type="button" className="btn btn_blue bpn-padding dark editDataBtn">
+								Change Password
+							</button>
+						</div>
 					</div>
-				</div>
+				)
 			)}
 		</div>
 	);

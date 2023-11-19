@@ -4,7 +4,6 @@ export default interface KindergartenDto {
 	postcode: string;
 	city: string;
 	capacity: number;
-	description: string;
-	linkImg: string;
+	description?: string;
+	linkImg?: string;
 }
-

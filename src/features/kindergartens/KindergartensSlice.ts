@@ -1,4 +1,4 @@
-import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import KindergartensState from './types/KindergartensState';
 import * as api from './api';
 import KindergartenDto from './types/KindergartenDto';
@@ -11,7 +11,6 @@ const initialState: KindergartensState = {
 	selectedCity: 'All cities',
 	controlKindergarten: null,
 };
-
 
 export const loadKindergartens = createAsyncThunk('kindergartens/loadKindergartens', () =>
 	api.getAllKindergarten()

@@ -73,6 +73,7 @@ export async function updateControlKindergarten(dto: UpdateKindergartenDto): Pro
 //GET
 export async function loadControlKindergarten(): Promise<Kindergarten> {
 	const res = await fetch('/api/users/profile/controlKindergarten');
+
 	// TODO Error
 	if (res.status >= 400) {
 		const { message }: { message: string } = await res.json();

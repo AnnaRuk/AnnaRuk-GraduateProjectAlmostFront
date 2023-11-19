@@ -1,32 +1,39 @@
-import React, { FormEvent, useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { FormEvent, useEffect, useState } from 'react';
+import { useAppDispatch } from '../../app/hooks';
 import {
 	addControlKindergarten,
 	loadControlKindergarten,
 	updateControlKindergarten,
 } from './KindergartensSlice';
 import './ControlKindergarten.css';
-import { negative } from '../../basic_styles/toastify';
+import FilePath from './types/FilePath';
 
-export default function ControlKindergarten(): JSX.Element {
+import Kindergarten from './types/Kindergarten';
+type KindergartenProps = {
+	kindergarten: Kindergarten | null;
+};
+export default function ControlKindergarten({ kindergarten }: KindergartenProps): JSX.Element {
 	const dispatch = useAppDispatch();
-	const controlKindergarten = useAppSelector((state) => state.kindergartens.controlKindergarten);
+	useEffect(() => {
+		dispatch(loadControlKindergarten());
+	}, [dispatch]);
+
+	const controlKindergarten = kindergarten;
 
 	const [error, setError] = useState<string>('');
 	const [editable, setEditable] = useState(false);
 
-	const [title, setTitle] = useState(controlKindergarten?.title || '');
-	const [address, setAddress] = useState(controlKindergarten?.address || '');
-	const [postcode, setPostcode] = useState(controlKindergarten?.postcode || '');
-	const [city, setCity] = useState(controlKindergarten?.city || '');
-	const [description, setDescription] = useState(controlKindergarten?.description || '');
-	const [linkImg, setLinkImg] = useState(controlKindergarten?.linkImg || '');
-	const [capacity, setCapacity] = useState(controlKindergarten?.capacity || 0);
-	const [selectedFile, setSelectedFile] = useState(null);
-	const fileName = useAppSelector((state) => state.kindergartens?.filePath);
+	const [title, setTitle] = useState(controlKindergarten?.title ?? '');
+	const [address, setAddress] = useState(controlKindergarten?.address ?? '');
+	const [postcode, setPostcode] = useState(controlKindergarten?.postcode ?? '');
+	const [city, setCity] = useState(controlKindergarten?.city ?? '');
+	const [description, setDescription] = useState(controlKindergarten?.description ?? '');
+	const [linkImg, setLinkImg] = useState(controlKindergarten?.linkImg ?? '');
+	const [capacity, setCapacity] = useState(controlKindergarten?.capacity ?? 0);
+	const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
 	function validateInputs(): boolean {
-		if (title.trim() === '') {
+		if (title?.trim() === '') {
 			setError('Title is empty, please enter it. Empty data will not be saved!');
 			return false;
 		}
@@ -46,12 +53,12 @@ export default function ControlKindergarten(): JSX.Element {
 			setError('Description is empty, please enter it. Empty data will not be saved!');
 			return false;
 		}
-		if (linkImg.trim() === '') {
-			setError('Peactures is empty, please enter it. Empty data will not be saved!');
+		if (capacity <= 0) {
+			setError('Capacity is wrong, please enter it correctly. Empty data will not be saved!');
 			return false;
 		}
-		if (capacity <= 0) {
-			setError('Capacity is empty, please enter it. Empty data will not be saved!');
+		if (!selectedFile && linkImg == '') {
+			setError('You haven`t chose an image, please enter it.');
 			return false;
 		}
 		return true;
@@ -61,33 +68,35 @@ export default function ControlKindergarten(): JSX.Element {
 		setEditable(true);
 	};
 
-	const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-		console.log(e.target.files[0]);
-		setSelectedFile(e.target.files[0]);
-	};
-
-	async function handleSaveSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
-		e.preventDefault();
-
-		if (!selectedFile) {
-			negative('please select file');
-			return;
+	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+		if (e.target.files) {
+			setSelectedFile(e.target.files[0]);
 		}
+	};
+	async function getNewLink(file: File): Promise<FilePath | undefined> {
 		const formData = new FormData();
-		formData.append('file', selectedFile);
+		formData.append('file', file);
 
 		const requestOptions = {
 			method: 'POST',
 			body: formData,
 		};
-
 		const response = await fetch('/api/files', requestOptions);
-		const res = await response?.json();
-		const newLink = res?.message;
-
+		if (response.ok) {
+			return response.json();
+		}
+		if (response.status >= 400) {
+			const { message }: { message: string } = await response.json();
+			throw new Error(message);
+		}
+	}
+	function send(newLink: string): void {
 		if (validateInputs()) {
 			setEditable(false);
-			if (controlKindergarten) {
+			if (!newLink) {
+				newLink = '';
+			}
+			if (controlKindergarten?.title) {
 				dispatch(
 					updateControlKindergarten({
 						id: controlKindergarten.id,
@@ -108,7 +117,7 @@ export default function ControlKindergarten(): JSX.Element {
 						postcode,
 						city,
 						description,
-						linkImg,
+						linkImg: newLink,
 						capacity,
 					})
 				);
@@ -116,15 +125,26 @@ export default function ControlKindergarten(): JSX.Element {
 		}
 	}
 
-	useEffect(() => {
-		dispatch(loadControlKindergarten());
-	}, [dispatch]);
+	async function handleSaveSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
+		e.preventDefault();
+
+		if (selectedFile) {
+			await getNewLink(selectedFile).then((res) => {
+				if (res) {
+					setLinkImg(res.message);
+					send(res.message);
+				}
+			});
+		} else {
+			send(linkImg);
+		}
+	}
 
 	return (
 		<div className="font_itim dark">
 			{editable ? (
 				<div>
-					<div id="cKEditTitle">Edit Kindergarten's Data</div>
+					<div id="cKEditTitle">Edit Kindergarten`s Data</div>
 					{error && <p>{error}</p>}
 					<form id="editForm" onSubmit={handleSaveSubmit}>
 						<div className="couple">
@@ -133,7 +153,7 @@ export default function ControlKindergarten(): JSX.Element {
 							</label>
 							<input
 								type="text"
-								value={title}
+								value={title ? title : ''}
 								onChange={(e) => setTitle(e.target.value)}
 								className="form-control input"
 								id="cKTitle-input"
@@ -191,8 +211,8 @@ export default function ControlKindergarten(): JSX.Element {
 							</label>
 							<input
 								type="number"
-								value={capacity}
-								onChange={(e) => setCapacity(Number(e.target.value))}
+								value={capacity == 0 ? '' : capacity}
+								onChange={(e) => setCapacity(e.target.value == '' ? 0 : Number(e.target.value))}
 								className="form-control input"
 								id="cKCapacity-input"
 								name="cKCapacity-input"
@@ -210,6 +230,9 @@ export default function ControlKindergarten(): JSX.Element {
 								accept="image/*"
 								className="form-control input"
 								onChange={handleFileChange}
+								onClick={(event) => {
+									event.currentTarget.files = null;
+								}}
 							/>
 						</div>
 						<div className="couple">
@@ -234,21 +257,25 @@ export default function ControlKindergarten(): JSX.Element {
 					<div id="cKTitle">My Kindergarten</div>
 					{controlKindergarten?.title ? (
 						<>
-							<div className="form-control input-imit">title: {title}</div>
-							<div className="form-control input-imit">address: {address}</div>
+							<div className="form-control input-imit">title: {controlKindergarten.title}</div>
+							<div className="form-control input-imit">address: {controlKindergarten.address}</div>
 							<div className="flex">
-								<div className="form-control input-imit">postcode: {postcode}</div>
-								<div className="form-control input-imit">city: {city}</div>
+								<div className="form-control input-imit">
+									postcode: {controlKindergarten.postcode}
+								</div>
+								<div className="form-control input-imit">city: {controlKindergarten.city}</div>
 							</div>
 							<div id="cKDescription" className="form-control input-imit">
-								about kindergarten: {description}
+								about kindergarten: {controlKindergarten.description}
 							</div>
 							<div className="flex">
-								<div className="form-control input-imit">capacity: {capacity}</div>
-								<div className="form-control input-imit">phone: {controlKindergarten?.phone}</div>
+								<div className="form-control input-imit">
+									capacity: {controlKindergarten.capacity}
+								</div>
+								<div className="form-control input-imit">phone: {controlKindergarten.phone}</div>
 							</div>
 							<div id="ckLinkImg" className="form-control input-imit">
-								fileName: {fileName} linkImg: {linkImg}
+								link to image: {controlKindergarten.linkImg}
 							</div>
 						</>
 					) : (

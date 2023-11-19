@@ -11,4 +11,3 @@ export default interface User {
 	dateOfBirth?: string;
 	gender?: string;
 }
-
