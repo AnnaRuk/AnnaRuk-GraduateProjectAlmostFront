@@ -50,7 +50,7 @@ function App(): JSX.Element {
 		<HashRouter>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					<Route path="/" element={<Home />} />
+					<Route index element={<Home />} />
 					<Route path="/confirm/:code" element={<ConfirmPage />} />
 					<Route path="/voucher" element={<Voucher />} />
 					<Route path="/faq" element={<FAQComponent />} />
