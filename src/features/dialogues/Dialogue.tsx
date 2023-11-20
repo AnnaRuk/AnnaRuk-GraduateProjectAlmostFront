@@ -49,7 +49,7 @@ export default function Dialogue(): JSX.Element {
 
 	return (
 		<div className="font_itim dark">
-			<div id={`dialogue${dialogue?.id}`} className="dTitle">
+			<div id={`dialogue${dialogue?.id ? dialogue?.id : ''}`} className="dTitle">
 				Dialogue with {dialogue?.recipient.firstName} {dialogue?.recipient.lastName}
 			</div>
 			<div>
@@ -58,7 +58,7 @@ export default function Dialogue(): JSX.Element {
 						<div
 							key={message.id}
 							id={`message${message.id}`}
-							className={getClassList(user?.id, message.senderId)}
+							className={getClassList(user?.id ? user?.id : 0, message.senderId)}
 						>
 							<div className="coupleContainer">
 								<label htmlFor={`message${message.id}text`} className="form-label lbl small">
@@ -84,7 +84,9 @@ export default function Dialogue(): JSX.Element {
 				/>
 				<button
 					id="dSendMessageBtn"
-					onClick={() => handleSendMessage(dialogue?.recipient.id, newMessage)}
+					onClick={() =>
+						handleSendMessage(dialogue?.recipient.id ? dialogue?.recipient.id : 0, newMessage)
+					}
 				>
 					Send Message
 				</button>

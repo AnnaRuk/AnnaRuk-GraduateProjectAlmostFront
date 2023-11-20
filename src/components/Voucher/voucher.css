@@ -1,0 +1,29 @@
+#voucherContainer {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+#voucherTitle {
+	font-size: 3vw;
+	margin-bottom: 1vw;
+}
+#voucherContentContainer {
+	width: 60vw;
+	padding: 1vw 2vw 2vw 2vw;
+	border-radius: 2vw;
+	margin-bottom: 3vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#voucherTextContainer {
+	font-size: 1.3vw;
+	padding: 1vw 1vw 1vw 1vw;
+	border-radius: 1vw;
+}
+#lnkContainer {
+	font-size: 1.3vw;
+	padding: 1vw 1vw 1vw 1vw;
+	border-radius: 1vw;
+}

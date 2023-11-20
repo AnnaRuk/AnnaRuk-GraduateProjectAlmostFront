@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { register, resetRegisterFormError, login } from './authSlice';
+import { register, resetRegisterFormError } from './authSlice';
 import { selectRegisterFormError } from './selectors';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import './auth.css';
@@ -31,8 +31,9 @@ function Register(): JSX.Element {
 				})
 			);
 			if (register.fulfilled.match(dispatchResult)) {
-				dispatch(login({ email, password }));
-				navigate('/');
+				navigate('/register/success');
+			} else {
+				navigate('/register/fail');
 			}
 		},
 		[dispatch, email, navigate, password, passwordRepeat]
@@ -90,7 +91,7 @@ function Register(): JSX.Element {
 		<div id="registerAllContainer" className="content font_itim">
 			<form id="registerForm" className="auth-form bg_green dark" onSubmit={handleSubmit}>
 				<div id="registerContainer">
-					<div id="registerTitle">Let's Sign Up!</div>
+					<div id="registerTitle">Let`s Sign Up!</div>
 					{error && (
 						<div className="invalid-feedback " style={{ display: 'block' }}>
 							{error}
@@ -126,7 +127,7 @@ function Register(): JSX.Element {
 							/>
 						</div>
 					</div>
-					<div >
+					<div>
 						<label htmlFor="role-input" className="form-label lbl">
 							Choose a role
 						</label>
@@ -194,7 +195,7 @@ function Register(): JSX.Element {
 								I agree with <NavLink to={'/terms_of_use'}>Terms of Use</NavLink> .
 							</label>
 						</div>
-						<button id="regBtn" type="submit" className="aBtn_blue dark" disabled={true}>
+						<button id="regBtn" type="submit" className="aBtn_blue dark">
 							Sign up
 						</button>
 					</div>

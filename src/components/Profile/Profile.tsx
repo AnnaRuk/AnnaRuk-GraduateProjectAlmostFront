@@ -9,7 +9,7 @@ export default function Profile(): JSX.Element {
 			<div className="font_itim dark">
 				{user?.role == 'USER' ? (
 					<div>
-						<div className="aTitle aMid">Dear {user.firstName}!</div>
+						<div className="aTitle aMid">Dear {user?.firstName}!</div>
 						<div className="aText ">
 							Attention! If You want to use all the functionality of the site, please fill in the
 							data about You and Your Children in the appropriate menus of Your personal account!
@@ -18,7 +18,7 @@ export default function Profile(): JSX.Element {
 					</div>
 				) : (
 					<div>
-						<div className="aTitle aMid">Dear {user.firstName}!</div>
+						<div className="aTitle aMid">Dear {user?.firstName}!</div>
 						<div className="aText ">
 							Attention! If You want to use all the functionality of the site, please fill in the
 							data about You and Your Kindergarten in the appropriate menus of Your personal

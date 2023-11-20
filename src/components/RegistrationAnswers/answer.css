@@ -1,0 +1,22 @@
+.bgContainer {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.answerContainer {
+	border-radius: 2vw;
+	padding: 2vw 2vw 2vw 2vw;
+	width: 30vw;
+	font-size: 1.7vw;
+}
+.aboutContainer {
+	border-radius: 2vw;
+	padding: 3vw 3vw 2vw 3vw;
+	width: 50vw;
+	font-size: 1.7vw;
+	margin-bottom: 3vw;
+}
+#aboutWContainer {
+	border-radius: 2vw;
+	padding: 2vw 2vw 0vw 2vw;
+}

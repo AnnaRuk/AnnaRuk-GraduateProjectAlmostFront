@@ -69,9 +69,9 @@ export default function UserRequestsList(): JSX.Element {
 						<thead>
 							<tr>
 								<th>Date</th>
-								<th>Kindergarten's Title</th>
-								<th>Kindergarten's Address</th>
-								<th>Child's Name</th>
+								<th>Kindergarten`s Title</th>
+								<th>Kindergarten`s Address</th>
+								<th>Child`s Name</th>
 								<th>Status</th>
 								<th></th>
 							</tr>

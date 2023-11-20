@@ -1,23 +1,17 @@
-import React, { FormEvent, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { addChildren, updateChildren } from './ChildrenSlice';
+import { FormEvent, useState } from 'react';
+import { useAppDispatch } from '../../app/hooks';
+import { addChildren } from './ChildrenSlice';
 import { NavLink, useNavigate } from 'react-router-dom';
-
 
 export default function EditChildrenForm(): JSX.Element {
 	const dispatch = useAppDispatch();
 	const [error, setError] = useState<string>('');
-	const [editable, setEditable] = useState(false);
+
 	const [newChildFirstName, setNewChildFirstName] = useState<string>('');
 	const [newChildLastName, setNewChildLastName] = useState<string>('');
 	const [newChildDateOfBirth, setNewChildDateOfBirth] = useState<string>('');
 	const [newChildGender, setNewChildGender] = useState<string>('');
 	const navigate = useNavigate();
-	const children = useAppSelector((state) => state.children.children);
-
-	const handleEditClick = (id: number): void => {
-		setEditable(true);
-	};
 
 	function validateInputs(): boolean {
 		if (newChildFirstName.trim() === '') {

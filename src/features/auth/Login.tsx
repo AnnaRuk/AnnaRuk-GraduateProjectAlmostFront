@@ -15,20 +15,19 @@ function Login(): JSX.Element {
 	const handleSubmit = useCallback(
 		async (event: React.FormEvent) => {
 			event.preventDefault();
-			// делаем диспатч санка
+
 			const dispatchResult = await dispatch(
 				login({
 					email,
 					password,
 				})
 			);
-			// проверяем, что санк login зарезолвился успешно
+
 			if (login.fulfilled.match(dispatchResult)) {
-				dispatch(getUser()); // подгрузит юзера
-				navigate('/'); // переведет на стартовую страницу
+				dispatch(getUser());
+				navigate('/');
 			}
 
-			// выводим в консоль ошибку если санк login зареджектился
 			if (login.rejected.match(dispatchResult)) {
 				// eslint-disable-next-line no-console
 				console.error(dispatchResult.error.message);
@@ -40,7 +39,7 @@ function Login(): JSX.Element {
 	const handleNameChange = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
 			setName(event.target.value);
-			// 332 очищаем ошибку
+
 			dispatch(resetLoginFormError());
 		},
 		[dispatch]
@@ -49,7 +48,7 @@ function Login(): JSX.Element {
 	const handlePasswordChange = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
 			setPassword(event.target.value);
-			// 332 очищаем ошибку
+
 			dispatch(resetLoginFormError());
 		},
 		[dispatch]
@@ -59,7 +58,7 @@ function Login(): JSX.Element {
 		<div id="loginAllContainer" className="content font_itim">
 			<form id="loginForm" className="bg_pink dark" onSubmit={handleSubmit}>
 				<div id="loginContainer">
-					<div id="signInTitle"> Let's Sign In!</div>
+					<div id="signInTitle"> Let`s Sign In!</div>
 					{error && (
 						<div className="invalid-feedback mb-3" style={{ display: 'block' }}>
 							{error}
@@ -102,7 +101,7 @@ function Login(): JSX.Element {
 								Forgot password?
 							</NavLink>
 							<NavLink to="/auth/register" id="toSIgnUp">
-								Have no Acc? Let's Sign Up!
+								Have no Acc? Let`s Sign Up!
 							</NavLink>
 						</nav>
 					</div>

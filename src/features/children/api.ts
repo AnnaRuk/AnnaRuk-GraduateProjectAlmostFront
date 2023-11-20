@@ -1,4 +1,3 @@
-import { toast } from 'react-toastify';
 import { negative, positive } from '../../basic_styles/toastify';
 import Child from './types/Child';
 import ChildDto from './types/ChildDto';
@@ -14,8 +13,7 @@ export async function addChild(dto: ChildDto): Promise<{ children: Child[] }> {
 		body: JSON.stringify(dto),
 	});
 	if (res.status === 201) {
-
-positive('Adding new child successful!');
+		positive('Adding new child successful!');
 	}
 	if (res.status >= 400) {
 		if (res.status === 409) {
@@ -24,7 +22,6 @@ positive('Adding new child successful!');
 		const { message }: { message: string } = await res.json();
 		throw new Error(message);
 	}
-
 
 	return res.json();
 }
