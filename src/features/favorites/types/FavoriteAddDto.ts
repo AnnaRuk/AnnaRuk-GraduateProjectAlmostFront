@@ -1,3 +1,3 @@
 export default interface FavoriteAddDto {
-	id: number;
+	kindergartenId: number;
 }

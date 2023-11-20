@@ -61,7 +61,7 @@ export default function KindergartenDetails(): JSX.Element {
 
 	const handleAddToFavorite = (kId: number): void => {
 		setIsInFavorites(true);
-		const addDto: FavoriteAddDto = { id: kId };
+		const addDto: FavoriteAddDto = { kindergartenId: kId };
 		dispatch(addToFavorites(addDto));
 	};
 
