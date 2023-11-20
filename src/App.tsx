@@ -49,7 +49,7 @@ function App(): JSX.Element {
 	return (
 		<HashRouter>
 			<Routes>
-				<Route path=" " element={<Layout />}>
+				<Route path="" element={<Layout />}>
 					<Route index element={<Home />} />
 					<Route path="/confirm/:code" element={<ConfirmPage />} />
 					<Route path="/voucher" element={<Voucher />} />
