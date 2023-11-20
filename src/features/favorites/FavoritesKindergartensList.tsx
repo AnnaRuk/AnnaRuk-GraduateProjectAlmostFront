@@ -1,16 +1,14 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { deleteFavorites, loadFavorites } from './FavoritesSlice';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useLocation, NavLink } from 'react-router-dom';
 import './favorites.css';
-import { positive } from '../../basic_styles/toastify';
 
 export default function FavoritesKindergartensList(): JSX.Element {
 	const favorites = useAppSelector((state) => state.favorites.kindergartens);
 	const dispatch = useAppDispatch();
 	const path = useLocation().pathname;
-	const error = useAppSelector((state) => state.favorites.error);
 
 	useEffect(() => {
 		dispatch(loadFavorites());
@@ -32,10 +30,10 @@ export default function FavoritesKindergartensList(): JSX.Element {
 					<table>
 						<thead>
 							<tr>
-								<th>Kindergarten's Title</th>
-								<th>Kindergarten's Postcode</th>
-								<th>Kindergarten's City</th>
-								<th>Kindergarten's Address</th>
+								<th>Kindergarten`s Title</th>
+								<th>Kindergarten`s Postcode</th>
+								<th>Kindergarten`s City</th>
+								<th>Kindergarten`s Address</th>
 								<th> Capacity</th>
 								<th> </th>
 							</tr>

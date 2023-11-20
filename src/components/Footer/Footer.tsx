@@ -1,4 +1,3 @@
-import React from 'react';
 import './footer.css';
 import '../../basic_styles/styles.css';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -9,7 +8,7 @@ export default function Footer(): JSX.Element {
 	return (
 		<footer id="footer" role="contentinfo" className="bg_blue blind ">
 			<div id="footerContainer" className="white font_itim">
-				<p>© 2023 Project of Group № By</p>
+				<p>© 2023 Project of Group № 10 Cohort25</p>
 				<div id="iconContainer">
 					<a href="https://www.facebook.com/" className="white" target="_blank" rel="noreferrer">
 						<FacebookIcon />

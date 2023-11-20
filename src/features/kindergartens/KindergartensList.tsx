@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { loadKindergartens, setSelectedCity } from './KindergartensSlice';
 import Kindergarten from './types/Kindergarten';
 import GradeIcon from '@mui/icons-material/Grade';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import '../../basic_styles/styles.css';
 import { loadFavorites } from '../favorites/FavoritesSlice';
@@ -21,7 +21,7 @@ export default function KindergartensList(): JSX.Element {
 		dispatch(loadFavorites());
 	}, [dispatch]);
 
-	const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+	const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
 		dispatch(setSelectedCity(e.target.value));
 	};
 
@@ -37,10 +37,10 @@ export default function KindergartensList(): JSX.Element {
 	function isInFavorites(kId: number): boolean {
 		return favorites?.find((k) => k.id === kId) ? true : false;
 	}
-	const filteredKindergartens = filtered(kindergartens, selectedCity);
+	const filteredKindergartens = filtered(kindergartens, selectedCity ? selectedCity : '');
 
 	return (
-		<div id="kTableContainer" className="dark">
+		<div id="kTableContainer" className="dark font_itim">
 			<div id="kListTitle" className="dark font_itim">
 				Kindergartens
 			</div>
@@ -54,7 +54,7 @@ export default function KindergartensList(): JSX.Element {
 							id="citySelector"
 							value={selectedCity}
 							onChange={handleCityChange}
-							className="dark font_itim form-control input"
+							className="input_reg form-select"
 						>
 							<option value="All cities">All cities</option>
 							{cities?.map((city) => (
@@ -68,10 +68,10 @@ export default function KindergartensList(): JSX.Element {
 					<table className="dark font_itim">
 						<thead>
 							<tr>
-								<th>Kindergarten's Title</th>
-								<th>Kindergarten's City</th>
-								<th>Kindergarten's Address</th>
-								<th>Kindergarten's Capacity</th>
+								<th>Kindergarten`s Title</th>
+								<th>Kindergarten`s City</th>
+								<th>Kindergarten`s Address</th>
+								<th>Kindergarten`s Capacity</th>
 							</tr>
 						</thead>
 						<tbody>

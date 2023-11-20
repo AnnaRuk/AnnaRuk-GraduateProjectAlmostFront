@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink, useLocation, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectUser } from '../auth/selectors';
@@ -11,6 +11,7 @@ import '../../basic_styles/styles.css';
 import './kindergartenDetails.css';
 import { loadChildren } from '../children/ChildrenSlice';
 import { createDialogue } from '../dialogues/DialoguesSlice';
+import FavoriteAddDto from './../favorites/types/FavoriteAddDto';
 
 export default function KindergartenDetails(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -34,7 +35,9 @@ export default function KindergartenDetails(): JSX.Element {
 		return favorites?.find((k) => k.id === kindergartenId) ? true : false;
 	};
 
-	const [isInFavorites, setIsInFavorites] = useState(isKindergartenInFavorites(kindergarten?.id));
+	const [isInFavorites, setIsInFavorites] = useState(
+		isKindergartenInFavorites(kindergarten?.id || 0)
+	);
 
 	const handleDelete = (kindergartenId: number): void => {
 		setIsInFavorites(false);
@@ -45,23 +48,24 @@ export default function KindergartenDetails(): JSX.Element {
 			dispatch(loadChildren());
 		}
 	}, [dispatch]);
-	const handleCreateRequest = (id: number): void => {
+	const handleCreateRequest = (Kid: number): void => {
 		if (selectedChildId !== null) {
 			dispatch(
 				createRequest({
 					childId: selectedChildId,
-					kindergartenId: Number(id),
+					kindergartenId: Kid,
 				})
 			);
 		}
 	};
 
-	const handleAddToFavorite = (id): void => {
+	const handleAddToFavorite = (kId: number): void => {
 		setIsInFavorites(true);
-		dispatch(addToFavorites(id));
+		const addDto: FavoriteAddDto = { id: kId };
+		dispatch(addToFavorites(addDto));
 	};
 
-	const handleChildChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+	const handleChildChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
 		setSelectedChildId(Number(e.target.value));
 	};
 
@@ -89,7 +93,7 @@ export default function KindergartenDetails(): JSX.Element {
 		}
 	}
 
-	const path = useLocation()?.pathname.replace(`/${id}`, '');
+	const path = useLocation()?.pathname.replace(`/${id ? id : ''}`, '');
 
 	if (kindergarten) {
 		return (
@@ -116,7 +120,11 @@ export default function KindergartenDetails(): JSX.Element {
 								<div>
 									<PhoneInTalkIcon /> {kindergarten?.phone}
 								</div>
-								<div>{`contact person: ${kindergarten?.manager?.firstName} ${kindergarten?.manager?.lastName}`}</div>
+								<div>{`contact person:{${
+									kindergarten.manager
+										? `${kindergarten?.manager?.firstName} ${kindergarten?.manager?.lastName}`
+										: ''
+								}`}</div>
 								<div> capacity: {kindergarten?.capacity}</div>
 							</div>
 						</div>
@@ -132,7 +140,7 @@ export default function KindergartenDetails(): JSX.Element {
 									className="kBtn_blue dark mg"
 									type="button"
 									id="kToFavoritesBTN"
-									onClick={() => handleAddToFavorite(kindergarten ? Number(kindergarten.id) : 0)}
+									onClick={() => handleAddToFavorite(kindergarten ? kindergarten.id : 0)}
 								>
 									Add to Favorites
 								</button>
@@ -141,7 +149,7 @@ export default function KindergartenDetails(): JSX.Element {
 									type="button"
 									className="kBtn_blue dark mg"
 									id="kFromFavoritesBTN"
-									onClick={() => handleDelete(Number(kindergarten.id))}
+									onClick={() => handleDelete(Number(kindergarten?.id))}
 								>
 									Remove from Favorites
 								</button>
@@ -154,13 +162,13 @@ export default function KindergartenDetails(): JSX.Element {
 								<select
 									value={selectedChildId || 'children'}
 									onChange={handleChildChange}
-									className="form-control input"
+									className="input_reg form-select"
 									id="kChildSelector"
 									name="kChildSelector"
 								>
 									<option value="children">Children</option>
 									{children?.map((child) => (
-										<option key={child.id} value={child.id} >
+										<option key={child.id} value={child.id}>
 											{child.firstName}
 										</option>
 									))}
@@ -171,7 +179,7 @@ export default function KindergartenDetails(): JSX.Element {
 								className="kBtn_green dark mg "
 								type="button"
 								id="kRequestBTN"
-								onClick={() => handleCreateRequest(Number(kindergarten.id || 0))}
+								onClick={() => handleCreateRequest(Number(kindergarten?.id || 0))}
 							>
 								Send a Request
 							</button>
@@ -204,7 +212,7 @@ export default function KindergartenDetails(): JSX.Element {
 									id="kSendMessageBTN"
 									className="kBtn_pink dark mg hide"
 									onClick={() => {
-										handleSendMessage(kindergarten?.manager?.id, newMessage);
+										handleSendMessage(Number(kindergarten?.manager?.id), newMessage);
 									}}
 								>
 									Send a Message

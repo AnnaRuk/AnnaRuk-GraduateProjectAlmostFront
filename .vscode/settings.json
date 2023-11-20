@@ -12,5 +12,5 @@
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"cSpell.words": ["kita", "Sidepanel", "Toastify"]
+	"cSpell.words": ["kita", "kostyl", "reduxjs", "Sidepanel", "Toastify"]
 }

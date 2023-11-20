@@ -6,6 +6,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EmailIcon from '@mui/icons-material/Email';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import Child from '../children/types/Child';
+import RequestDto from './types/RequestDto';
 
 export default function ManagerConfirmedRequestsList(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -52,7 +53,7 @@ export default function ManagerConfirmedRequestsList(): JSX.Element {
 		return foundedChild?.gender ? `${foundedChild?.gender}` : '';
 	}
 
-	function confirmedRequests(): Request[] {
+	function confirmedRequests(): RequestDto[] {
 		return requests?.filter((r) => r.status === 'CONFIRMED');
 	}
 	const confirmedRequestsList = confirmedRequests();
@@ -71,10 +72,10 @@ export default function ManagerConfirmedRequestsList(): JSX.Element {
 							<thead>
 								<tr>
 									<th>Date</th>
-									<th>Parent's Name</th>
-									<th>Child's Name</th>
-									<th>Child's Date of Birth</th>
-									<th>Child's Gender</th>
+									<th>Parent`s Name</th>
+									<th>Child`s Name</th>
+									<th>Child`s Date of Birth</th>
+									<th>Child`s Gender</th>
 									<th></th>
 								</tr>
 							</thead>

@@ -1,5 +1,5 @@
 import ChildWithParent from './ChildWithParent';
-import Request from './Request';
+import Request from './RequestDto';
 
 export default interface RequestsState {
 	childWithUserList: ChildWithParent[];

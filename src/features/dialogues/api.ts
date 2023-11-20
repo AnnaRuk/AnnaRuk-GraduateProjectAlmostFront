@@ -1,4 +1,4 @@
-import { negative, positive } from '../../basic_styles/toastify';
+import { positive } from '../../basic_styles/toastify';
 import DialoguesDto from './types/DialoguesDto';
 import NewDialogueDto from './types/NewDialogueDto';
 
@@ -14,10 +14,11 @@ export async function getAllDialogues(): Promise<{
 	}
 	return res.json();
 }
-//POST....
-export async function createDialogue(dto: NewDialogueDto): Promise<{
+type DialoguesListDto = {
 	dialogues: DialoguesDto[];
-}> {
+};
+//POST....
+export async function createDialogue(dto: NewDialogueDto): Promise<DialoguesListDto> {
 	const res = await fetch('/api/users/profile/dialogues', {
 		method: 'POST',
 		headers: {
@@ -33,6 +34,5 @@ export async function createDialogue(dto: NewDialogueDto): Promise<{
 		const { message }: { message: string } = await res.json();
 		throw new Error(message);
 	}
-
 	return res.json();
 }

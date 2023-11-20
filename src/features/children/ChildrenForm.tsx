@@ -1,17 +1,15 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Child from './types/Child';
-import { addChildren, loadChildren, updateChildren } from './ChildrenSlice';
-import AddChildrenForm from './AddChildrenForm';
-import { NavLink, Route } from 'react-router-dom';
-import Switch from '@mui/material/Switch/Switch';
+import { loadChildren, updateChildren } from './ChildrenSlice';
+
+import { NavLink } from 'react-router-dom';
+
 import EditIcon from '@mui/icons-material/Edit';
 import './children.css';
 
-
 export default function ChildrenForm(): JSX.Element {
 	const dispatch = useAppDispatch();
-	const [error, setError] = useState<string>('');
 	const [editable, setEditable] = useState(false);
 	const [editChild, setEditChild] = useState<Child | null>(null);
 
@@ -27,7 +25,7 @@ export default function ChildrenForm(): JSX.Element {
 	}, [dispatch]);
 
 	const handleEditClick = (id: number): void => {
-		const child: Child = children?.find((ch) => ch.id === id);
+		const child: Child | undefined = children?.find((ch) => ch.id === id);
 		if (child) {
 			setEditable(true);
 			setEditChild(child);
@@ -178,6 +176,3 @@ export default function ChildrenForm(): JSX.Element {
 		</div>
 	);
 }
-
-
-

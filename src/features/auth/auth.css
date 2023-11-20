@@ -1,6 +1,6 @@
 #signInTitle {
 	font-size: 3vw;
-	margin-left: 2vw;
+	margin-left: 0.5vw;
 	margin-top: 1vw;
 	margin-bottom: 1vw;
 }
@@ -101,7 +101,8 @@
 }
 .btn_toRight {
 	position: relative;
-	left: 5vw;
+	left: 4vw;
+	margin-top: 1vw;
 	margin-bottom: 2vw;
 }
 #registerForm {
@@ -136,11 +137,11 @@
 	flex-direction: row;
 	justify-content: flex-start;
 	flex-wrap: wrap;
-	align-items: stretch;
+	align-items: baseline;
 }
 #regBtn {
 	width: 10vw;
-	margin-left: 10vw;
+	margin-left: 11vw;
 }
 #agreeLbl {
 	position: relative;

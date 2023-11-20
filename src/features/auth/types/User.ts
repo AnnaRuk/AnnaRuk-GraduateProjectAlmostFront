@@ -1,7 +1,7 @@
 export default interface User {
 	id: number;
 	email: string;
-	role: string;
+	role?: string;
 	firstName: string;
 	lastName: string;
 	postcode?: string;
@@ -11,4 +11,3 @@ export default interface User {
 	dateOfBirth?: string;
 	gender?: string;
 }
-

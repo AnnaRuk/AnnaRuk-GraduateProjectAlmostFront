@@ -1,7 +1,7 @@
 import { negative, positive } from '../../basic_styles/toastify';
 import ChildWithParent from './types/ChildWithParent';
 import NewRequestDto from './types/NewRequestDto';
-import Request from './types/Request';
+import Request from './types/RequestDto';
 
 //GET....M+U
 export async function getAllRequests(): Promise<{

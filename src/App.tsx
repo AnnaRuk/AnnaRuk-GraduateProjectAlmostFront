@@ -10,9 +10,8 @@ import Layout from './components/layouts/Layout';
 import KindergartensList from './features/kindergartens/KindergartensList';
 import FavoritesKindergartensList from './features/favorites/FavoritesKindergartensList';
 import KindergartenDetails from './features/kindergartens/KindergartenDetails';
-import Account from './components/myaccount/Account';
+import Account from './components/myAccount/Account';
 import Home from './components/home/Home';
-import ControlKindergarten from './features/kindergartens/ControlKindergarten';
 import UserData from './features/account/UserData';
 import ChildrenForm from './features/children/ChildrenForm';
 import AddChildrenForm from './features/children/AddChildrenForm';
@@ -22,6 +21,14 @@ import ManagerNOTConfirmRequestList from './features/requests/ManagerNOTConfirme
 import Kindergartens from './components/Kindergarten/Kindergartens';
 import Dialogue from './features/dialogues/Dialogue';
 import Profile from './components/Profile/Profile';
+import AnswerSuccess from './components/RegistrationAnswers/AnswerSuccess';
+import AnswerFail from './components/RegistrationAnswers/AnswerFail';
+import ConfirmPage from './components/Confirmation/ConfirmPage';
+import Voucher from './components/Voucher/Voucher';
+import AboutUs from './components/AboutUs/AboutUs';
+import MControlKindergarten from './components/Kindergarten/MControlKindergarten';
+import FAQComponent from './components/FAQComponent/FAQComponent';
+import ContactUs from './components/Contact/Contact';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -44,6 +51,13 @@ function App(): JSX.Element {
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route path="/" element={<Home />} />
+					<Route path="/confirm/:code" element={<ConfirmPage />} />
+					<Route path="/voucher" element={<Voucher />} />
+					<Route path="/faq" element={<FAQComponent />} />
+					<Route path="/about" element={<AboutUs />} />
+					<Route path="/contact" element={<ContactUs />} />
+					<Route path="/register/success" element={<AnswerSuccess />} />
+					<Route path="/register/fail" element={<AnswerFail />} />
 					<Route path="/auth/login" element={<Login />} />
 					<Route path="/auth/register" element={<Register />} />
 					<Route path="/kindergartens" element={<Kindergartens />}>
@@ -55,7 +69,7 @@ function App(): JSX.Element {
 						<Route path="my_data" element={<UserData />} />
 						<Route path="favorites" element={<FavoritesKindergartensList />} />
 						<Route path="favorites/:id" element={<KindergartenDetails />} />
-						<Route path="kindergarten" element={<ControlKindergarten />} />
+						<Route path="kindergarten" element={<MControlKindergarten />} />
 						<Route path="kindergartens" element={<KindergartensList />} />
 						<Route path="kindergartens/:id" element={<KindergartenDetails />} />
 						<Route path="children" element={<ChildrenForm />} />

@@ -5,6 +5,7 @@
 #kChildSelectorContainer {
 	display: flex;
 	align-items: baseline;
+	margin-left: 5vw;
 }
 
 #kTitleContainer {
@@ -119,8 +120,9 @@
 	min-width: 8vw;
 }
 #kChildSelector {
+	width: max-content;
 	padding-left: 1vw;
-	padding-right: 1vw;
+	padding-right: 2vw;
 	background-color: rgba(175, 255, 175, 0.8);
 	margin-bottom: 0.5vw;
 	font-size: 1.3vw;
@@ -142,6 +144,6 @@ textarea {
 	border-radius: 2vw;
 	width: max-content;
 	margin-bottom: 2vw;
-	
-	
+	padding-bottom: 2vw;
+	padding-top: 1vw;
 }
