@@ -28,7 +28,7 @@ export default function Header(): JSX.Element {
 					<div id="headerContainer">
 						<div id="logoContainer" className="bg_blue">
 							<NavLink to="/">
-								<img id="logo" src="/images/Logo.png" alt="logoImg" />
+								<img id="logo" src="/public/images/Logo.png" alt="logoImg" />
 							</NavLink>
 						</div>
 						<div id="kAVContainer">
