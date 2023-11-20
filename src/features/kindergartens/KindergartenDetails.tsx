@@ -162,7 +162,7 @@ export default function KindergartenDetails(): JSX.Element {
 								<select
 									value={selectedChildId || 'children'}
 									onChange={handleChildChange}
-									className="form-control input"
+									className="input_reg form-select"
 									id="kChildSelector"
 									name="kChildSelector"
 								>

@@ -40,7 +40,7 @@ export default function KindergartensList(): JSX.Element {
 	const filteredKindergartens = filtered(kindergartens, selectedCity ? selectedCity : '');
 
 	return (
-		<div id="kTableContainer" className="dark">
+		<div id="kTableContainer" className="dark font_itim">
 			<div id="kListTitle" className="dark font_itim">
 				Kindergartens
 			</div>
@@ -54,7 +54,7 @@ export default function KindergartensList(): JSX.Element {
 							id="citySelector"
 							value={selectedCity}
 							onChange={handleCityChange}
-							className="dark font_itim form-control input"
+							className="input_reg form-select"
 						>
 							<option value="All cities">All cities</option>
 							{cities?.map((city) => (
