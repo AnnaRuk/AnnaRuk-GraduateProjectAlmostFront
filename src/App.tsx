@@ -10,10 +10,7 @@ import Layout from './components/layouts/Layout';
 import KindergartensList from './features/kindergartens/KindergartensList';
 import FavoritesKindergartensList from './features/favorites/FavoritesKindergartensList';
 import KindergartenDetails from './features/kindergartens/KindergartenDetails';
-<<<<<<< Updated upstream
-=======
 import Account from './components/myaccount/Account';
->>>>>>> Stashed changes
 import Home from './components/home/Home';
 import UserData from './features/account/UserData';
 import ChildrenForm from './features/children/ChildrenForm';
@@ -32,7 +29,6 @@ import AboutUs from './components/AboutUs/AboutUs';
 import MControlKindergarten from './components/Kindergarten/MControlKindergarten';
 import FAQComponent from './components/FAQComponent/FAQComponent';
 import ContactUs from './components/Contact/Contact';
-import Account from './components/myAccount/Account';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
