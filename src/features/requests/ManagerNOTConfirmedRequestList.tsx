@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { confirmRequest, loadRequests, rejectRequest } from './RequestsSlice';
 import ChildWithParent from './types/ChildWithParent';
-import Request from './types/Request';
+import Request from './types/RequestDto';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import CheckIcon from '@mui/icons-material/Check';
 import EmailIcon from '@mui/icons-material/Email';
+import Child from '../children/types/Child';
 
 export default function ManagerRequestsList(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -35,7 +36,7 @@ export default function ManagerRequestsList(): JSX.Element {
 		const foundedChild: Child | undefined = childWithUserList.findLast(
 			(e) => e.child.id === childId
 		)?.child;
-		return foundedChild ? `${foundedChild.firstName} ${foundedChild.lastName}` : '';
+		return foundedChild ? `${foundedChild?.firstName} ${foundedChild?.lastName}` : '';
 	}
 	function getChildDateOfBirth(childId: number | undefined): string {
 		const foundedChild: Child | undefined = childWithUserList.findLast(
@@ -73,10 +74,10 @@ export default function ManagerRequestsList(): JSX.Element {
 							<thead>
 								<tr>
 									<th>Date</th>
-									<th>Parent's Name</th>
-									<th>Child's Name</th>
-									<th>Child's Date of Birth</th>
-									<th>Child's Gender</th>
+									<th>Parent`s Name</th>
+									<th>Child`s Name</th>
+									<th>Child`s Date of Birth</th>
+									<th>Child`s Gender</th>
 									<th></th>
 								</tr>
 							</thead>

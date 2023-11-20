@@ -15,20 +15,19 @@ function Login(): JSX.Element {
 	const handleSubmit = useCallback(
 		async (event: React.FormEvent) => {
 			event.preventDefault();
-			// делаем диспатч санка
+
 			const dispatchResult = await dispatch(
 				login({
 					email,
 					password,
 				})
 			);
-			// проверяем, что санк login зарезолвился успешно
+
 			if (login.fulfilled.match(dispatchResult)) {
-				dispatch(getUser()); // подгрузит юзера
-				navigate('/'); // переведет на стартовую страницу
+				dispatch(getUser());
+				navigate('/');
 			}
 
-			// выводим в консоль ошибку если санк login зареджектился
 			if (login.rejected.match(dispatchResult)) {
 				// eslint-disable-next-line no-console
 				console.error(dispatchResult.error.message);
@@ -40,7 +39,7 @@ function Login(): JSX.Element {
 	const handleNameChange = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
 			setName(event.target.value);
-			// 332 очищаем ошибку
+
 			dispatch(resetLoginFormError());
 		},
 		[dispatch]
@@ -49,7 +48,7 @@ function Login(): JSX.Element {
 	const handlePasswordChange = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
 			setPassword(event.target.value);
-			// 332 очищаем ошибку
+
 			dispatch(resetLoginFormError());
 		},
 		[dispatch]

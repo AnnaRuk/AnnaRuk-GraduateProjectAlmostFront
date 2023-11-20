@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { register, resetRegisterFormError, login } from './authSlice';
+import { register, resetRegisterFormError } from './authSlice';
 import { selectRegisterFormError } from './selectors';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import './auth.css';
@@ -91,7 +91,7 @@ function Register(): JSX.Element {
 		<div id="registerAllContainer" className="content font_itim">
 			<form id="registerForm" className="auth-form bg_green dark" onSubmit={handleSubmit}>
 				<div id="registerContainer">
-					<div id="registerTitle">Let's Sign Up!</div>
+					<div id="registerTitle">Let`s Sign Up!</div>
 					{error && (
 						<div className="invalid-feedback " style={{ display: 'block' }}>
 							{error}

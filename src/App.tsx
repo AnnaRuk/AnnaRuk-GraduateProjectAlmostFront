@@ -27,6 +27,8 @@ import ConfirmPage from './components/Confirmation/ConfirmPage';
 import Voucher from './components/Voucher/Voucher';
 import AboutUs from './components/AboutUs/AboutUs';
 import MControlKindergarten from './components/Kindergarten/MControlKindergarten';
+import FAQComponent from './components/FAQComponent/FAQComponent';
+import ContactUs from './components/Contact/Contact';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -51,7 +53,9 @@ function App(): JSX.Element {
 					<Route path="/" element={<Home />} />
 					<Route path="/confirm/:code" element={<ConfirmPage />} />
 					<Route path="/voucher" element={<Voucher />} />
+					<Route path="/faq" element={<FAQComponent />} />
 					<Route path="/about" element={<AboutUs />} />
+					<Route path="/contact" element={<ContactUs />} />
 					<Route path="/register/success" element={<AnswerSuccess />} />
 					<Route path="/register/fail" element={<AnswerFail />} />
 					<Route path="/auth/login" element={<Login />} />

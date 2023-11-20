@@ -19,9 +19,8 @@ export async function login(credentials: Credentials): Promise<User> {
 			'Content-Type': 'application/x-www-form-urlencoded',
 		},
 	});
-	// реджектим промис если вернулся ошибочный статус
+
 	if (res.status >= 400) {
-		// достаем текст ошибки из ответа
 		const { message }: { message: string } = await res.json();
 		throw new Error(message);
 	}

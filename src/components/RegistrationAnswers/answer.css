@@ -12,7 +12,11 @@
 .aboutContainer {
 	border-radius: 2vw;
 	padding: 3vw 3vw 2vw 3vw;
-	width: 40vw;
+	width: 50vw;
 	font-size: 1.7vw;
 	margin-bottom: 3vw;
+}
+#aboutWContainer {
+	border-radius: 2vw;
+	padding: 2vw 2vw 0vw 2vw;
 }

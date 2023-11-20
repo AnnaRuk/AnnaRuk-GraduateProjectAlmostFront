@@ -1,9 +1,8 @@
 import { NavLink } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppSelector } from '../../app/hooks';
 import { selectUser } from '../../features/auth/selectors';
 import './sidepanel.css';
 import { useState } from 'react';
-import { store } from '../../app/store';
 
 function Sidepanel(): JSX.Element {
 	const user = useAppSelector(selectUser);
