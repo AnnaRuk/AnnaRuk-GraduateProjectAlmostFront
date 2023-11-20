@@ -28,7 +28,7 @@ export default function Header(): JSX.Element {
 					<div id="headerContainer">
 						<div id="logoContainer" className="bg_blue">
 							<NavLink to="/">
-								<img id="logo" src="src\images\Logo.png" alt="logoImg" />
+								<img id="logo" src="/kita-connection/images/Logo.png" alt="logoImg" />
 							</NavLink>
 						</div>
 						<div id="kAVContainer">
