@@ -22,7 +22,9 @@ export const loadChildren = createAsyncThunk('children/loadChildren', () => api.
 export const childrenSlice = createSlice({
 	name: 'children',
 	initialState,
-	reducers: {},
+	reducers: {
+		resetChildren: () => initialState,
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(loadChildren.fulfilled, (state, action) => {
@@ -56,3 +58,4 @@ export const childrenSlice = createSlice({
 	},
 });
 export default childrenSlice.reducer;
+export const { resetChildren } = childrenSlice.actions;

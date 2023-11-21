@@ -19,7 +19,9 @@ export const createDialogue = createAsyncThunk('dialogues/createDialogues', (dto
 export const dialoguesSlice = createSlice({
 	name: 'dialogues',
 	initialState,
-	reducers: {},
+	reducers: {
+		resetDialogues: () => initialState,
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(loadDialogues.fulfilled, (state, action) => {
@@ -38,3 +40,4 @@ export const dialoguesSlice = createSlice({
 });
 
 export default dialoguesSlice.reducer;
+export const { resetDialogues } = dialoguesSlice.actions;

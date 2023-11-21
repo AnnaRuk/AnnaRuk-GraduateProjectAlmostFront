@@ -14,11 +14,14 @@ export default function KindergartensList(): JSX.Element {
 	const cities = useAppSelector((state) => state.kindergartens.cities);
 	const selectedCity = useAppSelector((state) => state.kindergartens.selectedCity);
 	const dispatch = useAppDispatch();
+	const user = useAppSelector((state) => state.auth.user);
 	const path = useLocation().pathname;
 
 	useEffect(() => {
 		dispatch(loadKindergartens());
-		dispatch(loadFavorites());
+		if (user) {
+			dispatch(loadFavorites());
+		}
 	}, [dispatch]);
 
 	const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {

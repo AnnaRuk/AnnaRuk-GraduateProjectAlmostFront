@@ -5,6 +5,11 @@ import { logout } from '../../features/auth/authSlice';
 import { selectUser } from '../../features/auth/selectors';
 import '../../basic_styles/styles.css';
 import './header.css';
+import { resetFavorites } from '../../features/favorites/FavoritesSlice';
+import { resetChildren } from '../../features/children/ChildrenSlice';
+import { resetRequests } from '../../features/requests/RequestsSlice';
+import { resetDialogues } from '../../features/dialogues/DialoguesSlice';
+import { resetAccount } from '../../features/account/AccountSlice';
 
 export default function Header(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -16,6 +21,11 @@ export default function Header(): JSX.Element {
 			event.preventDefault();
 			const dispatchResult = await dispatch(logout());
 			if (logout.fulfilled.match(dispatchResult)) {
+				dispatch(resetFavorites());
+				dispatch(resetChildren());
+				dispatch(resetAccount());
+				dispatch(resetRequests());
+				dispatch(resetDialogues());
 				navigate('/');
 			}
 		},

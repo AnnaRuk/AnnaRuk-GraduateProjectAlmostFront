@@ -16,7 +16,9 @@ export const updateUsersProfile = createAsyncThunk(
 export const accountSlice = createSlice({
 	name: 'account',
 	initialState,
-	reducers: {},
+	reducers: {
+		resetAccount: () => initialState,
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(updateUsersProfile.fulfilled, (state, action) => {
@@ -40,3 +42,4 @@ export const accountSlice = createSlice({
 	},
 });
 export default accountSlice.reducer;
+export const { resetAccount } = accountSlice.actions;

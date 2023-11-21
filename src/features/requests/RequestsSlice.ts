@@ -26,7 +26,9 @@ export const createRequest = createAsyncThunk('requests/createRequest', (dto: Ne
 export const requestsSlice = createSlice({
 	name: 'requests',
 	initialState,
-	reducers: {},
+	reducers: {
+		resetRequests: () => initialState,
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(loadRequests.fulfilled, (state, action) => {
@@ -62,3 +64,4 @@ export const requestsSlice = createSlice({
 });
 
 export default requestsSlice.reducer;
+export const { resetRequests } = requestsSlice.actions;
