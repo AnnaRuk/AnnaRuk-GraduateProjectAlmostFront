@@ -120,11 +120,14 @@ export default function KindergartenDetails(): JSX.Element {
 								<div>
 									<PhoneInTalkIcon /> {kindergarten?.phone}
 								</div>
-								<div>{`contact person:{${
-									kindergarten.manager
-										? `${kindergarten?.manager?.firstName} ${kindergarten?.manager?.lastName}`
-										: ''
-								}`}</div>
+								<div>
+									Contact person:
+									{kindergarten?.manager && (
+										<span>
+											{kindergarten.manager?.firstName} {kindergarten.manager?.lastName}
+										</span>
+									)}
+								</div>
 								<div> capacity: {kindergarten?.capacity}</div>
 							</div>
 						</div>

@@ -43,7 +43,9 @@ export const kindergartensSlice = createSlice({
 		setSelectedCity: (state, action) => {
 			state.selectedCity = action.payload;
 		},
+		resetKindergartens: () => initialState,
 	},
+
 	extraReducers: (builder) => {
 		builder
 			.addCase(updateControlKindergarten.fulfilled, (state, action) => {
@@ -94,3 +96,4 @@ export const kindergartensSlice = createSlice({
 });
 export const { setSelectedCity } = kindergartensSlice.actions;
 export default kindergartensSlice.reducer;
+export const { resetKindergartens } = kindergartensSlice.actions;

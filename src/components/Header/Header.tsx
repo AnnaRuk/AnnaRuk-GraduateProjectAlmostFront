@@ -10,6 +10,7 @@ import { resetChildren } from '../../features/children/ChildrenSlice';
 import { resetRequests } from '../../features/requests/RequestsSlice';
 import { resetDialogues } from '../../features/dialogues/DialoguesSlice';
 import { resetAccount } from '../../features/account/AccountSlice';
+import { resetKindergartens } from '../../features/kindergartens/KindergartensSlice';
 
 export default function Header(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -26,6 +27,7 @@ export default function Header(): JSX.Element {
 				dispatch(resetAccount());
 				dispatch(resetRequests());
 				dispatch(resetDialogues());
+				dispatch(resetKindergartens());
 				navigate('/');
 			}
 		},

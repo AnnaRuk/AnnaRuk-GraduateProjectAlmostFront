@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { loadRequests, rejectRequest } from './RequestsSlice';
 import ChildWithParent from './types/ChildWithParent';
@@ -7,6 +7,8 @@ import EmailIcon from '@mui/icons-material/Email';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import Child from '../children/types/Child';
 import RequestDto from './types/RequestDto';
+import RequestUserDto from './types/RequestsUserDto';
+import { createDialogue } from '../dialogues/DialoguesSlice';
 
 export default function ManagerConfirmedRequestsList(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -15,6 +17,9 @@ export default function ManagerConfirmedRequestsList(): JSX.Element {
 	const hasCKindergarten = useAppSelector(
 		(state) => state.kindergartens.controlKindergarten
 	)?.title;
+	const [isMessageShown, setIsMessageShown] = useState<boolean>(false);
+	const [recipient, setRecipient] = useState<RequestUserDto | null>(null);
+	const [message, setMessage] = useState<string>('');
 
 	useEffect(() => {
 		if (hasCKindergarten) {
@@ -61,7 +66,43 @@ export default function ManagerConfirmedRequestsList(): JSX.Element {
 	function handleRejectRequest(id: number): void {
 		dispatch(rejectRequest(id));
 	}
-
+	function getParent(childId: number): RequestUserDto | null {
+		if (childId) {
+			const foundedChild: ChildWithParent | undefined = childWithUserList.find(
+				(e) => e.child.id === childId
+			);
+			const foundedParent = foundedChild?.userInRequestAndDialog;
+			if (foundedParent) {
+				return {
+					id: foundedParent.id,
+					firstName: foundedParent.firstName,
+					lastName: foundedParent.lastName,
+				};
+			}
+		}
+		return null;
+	}
+	function handleShowMessage(id: number): void {
+		setIsMessageShown(!isMessageShown);
+		setRecipient(getParent(id));
+		setMessage('');
+	}
+	function btnBackHandler(): void {
+		setIsMessageShown(!isMessageShown);
+		setMessage('');
+	}
+	function handleSendMessage(recipientId: number, messageText: string): void {
+		if (messageText && recipientId != 0) {
+			dispatch(
+				createDialogue({
+					recipientId,
+					messageText,
+				})
+			);
+			setMessage('');
+			setIsMessageShown(!isMessageShown);
+		}
+	}
 	return (
 		<div className="font_itim dark">
 			<div id="rMConfirmedTitle">Confirmed Requests</div>
@@ -93,7 +134,10 @@ export default function ManagerConfirmedRequestsList(): JSX.Element {
 												type="button"
 												onClick={() => handleRejectRequest(request.id)}
 											/>
-											<EmailIcon type="button"></EmailIcon>
+											<EmailIcon
+												type="button"
+												onClick={() => handleShowMessage(request.childId)}
+											></EmailIcon>
 											<GroupAddIcon type="button"></GroupAddIcon>
 										</td>
 									</tr>
@@ -103,6 +147,39 @@ export default function ManagerConfirmedRequestsList(): JSX.Element {
 					) : (
 						<div className="rMAdditional">You have no confirmed Requests.</div>
 					)}
+					<>
+						{isMessageShown && (
+							<div id="rMMessageDiv" className="bg_white rMMessageContainer">
+								<div className="bg_green rMessageContentContainer">
+									<div className="rMessageTitle">
+										Send Message to {recipient?.firstName} {recipient?.lastName}
+									</div>
+									<textarea
+										name="messageText"
+										id="rMessage"
+										placeholder="Write your message here"
+										cols={100}
+										rows={7}
+										maxLength={1000}
+										className="form-control rMessage"
+										value={message}
+										onChange={(e) => setMessage(e.target.value)}
+									></textarea>
+									<div className="rBtnContainer">
+										<button onClick={btnBackHandler} className="rBtn_blue">
+											Back
+										</button>
+										<button
+											onClick={() => handleSendMessage(recipient ? recipient.id : 0, message)}
+											className="rBtn_pink"
+										>
+											Send Message
+										</button>
+									</div>
+								</div>
+							</div>
+						)}
+					</>
 				</div>
 			) : (
 				<div className="rMAdditional">

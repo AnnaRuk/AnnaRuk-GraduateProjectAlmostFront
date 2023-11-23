@@ -36,3 +36,83 @@
 #rMNotConfirmedContainer {
 	margin-left: 3vw;
 }
+.rMessageContainer {
+	width: 40vw;
+	padding: 2vw 2vw 2vw 2vw;
+	border-radius: 2vw;
+	position: relative;
+	top: -30vw;
+	left: 12vw;
+}
+.rMessageContentContainer {
+	width: 36vw;
+	padding: 2vw 2vw 2vw 2vw;
+	border-radius: 2vw;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: center;
+}
+.rMMessageContainer {
+	width: 40vw;
+	padding: 2vw 2vw 2vw 2vw;
+	border-radius: 2vw;
+	position: relative;
+	top: -15vw;
+	left: 12vw;
+}
+.rMessageTitle {
+	margin-left: 3vw;
+	font-size: 2vw;
+	margin-bottom: 1vw;
+}
+.rMessage {
+	width: 32vw;
+	height: auto;
+	font-size: 1vw;
+}
+.rBtnContainer {
+	width: 32vw;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-top: 2vw;
+}
+.rBtn_blue {
+	display: inline-flex;
+	justify-content: center;
+	--padding-x: 1.2em;
+	background-color: rgba(37, 174, 206, 1);
+	border-color: transparent;
+	align-items: center;
+	height: 2vw;
+	border-radius: 1vw 1vw 1vw 1vw;
+	margin-top: 1vw;
+	margin-bottom: 1vw;
+	font-size: 1.2vw;
+	padding: 1vw 2vw 1vw 2vw;
+}
+.rBtn_blue:hover {
+	text-decoration: none !important;
+	background-color: rgba(37, 174, 206, 0.8);
+	border-color: transparent;
+}
+.rBtn_pink {
+	display: inline-flex;
+	justify-content: center;
+	--padding-x: 1.2em;
+	background-color: rgba(255, 192, 203, 1);
+	border-color: transparent;
+	align-items: center;
+	height: 2vw;
+	border-radius: 1vw 1vw 1vw 1vw;
+	margin-top: 1vw;
+	margin-bottom: 1vw;
+	font-size: 1.2vw;
+	padding: 1vw 2vw 1vw 2vw;
+}
+.rBtn_pink:hover {
+	text-decoration: none !important;
+	background-color: rgba(255, 192, 203, 0.8);
+	border-color: transparent;
+}
