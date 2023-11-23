@@ -255,27 +255,23 @@ export default function ControlKindergarten({ kindergarten }: KindergartenProps)
 			) : (
 				<div>
 					<div id="cKTitle">My Kindergarten</div>
-					{controlKindergarten?.title ? (
+					{title ? (
 						<>
-							<div className="form-control input-imit">title: {controlKindergarten.title}</div>
-							<div className="form-control input-imit">address: {controlKindergarten.address}</div>
+							<div className="form-control input-imit">title: {title}</div>
+							<div className="form-control input-imit">address: {address}</div>
 							<div className="flex">
-								<div className="form-control input-imit">
-									postcode: {controlKindergarten.postcode}
-								</div>
-								<div className="form-control input-imit">city: {controlKindergarten.city}</div>
+								<div className="form-control input-imit">postcode: {postcode}</div>
+								<div className="form-control input-imit">city: {city}</div>
 							</div>
 							<div id="cKDescription" className="form-control input-imit">
-								about kindergarten: {controlKindergarten.description}
+								about kindergarten: {description}
 							</div>
 							<div className="flex">
-								<div className="form-control input-imit">
-									capacity: {controlKindergarten.capacity}
-								</div>
-								<div className="form-control input-imit">phone: {controlKindergarten.phone}</div>
+								<div className="form-control input-imit">capacity: {capacity}</div>
+								<div className="form-control input-imit">phone: {controlKindergarten?.phone}</div>
 							</div>
 							<div id="ckLinkImg" className="form-control input-imit">
-								link to image: {controlKindergarten.linkImg}
+								link to image: {controlKindergarten?.linkImg}
 							</div>
 						</>
 					) : (
