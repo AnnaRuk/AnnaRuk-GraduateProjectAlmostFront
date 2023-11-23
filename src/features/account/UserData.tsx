@@ -229,25 +229,25 @@ export default function UserData(): JSX.Element {
 					<div>
 						<div id="MyDataTitle">My data</div>
 						<div className="flex">
-							<div className="form-control input-imit">Name: {user.firstName}</div>
-							<div className="form-control input-imit">Last name: {user.lastName}</div>
+							<div className="form-control input-imit">Name: {firstName}</div>
+							<div className="form-control input-imit">Last name: {lastName}</div>
 						</div>
-						<div className="form-control input-imit">Gender: {user.gender}</div>
+						<div className="form-control input-imit">Gender: {gender}</div>
 						<div className="flex">
 							<div className="form-control input-imit">
 								Birthday:
-								{user.dateOfBirth ? new Date(user.dateOfBirth).toLocaleDateString() : ''}
+								{dateOfBirth ? new Date(dateOfBirth).toLocaleDateString() : ''}
 							</div>
-							<div className="form-control input-imit">Email: {user.email}</div>
+							<div className="form-control input-imit">Email: {email}</div>
 						</div>
 						<div className="flex">
-							<div className="form-control input-imit">Address: {user.address}</div>
+							<div className="form-control input-imit">Address: {address}</div>
 							<div className="form-control input-imit">
 								Postcode:
-								{user.postcode}, city: {user.city}
+								{postcode}, city: {city}
 							</div>
 						</div>
-						<div className="form-control input-imit">Phone: {user.phone}</div>
+						<div className="form-control input-imit">Phone: {phone}</div>
 						<div className="flex">
 							<button
 								onClick={handleEditClick}
